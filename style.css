@@ -1,367 +1,186 @@
-/* =========================
-   Karuizawa Trip App UI v3
-   Tab animation upgraded
-   ========================= */
-
-:root{
-  --bg: #0b0f0e;
-  --card: rgba(255,255,255,0.14);
-  --card2: rgba(255,255,255,0.10);
-  --stroke: rgba(255,255,255,0.18);
-  --text: rgba(255,255,255,0.92);
-  --muted: rgba(255,255,255,0.72);
-  --shadow: 0 20px 60px rgba(0,0,0,0.35);
-  --radius: 22px;
-  --tabH: 76px;
-
-  /* Hero image defaults */
-  --hero-image: url("assets/hero-karuizawa.jpg");
+/* ===== Reset & Base ===== */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-*{ box-sizing: border-box; }
-html,body{ height:100%; }
-
-body{
-  margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang TC", "Noto Sans TC", sans-serif;
+  background: #000;
+  color: #fff;
 }
 
-/* 讓內容不被底部 tab 擋住 */
-.app{
+/* ===== App Layout ===== */
+.app {
+  max-width: 430px;
+  margin: 0 auto;
   min-height: 100vh;
-  padding-bottom: calc(var(--tabH) + 18px);
+  background: #000;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== Hero ===== */
-.hero{
-  position: relative;
-  height: 340px;
-  border-bottom-left-radius: 28px;
-  border-bottom-right-radius: 28px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.hero::before{
-  content:"";
-  position:absolute; inset:0;
-  background-image: var(--hero-image);
+.hero {
+  height: 280px;
   background-size: cover;
   background-position: center;
-  transform: scale(1.02);
-  filter: saturate(1.05) contrast(1.05);
+  position: relative;
+  transition: background-image 0.4s ease;
 }
 
-.hero::after{
-  content:"";
-  position:absolute; inset:0;
+/* 🔑 Hero 切換關鍵（一定要用 class） */
+.hero.is-karuizawa {
+  background-image: url("./assets/hero-karuizawa.jpg");
+}
+
+.hero.is-tokyo {
+  background-image: url("./assets/hero-tokyo.jpg");
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(0,0,0,0.05) 0%,
-    rgba(0,0,0,0.45) 55%,
-    rgba(0,0,0,0.78) 100%
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.75)
   );
 }
 
-.heroContent{
-  position:absolute; left:18px; right:18px; bottom:18px;
-  z-index:1;
-}
-
-.heroTitle{
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  margin: 0 0 8px 0;
-  line-height: 1.1;
-}
-
-.heroSub{
-  margin:0 0 14px 0;
-  font-size: 16px;
-  color: var(--muted);
-}
-
-.pillRow{
-  display:flex;
-  gap:10px;
-  flex-wrap: wrap;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: rgba(255,255,255,0.9);
-  font-weight: 700;
-  font-size: 14px;
-}
-
-/* ===== Pages container ===== */
-.pages{
-  position: relative;
-  width: 100%;
-  min-height: calc(100vh - 340px - var(--tabH));
-  overflow: hidden;
-}
-
-/* ===== Main content spacing ===== */
-.main{
-  padding: 16px 16px 0 16px;
-}
-
-/* ===== Cards ===== */
-.card{
-  background: var(--card);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  margin-top: 14px;
-}
-
-.cardHeader{
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.cardTitle{
-  font-size: 18px;
-  font-weight: 900;
-  margin:0;
-}
-
-.cardHint{
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.bigRow{
-  display:flex;
-  align-items:flex-end;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.bigText{
-  font-size: 26px;
-  font-weight: 900;
-  margin: 0;
-  letter-spacing: 0.2px;
-}
-
-.subText{
-  margin: 6px 0 0 0;
-  color: var(--muted);
-  font-weight: 650;
-}
-
-.arrowBtn{
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.18);
-  color: rgba(255,255,255,0.88);
-  font-size: 22px;
-}
-
-/* ===== Weather ===== */
-.weatherGrid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.weatherBox{
-  background: var(--card2);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 18px;
-  padding: 14px;
-}
-
-.wLabel{
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 800;
-}
-
-.wMain{
-  margin-top: 10px;
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.wIcon{ font-size: 30px; }
-
-.wTemp{ text-align:right; }
-
-.wTemp .hi{
-  font-size: 26px;
-  font-weight: 950;
-  line-height: 1.0;
-}
-.wTemp .lo{
-  font-size: 15px;
-  color: var(--muted);
-  font-weight: 750;
-}
-
-/* ===== Inner pages ===== */
-.pageTitle{
-  margin: 16px 0 0 0;
-  padding: 0 16px;
-  font-size: 22px;
-  font-weight: 950;
-}
-.pageWrap{
-  padding: 12px 16px 0 16px;
-}
-
-/* =========================
-   Page Slider (Upgraded)
-   - Stable height
-   - Directional animation
-   ========================= */
-
-.page{
-  width: 100%;
-  min-height: calc(100vh - 340px - var(--tabH));
-  transform: translateX(100%);
-  opacity: 0;
-  filter: blur(6px);
-  transition:
-    transform 420ms cubic-bezier(.18,.92,.22,1),
-    opacity 320ms ease,
-    filter 420ms ease;
-  will-change: transform, opacity, filter;
-}
-
-/* Non-active pages are taken out of flow */
-.page:not(.active){
-  position:absolute;
-  top:0; left:0;
-}
-
-/* Active page sits in flow so container has height */
-.page.active{
-  position: relative;
-  transform: translateX(0);
-  opacity: 1;
-  filter: blur(0px);
+.heroContent {
+  position: absolute;
+  bottom: 20px;
+  left: 16px;
+  right: 16px;
   z-index: 1;
 }
 
-/* Leaving/Entering states */
-.page.enter-right{ transform: translateX(100%); opacity: 0; filter: blur(6px); }
-.page.enter-left { transform: translateX(-100%); opacity: 0; filter: blur(6px); }
-
-.page.anim-in{
-  transform: translateX(0);
-  opacity: 1;
-  filter: blur(0px);
+.heroTitle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-.page.exit-left{ transform: translateX(-35%); opacity: 0; filter: blur(10px); }
-.page.exit-right{ transform: translateX(35%); opacity: 0; filter: blur(10px); }
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .page{ transition: none !important; filter: none !important; }
+.heroSub {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
-/* ===== Bottom Tab Bar (排排站) ===== */
-.tabbar{
-  position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: 10px;
-  height: var(--tabH);
-  border-radius: 26px;
-  background: rgba(20,24,22,0.72);
-  border: 1px solid rgba(255,255,255,0.16);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.42);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  z-index: 50;
-  overflow: hidden;
+.pillRow {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
 }
 
-/* Make anchor positioning context for indicator */
-.tabbar a{
-  position: relative;
-  text-decoration:none;
-  color: rgba(255,255,255,0.70);
-  display:flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content:center;
-  gap: 6px;
-  padding: 10px 6px;
-  font-weight: 850;
-  font-size: 12px;
-  transition: transform 180ms ease, color 180ms ease;
-}
-
-.tabIcon{
-  font-size: 22px;
-  line-height: 1;
-  transform: translateY(0);
-  transition: transform 220ms cubic-bezier(.2,.9,.2,1);
-}
-
-/* Active */
-.tabbar a.active{
-  color: rgba(255,255,255,0.95);
-}
-
-.tabbar a.active .tabIcon{
-  transform: translateY(-1px) scale(1.04);
-}
-
-/* Active indicator */
-.tabbar a.active::after{
-  content:"";
-  position:absolute;
-  width: 34px;
-  height: 4px;
+.pill {
+  background: rgba(0,0,0,0.55);
+  padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.88);
-  bottom: 8px;
+  font-size: 12px;
+}
+
+/* ===== Pages ===== */
+.pages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.page {
+  display: none;
+  padding-bottom: 80px;
+}
+
+.page.active {
+  display: block;
+}
+
+.pageWrap,
+.main {
+  padding: 16px;
+}
+
+.pageTitle {
+  margin: 8px 0 12px;
+  font-size: 20px;
+}
+
+/* ===== Card ===== */
+.card {
+  background: #121212;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 16px;
+}
+
+.cardHint {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.bigRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.bigText {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.subText {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.arrowBtn {
+  font-size: 28px;
+  opacity: 0.5;
+}
+
+/* ===== Tab Bar ===== */
+.tabbar {
+  position: fixed;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  animation: pop 240ms cubic-bezier(.2,.9,.2,1);
+  max-width: 430px;
+  width: 100%;
+  background: #0c0c0c;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 12px;
+  border-top: 1px solid #222;
 }
 
-@keyframes pop{
-  from{ transform: translateX(-50%) scaleX(.6); opacity:.4; }
-  to  { transform: translateX(-50%) scaleX(1); opacity:1; }
+.tabbar a {
+  color: #aaa;
+  font-size: 12px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
-/* Desktop constrain */
-@media (min-width: 600px){
-  .app{ max-width: 430px; margin: 0 auto; }
-  .tabbar{ max-width: 430px; margin: 0 auto; left: 0; right: 0; }
+.tabbar a.active {
+  color: #fff;
 }

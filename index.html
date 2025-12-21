@@ -13,7 +13,7 @@
   <div class="app">
 
     <!-- Hero -->
-    <div class="hero" id="hero">
+    <div class="hero is-karuizawa" id="hero">
       <div class="heroContent">
         <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
         <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
@@ -53,7 +53,7 @@
         </div>
       </section>
 
-      <!-- Itinerary（你的原始資料 그대로） -->
+      <!-- Itinerary -->
       <section class="page" data-page="itinerary">
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
@@ -130,66 +130,74 @@
   </div>
 
   <script>
-    /* ===== 距離出發（台灣時區，穩定） ===== */
-    const pillDay = document.getElementById('pillDay');
-    const startDate = '2026-02-21';
+    /* ===== 台灣時區日期 ===== */
+    const START_DATE = "2026-02-21";
 
-    function updateCountdown() {
-      const todayTW = new Date(
-        new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' })
+    function todayTW() {
+      return new Date(
+        new Date().toLocaleDateString("zh-TW", { timeZone: "Asia/Taipei" })
       );
-      const departTW = new Date(startDate);
-      const diff = Math.round((departTW - todayTW) / 86400000);
+    }
+
+    /* ===== 距離出發 ===== */
+    const pillDay = document.getElementById("pillDay");
+    function updateCountdown() {
+      const diff = Math.round(
+        (new Date(START_DATE) - todayTW()) / 86400000
+      );
       pillDay.textContent =
-        diff >= 0 ? `距離出發 ${diff} 天` : '旅程進行中';
+        diff >= 0 ? `距離出發 ${diff} 天` : "旅程進行中";
     }
     updateCountdown();
 
-    /* ===== TODAY（同一套邏輯） ===== */
-    const todayMain = document.getElementById('todayMain');
-    const todayNote = document.getElementById('todayNote');
+    /* ===== TODAY ===== */
+    const todayMain = document.getElementById("todayMain");
+    const todayNote = document.getElementById("todayNote");
 
     function updateToday() {
-      const todayTW = new Date(
-        new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' })
+      const diff = Math.round(
+        (todayTW() - new Date(START_DATE)) / 86400000
       );
-      const departTW = new Date(startDate);
-      const diff = Math.round((todayTW - departTW) / 86400000);
 
       if (diff < 0) {
-        todayMain.textContent = '出發前｜準備就緒';
-        todayNote.textContent = '確認證件與行李';
+        todayMain.textContent = "出發前｜準備就緒";
+        todayNote.textContent = "確認證件與行李";
       } else {
         todayMain.textContent = `旅程中｜Day ${diff + 1}`;
-        todayNote.textContent = '依行程前進';
+        todayNote.textContent = "依行程前進";
       }
     }
     updateToday();
 
-    /* ===== Hero（只信 body[data-page]） ===== */
-    const hero = document.getElementById('hero');
-    const heroTitle = document.getElementById('heroTitle');
-    const heroSub = document.getElementById('heroSub');
-    const pillLoc = document.getElementById('pillLoc');
+    /* ===== Hero：只跟 body[data-page] ===== */
+    const hero = document.getElementById("hero");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroSub = document.getElementById("heroSub");
+    const pillLoc = document.getElementById("pillLoc");
 
     function syncHero() {
       const page = document.body.dataset.page;
-      if (page === 'itinerary') {
-        hero.style.backgroundImage = "url('./assets/hero-tokyo.jpg')";
-        heroTitle.textContent = '2026 初春 · 東京';
-        heroSub.textContent = '城市節奏，慢慢探索';
-        pillLoc.textContent = '📍 東京';
+
+      hero.classList.remove("is-karuizawa", "is-tokyo");
+
+      if (page === "itinerary") {
+        hero.classList.add("is-tokyo");
+        heroTitle.textContent = "2026 初春 · 東京";
+        heroSub.textContent = "城市節奏，慢慢探索";
+        pillLoc.textContent = "📍 東京";
       } else {
-        hero.style.backgroundImage = "url('./assets/hero-karuizawa.jpg')";
-        heroTitle.textContent = '2026 初春 · 輕井澤';
-        heroSub.textContent = '慢慢走，把時間留給彼此';
-        pillLoc.textContent = '📍 輕井澤';
+        hero.classList.add("is-karuizawa");
+        heroTitle.textContent = "2026 初春 · 輕井澤";
+        heroSub.textContent = "慢慢走，把時間留給彼此";
+        pillLoc.textContent = "📍 輕井澤";
       }
     }
 
-    /* app.js 切頁後一定會改 body[data-page] */
-    const observer = new MutationObserver(syncHero);
-    observer.observe(document.body, { attributes: true });
+    /* app.js 會改 body[data-page]，我們只觀察它 */
+    new MutationObserver(syncHero).observe(document.body, {
+      attributes: true,
+      attributeFilter: ["data-page"]
+    });
 
     syncHero();
   </script>
