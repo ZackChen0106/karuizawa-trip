@@ -1,100 +1,293 @@
-/* ===== Reset ===== */
-* {
-  box-sizing: border-box;
+/* =========================
+   Karuizawa Trip App UI v2
+   Bold Hero + Bottom Tabs
+   ========================= */
+
+:root{
+  --bg: #0b0f0e;
+  --card: rgba(255,255,255,0.14);
+  --card2: rgba(255,255,255,0.10);
+  --stroke: rgba(255,255,255,0.18);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.72);
+  --shadow: 0 20px 60px rgba(0,0,0,0.35);
+  --radius: 22px;
+  --tabH: 76px;
 }
 
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", sans-serif;
-  background: linear-gradient(180deg, #b8c2ae 0%, #f6f6f4 40%);
-  color: #1f1f1f;
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background: #0b0f0e;
+  color: var(--text);
 }
 
-/* ===== Header ===== */
-header {
-  margin-bottom: 28px;
+/* 讓內容不被底部 tab 擋住 */
+.app{
+  min-height: 100vh;
+  padding-bottom: calc(var(--tabH) + 18px);
 }
 
-header h1 {
+/* ===== Hero ===== */
+.hero{
+  position: relative;
+  height: 340px;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.45) 55%,
+    rgba(0,0,0,0.78) 100%
+  );
+}
+
+.heroContent{
+  position:absolute; left:18px; right:18px; bottom:18px;
+  z-index:1;
+}
+
+.heroTitle{
   font-size: 34px;
-  font-weight: 800;
-  margin: 0;
-  letter-spacing: 1px;
-}
-
-header p {
-  font-size: 17px;
-  margin-top: 8px;
-  color: #3d4445;
-}
-
-/* ===== 主卡（Today） ===== */
-section:first-of-type {
-  background: #1f2a24;
-  color: #ffffff;
-  border-radius: 24px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
-
-section:first-of-type p {
-  font-size: 20px;
-  margin: 0;
-}
-
-/* ===== 一般資訊卡 ===== */
-section {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-section h2 {
-  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
   margin: 0 0 8px 0;
+  line-height: 1.1;
 }
 
-/* ===== 分頁入口（重點） ===== */
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.heroSub{
+  margin:0 0 14px 0;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.pillRow{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255,255,255,0.9);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ===== Main content ===== */
+.main{
+  padding: 16px 16px 0 16px;
+}
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  margin-top: 14px;
+}
+
+.cardHeader{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cardTitle{
+  font-size: 18px;
+  font-weight: 900;
+  margin:0;
+}
+
+.cardHint{
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.bigRow{
+  display:flex;
+  align-items:flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bigText{
+  font-size: 26px;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.subText{
+  margin: 6px 0 0 0;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.arrowBtn{
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.88);
+  font-size: 22px;
+}
+
+/* ===== Weather ===== */
+.weatherGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   margin-top: 12px;
 }
 
-nav a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px 20px;
-  background: #ffffff;
+.weatherBox{
+  background: var(--card2);
+  border: 1px solid rgba(255,255,255,0.14);
   border-radius: 18px;
-  text-decoration: none;
-  color: #1f1f1f;
-  font-size: 20px;
-  font-weight: 700;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 14px;
 }
 
-nav a::after {
-  content: "→";
+.wLabel{
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.wMain{
+  margin-top: 10px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.wIcon{
+  font-size: 30px;
+}
+
+.wTemp{
+  text-align:right;
+}
+
+.wTemp .hi{
+  font-size: 26px;
+  font-weight: 950;
+  line-height: 1.0;
+}
+.wTemp .lo{
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+/* ===== Bottom Tab Bar (排排站) ===== */
+.tabbar{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  height: var(--tabH);
+  border-radius: 26px;
+  background: rgba(20,24,22,0.72);
+  border: 1px solid rgba(255,255,255,0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.42);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  z-index: 50;
+  overflow: hidden;
+}
+
+.tabbar a{
+  text-decoration:none;
+  color: rgba(255,255,255,0.70);
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  gap: 6px;
+  padding: 10px 6px;
+  font-weight: 850;
+  font-size: 12px;
+}
+
+.tabIcon{
   font-size: 22px;
-  opacity: 0.4;
+  line-height: 1;
 }
 
-nav a:active {
-  transform: scale(0.97);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+.tabbar a.active{
+  color: rgba(255,255,255,0.95);
 }
 
-/* ===== 桌面限制 ===== */
-@media (min-width: 600px) {
-  body {
-    max-width: 420px;
-    margin: 0 auto;
-  }
+.tabbar a.active .tabIcon{
+  transform: translateY(-1px);
+}
+
+.tabbar a.active::before{
+  content:"";
+  position:absolute;
+  width: 38px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.88);
+  bottom: 10px;
+}
+
+/* ===== Page title for inner pages ===== */
+.pageTitle{
+  margin: 16px 0 0 0;
+  padding: 0 16px;
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.pageWrap{
+  padding: 12px 16px 0 16px;
+}
+
+/* Desktop constrain */
+@media (min-width: 600px){
+  .app{ max-width: 430px; margin: 0 auto; }
+  .tabbar{ max-width: 430px; margin: 0 auto; left: 0; right: 0; }
 }

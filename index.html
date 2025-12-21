@@ -1,143 +1,80 @@
-<!DOCTYPE html>
-
-<html lang="zh-Hant">
-
-<head>
-
-  <meta charset="UTF-8" />
-
-
-
-  <!-- 這是網站標題（會顯示在瀏覽器上方） -->
-
-  <title>2026 初春 · 輕井澤</title>
-
-
-
-  <!-- 讓手機顯示正常 -->
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-  <!-- PWA 設定 -->
-
-  <link rel="manifest" href="manifest.json">
-
-
-
-  <!-- 網站樣式 -->
-
-  <link rel="stylesheet" href="style.css">
-
-</head>
-
-
-
-<body>
-
-
-
-  <!-- ===== 主標題區 ===== -->
-
-  <header>
-
-    <h1>
-
-      <!-- 這裡填：旅行主標題 -->
-
-      2026 初春 · 輕井澤
-
-    </h1>
-
-
-
-    <p>
-
-      <!-- 這裡填：副標文字 -->
-
-      慢慢走，把時間留給彼此
-
-    </p>
-
-  </header>
-
-
-
-  <!-- ===== 倒數 / Day 狀態 ===== -->
-
-  <section>
-
-    <p>
-
-      <!-- 
-
-        出發前：距離出發還有 XX 天
-
-        出發後：Day X｜輕井澤
-
-      -->
-
-      距離出發還有 ＿＿ 天
-
-    </p>
-
-  </section>
-
-
-
-  <!-- ===== 今日重點 ===== -->
-
-  <section>
-
-    <h2>今日重點</h2>
-
-    <p>
-
-      <!-- 這裡填：今天最重要的一件事 -->
-
-      ＿＿：＿＿ → ＿＿
-
-    </p>
-
-    <p>
-
-      <!-- 這裡填：備註，例如走路多 -->
-
-      備註：＿＿＿＿＿＿
-
-    </p>
-
-  </section>
-
-
-
-  <!-- ===== 快捷入口 ===== -->
-
-  <nav>
-
-    <!-- 不用改連結，只改文字內容 -->
-
-    <a href="flight.html">✈️ 機票</a>
-
-    <a href="itinerary.html">🗺 行程</a>
-
-    <a href="hotel.html">🏨 住宿</a>
-
-    <a href="packing.html">🎒 行李清單</a>
-
-    <a href="emergency.html">☎️ 緊急資訊</a>
-
-  </nav>
-
-
-
-  <!-- 載入 JS -->
+<body data-page="home">
+  <div class="app">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="heroContent">
+        <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
+        <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
+
+        <div class="pillRow">
+          <span class="pill" id="pillDay">距離出發 23 天</span>
+          <span class="pill" id="pillLoc">📍 輕井澤</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <!-- Today -->
+      <div class="card">
+        <div class="cardHeader">
+          <h2 class="cardTitle" id="todayTitle">TODAY</h2>
+          <span class="cardHint">點一下看詳情</span>
+        </div>
+
+        <div class="bigRow">
+          <div>
+            <p class="bigText" id="todayMain">Day 2｜輕井澤</p>
+            <p class="subText" id="todayRoute">星野 → 舊輕井澤</p>
+            <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
+          </div>
+          <div class="arrowBtn" aria-hidden="true">›</div>
+        </div>
+      </div>
+
+      <!-- Weather -->
+      <div class="card">
+        <div class="cardHeader">
+          <h2 class="cardTitle">天氣預報</h2>
+          <span class="cardHint" id="weatherHint">讀取中…</span>
+        </div>
+
+        <div class="subText">地點：<strong id="weatherLoc">輕井澤</strong></div>
+
+        <div class="weatherGrid">
+          <div class="weatherBox">
+            <div class="wLabel">今天</div>
+            <div class="wMain">
+              <div class="wIcon" id="wTodayIcon">⛅️</div>
+              <div class="wTemp">
+                <div class="hi" id="wTodayHi">--°</div>
+                <div class="lo" id="wTodayLo">低 --°</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="weatherBox">
+            <div class="wLabel">明天</div>
+            <div class="wMain">
+              <div class="wIcon" id="wTomIcon">🌦️</div>
+              <div class="wTemp">
+                <div class="hi" id="wTomHi">--°</div>
+                <div class="lo" id="wTomLo">低 --°</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Tab Bar (固定) -->
+    <nav class="tabbar" aria-label="bottom tabs">
+      <a href="flight.html"><span class="tabIcon">✈️</span><span>機票</span></a>
+      <a href="itinerary.html"><span class="tabIcon">🗺️</span><span>行程</span></a>
+      <a href="hotel.html"><span class="tabIcon">🏡</span><span>住宿</span></a>
+      <a href="packing.html"><span class="tabIcon">🎒</span><span>行李</span></a>
+      <a href="emergency.html"><span class="tabIcon">☎️</span><span>緊急</span></a>
+    </nav>
+  </div>
 
   <script src="app.js"></script>
-
-
-
 </body>
-
-</html>
