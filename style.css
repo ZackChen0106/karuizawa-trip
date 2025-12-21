@@ -2,15 +2,18 @@
 :root{
   --bg:#000;
   --card:#121212;
-  --muted: rgba(255,255,255,.72);
+  --card-soft:#161616;
+  --muted: rgba(255,255,255,.75);
   --muted2: rgba(255,255,255,.55);
   --line: rgba(255,255,255,.10);
-  --radius: 16px;
-  --tabH: 72px; /* 大一點，iOS好按 */
+  --accent: #ffffff;
+  --radius: 18px;
+  --tabH: 72px; /* iOS 好按 */
 }
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -21,8 +24,8 @@ body{
   text-size-adjust: 100%;
 }
 
-/* iOS：點擊區更好按、不要出現藍色高亮 */
-a, button{
+/* iOS 點擊優化 */
+a, button, label{
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
@@ -38,7 +41,7 @@ a, button{
 /* ========= Hero ========= */
 .hero{
   position:relative;
-  height: 320px;            /* 夠大、不會小氣 */
+  height: 320px;
   min-height: 260px;
   background-size: cover;
   background-position: center;
@@ -51,9 +54,9 @@ a, button{
   inset:0;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,.12) 0%,
-    rgba(0,0,0,.62) 65%,
-    rgba(0,0,0,.80) 100%
+    rgba(0,0,0,.15) 0%,
+    rgba(0,0,0,.65) 65%,
+    rgba(0,0,0,.85) 100%
   );
 }
 
@@ -67,15 +70,15 @@ a, button{
 
 .heroTitle{
   margin:0;
-  font-size: 30px;      /* 變大，避免你說超小 */
+  font-size: 30px;
   font-weight: 800;
-  letter-spacing: .3px;
+  letter-spacing: .4px;
 }
 
 .heroSub{
   margin:10px 0 0;
   font-size: 16px;
-  color: rgba(255,255,255,.86);
+  color: rgba(255,255,255,.88);
 }
 
 .pillRow{
@@ -89,13 +92,13 @@ a, button{
   display:inline-flex;
   align-items:center;
   gap:6px;
-  padding: 9px 12px;
+  padding: 9px 13px;
   border-radius: 999px;
   font-size: 14px;
   color:#fff;
   background: rgba(0,0,0,.55);
-  border: 1px solid rgba(255,255,255,.10);
-  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(10px);
 }
 
 /* ========= Pages ========= */
@@ -114,14 +117,18 @@ a, button{
 }
 
 .pageTitle{
-  margin: 10px 0 14px;
+  margin: 8px 0 16px;
   font-size: 22px;
   font-weight: 800;
 }
 
 /* ========= Card ========= */
 .card{
-  background: var(--card);
+  background: linear-gradient(
+    180deg,
+    var(--card-soft),
+    var(--card)
+  );
   border: 1px solid rgba(255,255,255,.08);
   border-radius: var(--radius);
   padding: 16px;
@@ -146,19 +153,12 @@ a, button{
   color: var(--muted2);
 }
 
-.bigRow{
-  margin-top: 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-}
-
+/* TODAY */
 .bigText{
   margin:0;
-  font-size: 24px;   /* 變大 */
+  font-size: 24px;
   font-weight: 900;
-  letter-spacing: .2px;
+  letter-spacing: .3px;
 }
 
 .subText{
@@ -168,9 +168,68 @@ a, button{
   line-height: 1.45;
 }
 
-.arrowBtn{
-  font-size: 36px;
-  color: rgba(255,255,255,.40);
+/* ========= 行李清單（重點美化） ========= */
+.checkItem{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding: 12px 10px;
+  margin: 6px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .2s ease, opacity .2s ease;
+}
+
+.checkItem:hover{
+  background: rgba(255,255,255,.04);
+}
+
+.checkItem input{
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  border-radius: 6px;
+  border: 2px solid rgba(255,255,255,.35);
+  background: transparent;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.checkItem input:checked{
+  background: #fff;
+  border-color: #fff;
+}
+
+.checkItem input:checked::after{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:1px;
+  width:6px;
+  height:12px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkItem span{
+  font-size: 16px;
+  line-height: 1.4;
+  color:#fff;
+}
+
+/* 勾選後狀態 */
+.checkItem input:checked + span{
+  color: rgba(255,255,255,.45);
+  text-decoration: line-through;
+}
+
+/* ========= 行程 Today 標示 ========= */
+.day-card.today{
+  border-color: #fff;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.25);
 }
 
 /* ========= Tabbar ========= */
@@ -181,18 +240,17 @@ a, button{
   bottom:0;
   height: calc(var(--tabH) + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  background: rgba(10,10,10,.92);
-  border-top: 1px solid rgba(255,255,255,.10);
+  background: rgba(10,10,10,.94);
+  border-top: 1px solid rgba(255,255,255,.12);
   display:flex;
   justify-content:space-around;
   align-items:center;
   z-index: 999;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 .tabbar a{
   flex:1;
-  min-width: 0;
   height: var(--tabH);
   display:flex;
   flex-direction:column;
@@ -203,14 +261,11 @@ a, button{
   color: rgba(255,255,255,.55);
   font-size: 13px;
   font-weight: 700;
-
-  /* 讓點擊面積更大、好按 */
   padding: 10px 0;
 }
 
 .tabbar a .tabIcon{
   font-size: 20px;
-  line-height: 1;
 }
 
 .tabbar a.active{
@@ -218,5 +273,5 @@ a, button{
 }
 
 .tabbar a:active{
-  transform: scale(.98);
+  transform: scale(.97);
 }
