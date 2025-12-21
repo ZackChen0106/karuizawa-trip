@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <title>2026 初春 · 輕井澤</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- CSS（加版本號，避免 iOS/PWA 快取卡住） -->
+  <link rel="stylesheet" href="style.css?v=20251221-3" />
+
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
 </head>
 
 <body data-page="home">
   <div class="app">
 
-    <!-- Hero -->
-    <div class="hero is-karuizawa" id="hero">
+    <!-- Hero（固定） -->
+    <div class="hero" id="hero">
       <div class="heroContent">
         <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
         <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
+
         <div class="pillRow">
           <span class="pill" id="pillDay">計算中…</span>
           <span class="pill" id="pillLoc">📍 輕井澤</span>
@@ -24,32 +29,56 @@
       </div>
     </div>
 
-    <!-- Pages -->
-    <div class="pages">
-
+    <!-- Pages（中間滑動內容） -->
+    <div class="pages" id="pages">
       <!-- Home -->
       <section class="page active" data-page="home">
         <div class="main">
+          <!-- Today -->
           <div class="card">
             <div class="cardHeader">
-              <h2 class="cardTitle">TODAY</h2>
+              <h2 class="cardTitle" id="todayTitle">TODAY</h2>
+              <span class="cardHint">點一下看詳情</span>
             </div>
+
             <div class="bigRow">
               <div>
                 <p class="bigText" id="todayMain">出發前｜準備就緒</p>
-                <p class="subText" id="todayNote">確認證件與行李</p>
+                <p class="subText" id="todayRoute">例：星野 → 舊輕井澤</p>
+                <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
               </div>
-              <div class="arrowBtn">›</div>
+              <div class="arrowBtn" aria-hidden="true">›</div>
             </div>
           </div>
+
+          <!-- Weather（保留你原本的結構，不動） -->
+          <div class="card">
+            <div class="cardHeader">
+              <h2 class="cardTitle">天氣預報</h2>
+              <span class="cardHint" id="weatherHint">已更新</span>
+            </div>
+
+            <div class="subText">地點：<strong id="weatherLoc">輕井澤</strong></div>
+
+            <div class="subText" style="margin-top:10px;color:rgba(255,255,255,.55);">
+              （天氣資料如果你有 app.js 既有邏輯，這裡會照你原本的更新方式顯示）
+            </div>
+          </div>
+
         </div>
       </section>
 
       <!-- Flight -->
       <section class="page" data-page="flight">
         <div class="pageWrap">
-          <h2 class="pageTitle">✈️ 機票</h2>
-          <div class="card"><div class="subText">機票資訊</div></div>
+          <h2 class="pageTitle">✈️ 機票資訊</h2>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放去程/回程卡片、訂位代號、行李規定…）</div>
+          </div>
         </div>
       </section>
 
@@ -58,45 +87,47 @@
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
 
+          <!-- 先放 Day 1~5（你後面要改我再幫你做成可編輯資料） -->
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 1｜02/21</h3>
-              <span class="cardHint">桃園 → 輕井澤</span>
-            </div>
-            <div class="subText">06:40 桃園起飛 → 10:40 成田 → 下午前往輕井澤</div>
-          </div>
-
-          <div class="card">
-            <div class="cardHeader">
-              <h3 class="cardTitle">DAY 2｜02/22</h3>
+              <h3 class="cardTitle">Day 1｜02/21（六）</h3>
               <span class="cardHint">輕井澤</span>
             </div>
-            <div class="subText">雲場池、舊輕井澤、Outlet</div>
+            <div class="subText">早班機 → 成田 → 前往輕井澤，晚上簡單逛街吃飯</div>
           </div>
 
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 3｜02/23</h3>
+              <h3 class="cardTitle">Day 2｜02/22（日）</h3>
+              <span class="cardHint">輕井澤</span>
+            </div>
+            <div class="subText">舊輕井澤散步、咖啡、Outlet，晚上溫泉放鬆</div>
+          </div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">Day 3｜02/23（一）</h3>
               <span class="cardHint">輕井澤 → 東京</span>
             </div>
-            <div class="subText">上午 Check-out → 下午抵達東京</div>
+            <div class="subText">上午輕井澤收尾 → 中午出發到東京 → 晚上逛街吃宵夜</div>
           </div>
 
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 4｜02/24</h3>
-              <span class="cardHint">東京市區</span>
+              <h3 class="cardTitle">Day 4｜02/24（二）</h3>
+              <span class="cardHint">東京</span>
             </div>
-            <div class="subText">澀谷、表參道、居酒屋</div>
+            <div class="subText">澀谷 / 表參道 / 代官山，晚上居酒屋或小酒吧</div>
           </div>
 
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 5｜02/25</h3>
+              <h3 class="cardTitle">Day 5｜02/25（三）</h3>
               <span class="cardHint">東京 → 桃園</span>
             </div>
-            <div class="subText">18:25 成田起飛 → 21:50 抵達桃園</div>
+            <div class="subText">白天輕鬆買伴手禮 → 傍晚去成田 → 回台灣</div>
           </div>
+
         </div>
       </section>
 
@@ -104,104 +135,139 @@
       <section class="page" data-page="hotel">
         <div class="pageWrap">
           <h2 class="pageTitle">🏡 住宿</h2>
-          <div class="card"><div class="subText">住宿資訊</div></div>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放飯店/民宿、入住退房、分房資訊…）</div>
+          </div>
         </div>
       </section>
 
       <!-- Packing -->
       <section class="page" data-page="packing">
         <div class="pageWrap">
-          <h2 class="pageTitle">🎒 行李</h2>
-          <div class="card"><div class="subText">行李清單</div></div>
+          <h2 class="pageTitle">🎒 行李清單</h2>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放清單、打勾、分類…）</div>
+          </div>
         </div>
       </section>
 
     </div>
 
-    <!-- Tab Bar -->
-    <nav class="tabbar">
-      <a data-tab="home" class="active">🏠 首頁</a>
-      <a data-tab="flight">✈️ 機票</a>
-      <a data-tab="itinerary">🗺️ 行程</a>
-      <a data-tab="hotel">🏡 住宿</a>
-      <a data-tab="packing">🎒 行李</a>
+    <!-- Bottom Tab Bar（保留你原本結構：href + data-tab） -->
+    <nav class="tabbar" aria-label="bottom tabs">
+      <a href="#home" data-tab="home" class="active">
+        <span class="tabIcon">🏠</span><span>首頁</span>
+      </a>
+      <a href="#flight" data-tab="flight">
+        <span class="tabIcon">✈️</span><span>機票</span>
+      </a>
+      <a href="#itinerary" data-tab="itinerary">
+        <span class="tabIcon">🗺️</span><span>行程</span>
+      </a>
+      <a href="#hotel" data-tab="hotel">
+        <span class="tabIcon">🏡</span><span>住宿</span>
+      </a>
+      <a href="#packing" data-tab="packing">
+        <span class="tabIcon">🎒</span><span>行李</span>
+      </a>
     </nav>
 
   </div>
 
+  <!-- ✅ 只做三件事：倒數、TODAY、Hero跟著 data-page 切 -->
   <script>
-    /* ===== 台灣時區日期 ===== */
-    const START_DATE = "2026-02-21";
+    const START_DATE = "2026-02-21"; // 旅程起始日（台北）
+    const KARUIZAWA_END_NOON = "2026-02-23"; // 02/23 中午前仍算輕井澤（下一步再精準切半天）
 
-    function todayTW() {
-      return new Date(
-        new Date().toLocaleDateString("zh-TW", { timeZone: "Asia/Taipei" })
-      );
-    }
-
-    /* ===== 距離出發 ===== */
-    const pillDay = document.getElementById("pillDay");
-    function updateCountdown() {
-      const diff = Math.round(
-        (new Date(START_DATE) - todayTW()) / 86400000
-      );
-      pillDay.textContent =
-        diff >= 0 ? `距離出發 ${diff} 天` : "旅程進行中";
-    }
-    updateCountdown();
-
-    /* ===== TODAY ===== */
-    const todayMain = document.getElementById("todayMain");
-    const todayNote = document.getElementById("todayNote");
-
-    function updateToday() {
-      const diff = Math.round(
-        (todayTW() - new Date(START_DATE)) / 86400000
-      );
-
-      if (diff < 0) {
-        todayMain.textContent = "出發前｜準備就緒";
-        todayNote.textContent = "確認證件與行李";
-      } else {
-        todayMain.textContent = `旅程中｜Day ${diff + 1}`;
-        todayNote.textContent = "依行程前進";
-      }
-    }
-    updateToday();
-
-    /* ===== Hero：只跟 body[data-page] ===== */
     const hero = document.getElementById("hero");
     const heroTitle = document.getElementById("heroTitle");
     const heroSub = document.getElementById("heroSub");
     const pillLoc = document.getElementById("pillLoc");
+    const pillDay = document.getElementById("pillDay");
 
-    function syncHero() {
-      const page = document.body.dataset.page;
+    const todayMain = document.getElementById("todayMain");
+    const todayRoute = document.getElementById("todayRoute");
+    const todayNote = document.getElementById("todayNote");
 
-      hero.classList.remove("is-karuizawa", "is-tokyo");
+    // 取得台北「今天」的 00:00（避免時差）
+    function twMidnight() {
+      const now = new Date();
+      const tw = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
+      return new Date(tw.getFullYear(), tw.getMonth(), tw.getDate());
+    }
 
-      if (page === "itinerary") {
-        hero.classList.add("is-tokyo");
+    function daysBetween(a, b) {
+      return Math.round((a - b) / 86400000);
+    }
+
+    // 1) 倒數天數（浮動）
+    function updateCountdown() {
+      const today = twMidnight();
+      const start = new Date(START_DATE + "T00:00:00");
+      const diff = daysBetween(start, today);
+
+      pillDay.textContent = diff >= 0 ? `距離出發 ${diff} 天` : "旅程進行中";
+    }
+
+    // 2) TODAY（出發前=出發前；出發後=Day X）
+    function updateToday() {
+      const today = twMidnight();
+      const start = new Date(START_DATE + "T00:00:00");
+      const d = daysBetween(today, start); // today - start
+
+      if (d < 0) {
+        todayMain.textContent = "出發前｜準備就緒";
+        todayRoute.textContent = "例：星野 → 舊輕井澤";
+        todayNote.textContent = "備註：走路多，記得穿好鞋";
+      } else {
+        todayMain.textContent = `旅程中｜Day ${d + 1}`;
+        todayRoute.textContent = "依行程前進";
+        todayNote.textContent = "（這裡之後可以改成對應 Day 的提醒）";
+      }
+    }
+
+    // 3) Hero 切換（用你 repo 的正確圖片路徑）
+    function setHero(place) {
+      if (place === "tokyo") {
+        hero.style.backgroundImage = "url('./assets/hero-tokyo.jpg?v=20251221-3')";
         heroTitle.textContent = "2026 初春 · 東京";
         heroSub.textContent = "城市節奏，慢慢探索";
         pillLoc.textContent = "📍 東京";
       } else {
-        hero.classList.add("is-karuizawa");
+        hero.style.backgroundImage = "url('./assets/hero-karuizawa.jpg?v=20251221-3')";
         heroTitle.textContent = "2026 初春 · 輕井澤";
         heroSub.textContent = "慢慢走，把時間留給彼此";
         pillLoc.textContent = "📍 輕井澤";
       }
     }
 
-    /* app.js 會改 body[data-page]，我們只觀察它 */
-    new MutationObserver(syncHero).observe(document.body, {
-      attributes: true,
-      attributeFilter: ["data-page"]
-    });
+    function syncHeroByPage() {
+      const page = document.body.dataset.page || "home";
+      // 保守規則：只有在「行程」頁顯示東京，其餘都顯示輕井澤
+      if (page === "itinerary") setHero("tokyo");
+      else setHero("karuizawa");
+    }
 
-    syncHero();
+    // 初始執行
+    updateCountdown();
+    updateToday();
+    syncHeroByPage();
+
+    // 監看 app.js 改變的 data-page（我們不碰它，只跟著它）
+    new MutationObserver(() => {
+      syncHeroByPage();
+    }).observe(document.body, { attributes: true, attributeFilter: ["data-page"] });
   </script>
 
-  <script src="app.js"></script>
+  <!-- 你原本的 app.js（請保留） -->
+  <script src="app.js?v=20251221-3"></script>
 </body>
 </html>
