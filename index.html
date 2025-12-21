@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>2026 初春 · 輕井澤</title>
+
+  <!-- 手機版必要 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ⭐⭐⭐ 關鍵：載入 CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+</head>
+
 <body data-page="home">
   <div class="app">
     <!-- Hero -->
@@ -14,7 +30,6 @@
     </div>
 
     <div class="main">
-      <!-- Today -->
       <div class="card">
         <div class="cardHeader">
           <h2 class="cardTitle" id="todayTitle">TODAY</h2>
@@ -27,11 +42,10 @@
             <p class="subText" id="todayRoute">星野 → 舊輕井澤</p>
             <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
           </div>
-          <div class="arrowBtn" aria-hidden="true">›</div>
+          <div class="arrowBtn">›</div>
         </div>
       </div>
 
-      <!-- Weather -->
       <div class="card">
         <div class="cardHeader">
           <h2 class="cardTitle">天氣預報</h2>
@@ -66,8 +80,7 @@
       </div>
     </div>
 
-    <!-- Bottom Tab Bar (固定) -->
-    <nav class="tabbar" aria-label="bottom tabs">
+    <nav class="tabbar">
       <a href="flight.html"><span class="tabIcon">✈️</span><span>機票</span></a>
       <a href="itinerary.html"><span class="tabIcon">🗺️</span><span>行程</span></a>
       <a href="hotel.html"><span class="tabIcon">🏡</span><span>住宿</span></a>
@@ -78,3 +91,4 @@
 
   <script src="app.js"></script>
 </body>
+</html>
