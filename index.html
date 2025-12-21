@@ -3,92 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <title>2026 初春 · 輕井澤</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-
-  <link rel="stylesheet" href="style.css?v=final-today-scroll" />
+  <link rel="stylesheet" href="style.css?v=restore-full" />
   <link rel="manifest" href="manifest.json" />
 </head>
 
 <body data-page="home">
-  <div class="app">
+<div class="app">
 
-    <!-- Hero -->
-    <div class="hero" id="hero">
-      <div class="heroContent">
-        <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
-        <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
-        <div class="pillRow">
-          <span class="pill" id="pillDay">計算中…</span>
-          <span class="pill" id="pillLoc">📍 輕井澤</span>
-        </div>
+  <!-- Hero -->
+  <div class="hero" id="hero">
+    <div class="heroContent">
+      <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
+      <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
+      <div class="pillRow">
+        <span class="pill" id="pillDay">計算中…</span>
+        <span class="pill" id="pillLoc">📍 輕井澤</span>
       </div>
     </div>
+  </div>
 
-    <!-- Pages -->
-    <div class="pages">
+  <!-- Pages -->
+  <div class="pages">
 
-      <!-- Home -->
-      <section class="page active" data-page="home">
-        <div class="main">
+    <!-- Home -->
+    <section class="page active" data-page="home">
+      <div class="main">
 
-          <!-- TODAY（直接用 onclick，最穩） -->
-          <div class="card" onclick="goTodayItinerary()" style="cursor:pointer">
-            <div class="cardHeader">
-              <h2 class="cardTitle">TODAY</h2>
-              <span class="cardHint">點一下看今日行程</span>
-            </div>
-            <p class="bigText" id="todayMain">出發前｜準備就緒</p>
-            <p class="subText" id="todayRoute"></p>
-            <p class="subText" id="todayNote"></p>
+        <!-- TODAY -->
+        <div class="card" id="todayCard">
+          <div class="cardHeader">
+            <h2 class="cardTitle">TODAY</h2>
+            <span class="cardHint">點一下看今日行程</span>
           </div>
-
+          <p class="bigText" id="todayMain"></p>
+          <p class="subText" id="todayRoute"></p>
+          <p class="subText" id="todayNote"></p>
         </div>
-      </section>
 
-      <!-- Itinerary -->
-      <section class="page" data-page="itinerary">
-        <div class="pageWrap">
-          <h2 class="pageTitle">🗺️ 行程</h2>
-
-          <div class="card day-card" data-day="0">
-            <h3>Day 1｜輕井澤</h3>
-            <p class="subText">成田 → 輕井澤</p>
+        <!-- Weather -->
+        <div class="card">
+          <div class="cardHeader">
+            <h2 class="cardTitle">天氣預報</h2>
+            <span class="cardHint" id="weatherHint">更新中</span>
           </div>
-
-          <div class="card day-card" data-day="1">
-            <h3>Day 2｜輕井澤</h3>
-            <p class="subText">舊輕井澤・咖啡・Outlet</p>
-          </div>
-
-          <div class="card day-card" data-day="2">
-            <h3>Day 3｜輕井澤 → 東京</h3>
-            <p class="subText">上午輕井澤，下午東京</p>
-          </div>
-
-          <div class="card day-card" data-day="3">
-            <h3>Day 4｜東京</h3>
-            <p class="subText">澀谷・表參道・代官山</p>
-          </div>
-
-          <div class="card day-card" data-day="4">
-            <h3>Day 5｜返程</h3>
-            <p class="subText">東京 → 成田 → 桃園</p>
-          </div>
-
+          <div class="subText" id="weatherInfo">—</div>
         </div>
-      </section>
 
-    </div>
+      </div>
+    </section>
 
-    <!-- Tab Bar -->
-    <nav class="tabbar">
-      <a href="#home" data-tab="home" class="active">🏠 首頁</a>
-      <a href="#itinerary" data-tab="itinerary">🗺️ 行程</a>
-    </nav>
+    <!-- Flight -->
+    <section class="page" data-page="flight">
+      <div class="pageWrap">
+        <h2 class="pageTitle">✈️ 機票</h2>
+        <div class="card"><p class="subText">機票資訊</p></div>
+      </div>
+    </section>
+
+    <!-- Itinerary -->
+    <section class="page" data-page="itinerary">
+      <div class="pageWrap">
+        <h2 class="pageTitle">🗺️ 行程</h2>
+
+        <div class="card day-card" data-day="0">Day 1｜輕井澤</div>
+        <div class="card day-card" data-day="1">Day 2｜輕井澤</div>
+        <div class="card day-card" data-day="2">Day 3｜輕井澤 → 東京</div>
+        <div class="card day-card" data-day="3">Day 4｜東京</div>
+        <div class="card day-card" data-day="4">Day 5｜返程</div>
+
+      </div>
+    </section>
+
+    <!-- Hotel -->
+    <section class="page" data-page="hotel">
+      <div class="pageWrap">
+        <h2 class="pageTitle">🏡 住宿</h2>
+        <div class="card"><p class="subText">住宿資訊</p></div>
+      </div>
+    </section>
+
+    <!-- Packing -->
+    <section class="page" data-page="packing">
+      <div class="pageWrap">
+        <h2 class="pageTitle">🎒 行李</h2>
+        <div class="card"><p class="subText">行李清單</p></div>
+      </div>
+    </section>
 
   </div>
 
-  <script src="app.js?v=final-today-scroll"></script>
+  <!-- Tab Bar -->
+  <nav class="tabbar">
+    <a href="#home" data-tab="home" class="active">🏠 首頁</a>
+    <a href="#flight" data-tab="flight">✈️ 機票</a>
+    <a href="#itinerary" data-tab="itinerary">🗺️ 行程</a>
+    <a href="#hotel" data-tab="hotel">🏡 住宿</a>
+    <a href="#packing" data-tab="packing">🎒 行李</a>
+  </nav>
+
+</div>
+
+<script src="app.js?v=restore-full"></script>
 </body>
 </html>
