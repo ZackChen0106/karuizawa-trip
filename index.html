@@ -267,7 +267,12 @@
     }).observe(document.body, { attributes: true, attributeFilter: ["data-page"] });
   </script>
 
-  <!-- 你原本的 app.js（請保留） -->
-  <script src="app.js?v=20251221-3"></script>
-</body>
-</html>
+
+<!-- 一定先載入你原本的 app.js -->
+<script src="app.js?v=20251221-3"></script>
+
+<!-- 再來才是我們補的功能（Hero / TODAY / 倒數） -->
+<script>
+  // 只讀 app.js 的狀態，不干涉它
+</script>
+

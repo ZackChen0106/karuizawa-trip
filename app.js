@@ -1,138 +1,71 @@
-/* =========================
-   Karuizawa Trip App JS v3
-   Tab animation upgraded
-   ========================= */
-
-// ---- Optional: register service worker (safe if file exists)
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js").catch(() => {});
-  });
-}
-
-// ---- Tab order (決定左右方向)
-const TAB_ORDER = ["home", "flight", "itinerary", "hotel", "packing", "emergency"];
-
-const tabs = Array.from(document.querySelectorAll(".tabbar a"));
-const pages = Array.from(document.querySelectorAll(".page"));
-
-let currentPage = "home";
-let isAnimating = false;
-
-function getPageEl(name) {
-  return document.querySelector(`.page[data-page="${name}"]`);
-}
-
-function setActiveTab(name) {
-  tabs.forEach(t => t.classList.remove("active"));
-  const active = document.querySelector(`.tabbar a[data-tab="${name}"]`);
-  if (active) active.classList.add("active");
-}
-
-function getDirection(from, to) {
-  const fromIdx = TAB_ORDER.indexOf(from);
-  const toIdx = TAB_ORDER.indexOf(to);
-  if (fromIdx === -1 || toIdx === -1) return "left";
-  return toIdx > fromIdx ? "left" : "right"; // 往右邊 tab -> 內容往左滑進（iOS 常見）
-}
-
-function cleanupClasses(el) {
-  el.classList.remove(
-    "enter-left",
-    "enter-right",
-    "exit-left",
-    "exit-right",
-    "anim-in",
-    "active"
-  );
-}
-
-function switchPage(target, { pushState = true } = {}) {
-  if (!target) return;
-  if (target === currentPage) return;
-  if (isAnimating) return;
-
-  const currentEl = getPageEl(currentPage);
-  const nextEl = getPageEl(target);
-  if (!currentEl || !nextEl) return;
-
-  isAnimating = true;
-
-  const dir = getDirection(currentPage, target);
-
-  // 1) Prepare next page start position
-  cleanupClasses(nextEl);
-  nextEl.classList.add(dir === "left" ? "enter-right" : "enter-left");
-  nextEl.classList.add("active"); // put it in flow so container height is correct
-
-  // 2) Animate out current page (keep it visible during transition)
-  cleanupClasses(currentEl);
-  currentEl.classList.add("active");
-  currentEl.classList.add(dir === "left" ? "exit-left" : "exit-right");
-
-  // 3) Next page animates to center
-  requestAnimationFrame(() => {
-    nextEl.classList.add("anim-in");
-    nextEl.classList.remove("enter-left", "enter-right");
-  });
-
-  // 4) Finish on transition end (use nextEl transform)
-  const onDone = (e) => {
-    if (e.propertyName !== "transform") return;
-
-    nextEl.removeEventListener("transitionend", onDone);
-
-    // Make next the only active
-    pages.forEach(p => {
-      if (p !== nextEl) cleanupClasses(p);
-    });
-    nextEl.classList.add("active");
-    nextEl.classList.remove("anim-in", "exit-left", "exit-right");
-
-    currentPage = target;
-    setActiveTab(target);
-
-    // Update URL hash + history
-    if (pushState) {
-      history.pushState({ page: target }, "", `#${target}`);
-    }
-
-    isAnimating = false;
-  };
-
-  nextEl.addEventListener("transitionend", onDone);
-}
-
-// ---- Bind tab click (no reload)
-tabs.forEach(tab => {
-  tab.addEventListener("click", (e) => {
-    e.preventDefault();
-    const target = tab.dataset.tab;
-    switchPage(target);
-  });
-});
-
-// ---- Handle back/forward
-window.addEventListener("popstate", (e) => {
-  const page = e.state?.page;
-  if (page && page !== currentPage) {
-    switchPage(page, { pushState: false });
+<script>
+  /* ===== 台北時區工具 ===== */
+  function twMidnight() {
+    const now = new Date();
+    const tw = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
+    return new Date(tw.getFullYear(), tw.getMonth(), tw.getDate());
   }
-});
 
-// ---- Initial route via hash
-(function initRoute() {
-  const hash = (location.hash || "").replace("#", "").trim();
-  const initial = TAB_ORDER.includes(hash) ? hash : "home";
+  const START_DATE = "2026-02-21";
 
-  // set initial without animation
-  pages.forEach(p => cleanupClasses(p));
-  const initialEl = getPageEl(initial);
-  if (initialEl) initialEl.classList.add("active");
+  /* ===== 倒數天數 ===== */
+  const pillDay = document.getElementById("pillDay");
+  function updateCountdown() {
+    if (!pillDay) return;
+    const diff = Math.round(
+      (new Date(START_DATE) - twMidnight()) / 86400000
+    );
+    pillDay.textContent =
+      diff >= 0 ? `距離出發 ${diff} 天` : "旅程進行中";
+  }
 
-  currentPage = initial;
-  setActiveTab(initial);
+  /* ===== TODAY ===== */
+  const todayMain = document.getElementById("todayMain");
+  const todayNote = document.getElementById("todayNote");
+  function updateToday() {
+    if (!todayMain || !todayNote) return;
+    const d = Math.round(
+      (twMidnight() - new Date(START_DATE)) / 86400000
+    );
+    if (d < 0) {
+      todayMain.textContent = "出發前｜準備就緒";
+      todayNote.textContent = "確認證件與行李";
+    } else {
+      todayMain.textContent = `旅程中｜Day ${d + 1}`;
+      todayNote.textContent = "依行程前進";
+    }
+  }
 
-  // normalize history state
-  history.replaceState({ page: initial }, "", `#${initial}`);
-})();
+  /* ===== Hero（只跟 app.js 的 data-page） ===== */
+  const hero = document.getElementById("hero");
+  const heroTitle = document.getElementById("heroTitle");
+  const heroSub = document.getElementById("heroSub");
+  const pillLoc = document.getElementById("pillLoc");
+
+  function syncHero() {
+    if (!hero) return;
+    const page = document.body.dataset.page;
+    if (page === "itinerary") {
+      hero.style.backgroundImage = "url('./assets/hero-tokyo.jpg')";
+      heroTitle.textContent = "2026 初春 · 東京";
+      heroSub.textContent = "城市節奏，慢慢探索";
+      pillLoc.textContent = "📍 東京";
+    } else {
+      hero.style.backgroundImage = "url('./assets/hero-karuizawa.jpg')";
+      heroTitle.textContent = "2026 初春 · 輕井澤";
+      heroSub.textContent = "慢慢走，把時間留給彼此";
+      pillLoc.textContent = "📍 輕井澤";
+    }
+  }
+
+  /* 初始化 */
+  updateCountdown();
+  updateToday();
+  syncHero();
+
+  /* app.js 切頁後會改 data-page，我們只觀察 */
+  new MutationObserver(syncHero).observe(document.body, {
+    attributes: true,
+    attributeFilter: ["data-page"]
+  });
+</script>
