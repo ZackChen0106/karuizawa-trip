@@ -7,37 +7,34 @@
   --line: rgba(255,255,255,.10);
   --radius: 16px;
   --tabH: 72px;
+  --accent: #4da3ff;
 }
 
 *{ box-sizing:border-box; }
-html,body{
-  height:100%;
-  margin:0;
-}
+html,body{ height:100%; }
 
 body{
+  margin:0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
     "PingFang TC","Noto Sans TC", Arial, sans-serif;
   background: var(--bg);
   color:#fff;
   -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
 
 /* ========= Layout ========= */
 .app{
-  min-height:100svh; /* iOS 正解 */
+  min-height:100svh;
   display:flex;
   flex-direction:column;
-  background: var(--bg);
 }
 
-/* ========= Hero ========= */
+/* ========= Hero（不動邏輯，只留尺寸） ========= */
 .hero{
   position:relative;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
+  height:240px;
+  background-size:cover;
+  background-position:center;
 }
 
 .hero::after{
@@ -46,9 +43,8 @@ body{
   inset:0;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,.15) 0%,
-    rgba(0,0,0,.65) 65%,
-    rgba(0,0,0,.85) 100%
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.75)
   );
 }
 
@@ -57,46 +53,26 @@ body{
   left:16px;
   right:16px;
   bottom:18px;
-  z-index:1;
 }
 
 .heroTitle{
-  margin:0;
-  font-size: 30px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: .2px;
-  word-break: keep-all;   /* 關鍵 */
+  font-size:24px;
+  font-weight:800;
+  line-height:1.2;
+  word-break: keep-all;
 }
 
 .heroSub{
-  margin-top:10px;
-  font-size:16px;
+  margin-top:8px;
+  font-size:15px;
   color: rgba(255,255,255,.85);
-}
-
-.pillRow{
-  margin-top:14px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.pill{
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:14px;
-  background: rgba(0,0,0,.55);
-  border:1px solid rgba(255,255,255,.12);
 }
 
 /* ========= Pages ========= */
 .pages{
-  flex: 1 1 auto;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  flex:1;
+  overflow-y:auto;
   padding-bottom: calc(var(--tabH) + env(safe-area-inset-bottom));
-  background: var(--bg);
 }
 
 .page{ display:none; }
@@ -106,17 +82,10 @@ body{
   padding:16px;
 }
 
+/* ========= Typography（整體放大） ========= */
 .pageTitle{
   font-size:22px;
   font-weight:800;
-  margin: 10px 0 14px;
-}
-
-/* ========= Card ========= */
-.card{
-  background: var(--card);
-  border-radius: var(--radius);
-  padding:16px;
   margin-bottom:14px;
 }
 
@@ -125,59 +94,134 @@ body{
   font-weight:800;
 }
 
-.bigText{
-  font-size:24px;
-  font-weight:900;
+.subText{
+  font-size:16px;   /* ← 原本 15，整體放大 */
+  line-height:1.5;
+  color: var(--muted);
 }
 
-.subText{
-  font-size:15px;
-  color: var(--muted);
-  margin-top:8px;
+/* ========= Card ========= */
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  padding:16px;
+  margin-bottom:16px;
+}
+
+.cardHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.cardHint{
+  font-size:14px;
+  color: var(--muted2);
+}
+
+/* ========= Checklist（重點） ========= */
+.checklist{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.checkItem{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.checkItem + .checkItem{
+  margin-top:6px;
+}
+
+/* 整行可點 */
+.checkItem input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+/* 自訂 checkbox */
+.checkBox{
+  width:24px;
+  height:24px;
+  border-radius:6px;
+  border:2px solid rgba(255,255,255,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  transition:.2s;
+}
+
+.checkBox::after{
+  content:"✓";
+  font-size:16px;
+  color:#fff;
+  opacity:0;
+  transform: scale(.6);
+  transition:.2s;
+}
+
+/* 文字 */
+.checkText{
+  font-size:17px;  /* ← 行李項目更大 */
+  line-height:1.4;
+}
+
+/* 勾選狀態 */
+.checkItem input:checked + .checkBox{
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkItem input:checked + .checkBox::after{
+  opacity:1;
+  transform: scale(1);
+}
+
+.checkItem input:checked ~ .checkText{
+  opacity:.55;
+  text-decoration: line-through;
+}
+
+/* 點擊回饋 */
+.checkItem:active{
+  background: rgba(255,255,255,.05);
 }
 
 /* ========= Tabbar ========= */
 .tabbar{
-  position: fixed;
+  position:fixed;
   left:0;
   right:0;
   bottom:0;
   height: calc(var(--tabH) + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  background: rgba(10,10,10,.95);
   display:flex;
+  background: rgba(10,10,10,.95);
   border-top:1px solid rgba(255,255,255,.1);
-  z-index:999;
 }
 
 .tabbar a{
   flex:1;
-  height: var(--tabH);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   gap:6px;
   color: rgba(255,255,255,.55);
-  text-decoration:none;
   font-size:13px;
+  text-decoration:none;
 }
 
 .tabbar a.active{
   color:#fff;
-}
-
-/* ========= Mobile Only 修正 ========= */
-@media (max-width: 420px){
-  .hero{
-    height: 240px;
-  }
-
-  .heroTitle{
-    font-size: 24px;   /* 關鍵：避免斷行 */
-  }
-
-  .heroSub{
-    font-size:14px;
-  }
 }
