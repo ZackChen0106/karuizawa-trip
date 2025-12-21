@@ -4,19 +4,22 @@
   <meta charset="UTF-8" />
   <title>2026 初春 · 輕井澤</title>
 
-  <!-- 手機版必要 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 手機必要 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ⭐⭐⭐ 關鍵：載入 CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 
   <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json" />
 </head>
 
 <body data-page="home">
   <div class="app">
-    <!-- Hero -->
+
+    <!-- =====================
+         Hero（固定不動）
+         ===================== -->
     <div class="hero">
       <div class="heroContent">
         <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
@@ -29,66 +32,138 @@
       </div>
     </div>
 
-    <div class="main">
-      <div class="card">
-        <div class="cardHeader">
-          <h2 class="cardTitle" id="todayTitle">TODAY</h2>
-          <span class="cardHint">點一下看詳情</span>
-        </div>
+    <!-- =====================
+         Pages（中間滑動內容）
+         ===================== -->
+    <div class="pages">
 
-        <div class="bigRow">
-          <div>
-            <p class="bigText" id="todayMain">Day 2｜輕井澤</p>
-            <p class="subText" id="todayRoute">星野 → 舊輕井澤</p>
-            <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
+      <!-- Home -->
+      <section class="page active" data-page="home">
+        <div class="main">
+
+          <!-- Today -->
+          <div class="card">
+            <div class="cardHeader">
+              <h2 class="cardTitle" id="todayTitle">TODAY</h2>
+              <span class="cardHint">點一下看詳情</span>
+            </div>
+
+            <div class="bigRow">
+              <div>
+                <p class="bigText" id="todayMain">Day 2｜輕井澤</p>
+                <p class="subText" id="todayRoute">星野 → 舊輕井澤</p>
+                <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
+              </div>
+              <div class="arrowBtn">›</div>
+            </div>
           </div>
-          <div class="arrowBtn">›</div>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="cardHeader">
-          <h2 class="cardTitle">天氣預報</h2>
-          <span class="cardHint" id="weatherHint">讀取中…</span>
-        </div>
+          <!-- Weather -->
+          <div class="card">
+            <div class="cardHeader">
+              <h2 class="cardTitle">天氣預報</h2>
+              <span class="cardHint" id="weatherHint">讀取中…</span>
+            </div>
 
-        <div class="subText">地點：<strong id="weatherLoc">輕井澤</strong></div>
+            <div class="subText">
+              地點：<strong id="weatherLoc">輕井澤</strong>
+            </div>
 
-        <div class="weatherGrid">
-          <div class="weatherBox">
-            <div class="wLabel">今天</div>
-            <div class="wMain">
-              <div class="wIcon" id="wTodayIcon">⛅️</div>
-              <div class="wTemp">
-                <div class="hi" id="wTodayHi">--°</div>
-                <div class="lo" id="wTodayLo">低 --°</div>
+            <div class="weatherGrid">
+              <div class="weatherBox">
+                <div class="wLabel">今天</div>
+                <div class="wMain">
+                  <div class="wIcon" id="wTodayIcon">⛅️</div>
+                  <div class="wTemp">
+                    <div class="hi" id="wTodayHi">--°</div>
+                    <div class="lo" id="wTodayLo">低 --°</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="weatherBox">
+                <div class="wLabel">明天</div>
+                <div class="wMain">
+                  <div class="wIcon" id="wTomIcon">🌦️</div>
+                  <div class="wTemp">
+                    <div class="hi" id="wTomHi">--°</div>
+                    <div class="lo" id="wTomLo">低 --°</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="weatherBox">
-            <div class="wLabel">明天</div>
-            <div class="wMain">
-              <div class="wIcon" id="wTomIcon">🌦️</div>
-              <div class="wTemp">
-                <div class="hi" id="wTomHi">--°</div>
-                <div class="lo" id="wTomLo">低 --°</div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Flight -->
+      <section class="page" data-page="flight">
+        <div class="pageWrap">
+          <h2 class="pageTitle">✈️ 機票資訊</h2>
+          <!-- 之後由 JS 動態填入 -->
+        </div>
+      </section>
+
+      <!-- Itinerary -->
+      <section class="page" data-page="itinerary">
+        <div class="pageWrap">
+          <h2 class="pageTitle">🗺️ 行程</h2>
+        </div>
+      </section>
+
+      <!-- Hotel -->
+      <section class="page" data-page="hotel">
+        <div class="pageWrap">
+          <h2 class="pageTitle">🏡 住宿</h2>
+        </div>
+      </section>
+
+      <!-- Packing -->
+      <section class="page" data-page="packing">
+        <div class="pageWrap">
+          <h2 class="pageTitle">🎒 行李清單</h2>
+        </div>
+      </section>
+
+      <!-- Emergency -->
+      <section class="page" data-page="emergency">
+        <div class="pageWrap">
+          <h2 class="pageTitle">☎️ 緊急資訊</h2>
+        </div>
+      </section>
+
     </div>
 
-    <nav class="tabbar">
-      <a href="flight.html"><span class="tabIcon">✈️</span><span>機票</span></a>
-      <a href="itinerary.html"><span class="tabIcon">🗺️</span><span>行程</span></a>
-      <a href="hotel.html"><span class="tabIcon">🏡</span><span>住宿</span></a>
-      <a href="packing.html"><span class="tabIcon">🎒</span><span>行李</span></a>
-      <a href="emergency.html"><span class="tabIcon">☎️</span><span>緊急</span></a>
+    <!-- =====================
+         Bottom Tab Bar
+         ===================== -->
+    <nav class="tabbar" aria-label="bottom tabs">
+      <a href="#" data-tab="home" class="active">
+        <span class="tabIcon">🏠</span>
+        <span>首頁</span>
+      </a>
+      <a href="#" data-tab="flight">
+        <span class="tabIcon">✈️</span>
+        <span>機票</span>
+      </a>
+      <a href="#" data-tab="itinerary">
+        <span class="tabIcon">🗺️</span>
+        <span>行程</span>
+      </a>
+      <a href="#" data-tab="hotel">
+        <span class="tabIcon">🏡</span>
+        <span>住宿</span>
+      </a>
+      <a href="#" data-tab="packing">
+        <span class="tabIcon">🎒</span>
+        <span>行李</span>
+      </a>
     </nav>
+
   </div>
 
+  <!-- JS -->
   <script src="app.js"></script>
 </body>
 </html>

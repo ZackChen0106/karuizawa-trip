@@ -201,3 +201,50 @@ document.addEventListener("DOMContentLoaded", () => {
     initHome();
   }
 });
+
+// ===== Tab Navigation (SPA-like) =====
+const tabs = document.querySelectorAll(".tabbar a");
+const pages = document.querySelectorAll(".page");
+
+let currentPage = "home";
+
+function switchPage(target) {
+  if (target === currentPage) return;
+
+  const currentEl = document.querySelector(`.page[data-page="${currentPage}"]`);
+  const nextEl = document.querySelector(`.page[data-page="${target}"]`);
+
+  // 方向判斷（可之後優化成 index 比較）
+  const direction = target === "home" ? "right" : "left";
+
+  currentEl.classList.remove("active");
+  currentEl.classList.add(direction === "left" ? "exit-left" : "exit-right");
+
+  nextEl.classList.remove("exit-left", "exit-right");
+  nextEl.classList.add("active");
+
+  // Tab 狀態
+  tabs.forEach(t => t.classList.remove("active"));
+  document.querySelector(`.tabbar a[data-tab="${target}"]`).classList.add("active");
+
+  currentPage = target;
+
+  // history（不 reload）
+  history.pushState({ page: target }, "", `#${target}`);
+}
+
+// 綁定 tab
+tabs.forEach(tab => {
+  tab.addEventListener("click", e => {
+    e.preventDefault();
+    switchPage(tab.dataset.tab);
+  });
+});
+
+// 處理返回鍵
+window.addEventListener("popstate", e => {
+  if (e.state?.page) {
+    switchPage(e.state.page);
+  }
+});
+

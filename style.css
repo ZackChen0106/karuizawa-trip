@@ -292,3 +292,38 @@ body{
   .tabbar{ max-width: 430px; margin: 0 auto; left: 0; right: 0; }
 }
 
+/* ===== Page Slider ===== */
+
+.pages {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: calc(100vh - 340px - var(--tabH));
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.page.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 1;
+}
+
+.page.exit-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.page.exit-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
