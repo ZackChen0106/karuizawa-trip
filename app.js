@@ -104,3 +104,98 @@ document.addEventListener("DOMContentLoaded", () => {
   syncHero();
   updateWeather();
 });
+
+/* ======================================================
+   TODAY 對應每日行程 ＋ 點擊跳轉行程頁
+====================================================== */
+
+(function () {
+  const START_DATE = "2026-02-21";
+
+  function twMidnight() {
+    const now = new Date();
+    const tw = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
+    return new Date(tw.getFullYear(), tw.getMonth(), tw.getDate());
+  }
+
+  function dayIndex() {
+    const start = new Date(START_DATE);
+    const diff = Math.round((twMidnight() - start) / 86400000);
+    return diff; // 出發前為負數
+  }
+
+  const todayMain = document.getElementById("todayMain");
+  const todayRoute = document.getElementById("todayRoute");
+  const todayNote = document.getElementById("todayNote");
+
+  function updateTodayByItinerary() {
+    if (!todayMain || !todayRoute || !todayNote) return;
+
+    const d = dayIndex();
+
+    // 出發前
+    if (d < 0) {
+      todayMain.textContent = "出發前｜準備就緒";
+      todayRoute.textContent = "確認機票、住宿與行李";
+      todayNote.textContent = "放慢腳步，期待旅程";
+      return;
+    }
+
+    // Day 對應表
+    const map = {
+      0: {
+        main: "Day 1｜前往輕井澤",
+        route: "成田 → 輕井澤",
+        note: "抵達後簡單散步、早點休息"
+      },
+      1: {
+        main: "Day 2｜輕井澤慢遊",
+        route: "舊輕井澤・咖啡・Outlet",
+        note: "走路多，記得穿好鞋"
+      },
+      2: {
+        main: "Day 3｜輕井澤 → 東京",
+        route: "上午輕井澤｜下午東京",
+        note: "移動日，行李注意"
+      },
+      3: {
+        main: "Day 4｜東京市區",
+        route: "澀谷・表參道・代官山",
+        note: "留點時間給臨時驚喜"
+      },
+      4: {
+        main: "Day 5｜返程",
+        route: "東京 → 成田 → 桃園",
+        note: "別忘了伴手禮"
+      }
+    };
+
+    const today = map[d] || {
+      main: "旅程結束",
+      route: "回憶整理中",
+      note: "期待下一次旅行"
+    };
+
+    todayMain.textContent = today.main;
+    todayRoute.textContent = today.route;
+    todayNote.textContent = today.note;
+  }
+
+  /* 點 TODAY 卡片 → 切到行程頁 */
+  function bindTodayClick() {
+    const card = document.getElementById("todayCard");
+    if (!card) return;
+
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", () => {
+      const tab = document.querySelector('.tabbar a[data-tab="itinerary"]');
+      tab?.click(); // 直接走你原本的 tab 切換流程
+    });
+  }
+
+  /* 初始化 */
+  updateTodayByItinerary();
+  bindTodayClick();
+})();
+
