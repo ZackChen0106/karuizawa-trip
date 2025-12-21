@@ -2,24 +2,26 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>2026 初春 · 輕井澤</title>
+  <title>2026 初春 · 輕井澤 · 東京</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <link rel="stylesheet" href="style.css?v=weather-emoji" />
+  <link rel="stylesheet" href="style.css?v=hero-fixed" />
   <link rel="manifest" href="manifest.json" />
 </head>
 
 <body data-page="home">
 <div class="app">
 
-  <!-- Hero -->
-  <div class="hero" id="hero">
+  <!-- Hero（固定，不再切換） -->
+  <div class="hero" id="hero"
+       style="background-image:url('./hero.jpg')">
     <div class="heroContent">
-      <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
-      <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
+      <h1 class="heroTitle">2026 初春 · 輕井澤 · 東京</h1>
+      <p class="heroSub">慢慢走，把時間留給彼此</p>
+
       <div class="pillRow">
         <span class="pill" id="pillDay">計算中…</span>
-        <span class="pill" id="pillLoc">📍 輕井澤</span>
+        <span class="pill">🇯🇵 日本</span>
       </div>
     </div>
   </div>
@@ -32,7 +34,7 @@
       <div class="main">
 
         <!-- TODAY -->
-        <div class="card" id="todayCard">
+        <div class="card" id="todayCard" style="cursor:pointer">
           <div class="cardHeader">
             <h2 class="cardTitle">TODAY</h2>
             <span class="cardHint">點一下看今日行程</span>
@@ -109,6 +111,6 @@
 
 </div>
 
-<script src="app.js?v=weather-emoji"></script>
+<script src="app.js?v=hero-fixed"></script>
 </body>
 </html>

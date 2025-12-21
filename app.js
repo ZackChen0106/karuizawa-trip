@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(`.page[data-page="${target}"]`)?.classList.add("active");
 
     document.body.dataset.page = target;
-    syncHero();
-    updateWeatherByDay();
 
     if (target === "itinerary") {
       setTimeout(scrollToToday, 200);
@@ -57,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!main) return;
 
     const d = dayIndex();
+
     if (d < 0) {
       main.textContent = "出發前｜準備就緒";
       route.textContent = "確認機票、住宿與行李";
@@ -78,26 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
     note.textContent = today[2];
   }
 
-  /* ---------- Hero ---------- */
-  function syncHero() {
-    const hero = document.getElementById("hero");
-    const title = document.getElementById("heroTitle");
-    const sub = document.getElementById("heroSub");
-    const loc = document.getElementById("pillLoc");
-
-    if (document.body.dataset.page === "itinerary") {
-      hero.style.backgroundImage = "url('./assets/hero-tokyo.jpg')";
-      title.textContent = "2026 初春 · 東京";
-      sub.textContent = "城市節奏，慢慢探索";
-      loc.textContent = "📍 東京";
-    } else {
-      hero.style.backgroundImage = "url('./assets/hero-karuizawa.jpg')";
-      title.textContent = "2026 初春 · 輕井澤";
-      sub.textContent = "慢慢走，把時間留給彼此";
-      loc.textContent = "📍 輕井澤";
-    }
-  }
-
   /* ---------- TODAY → 行程 ---------- */
   document.getElementById("todayCard")?.addEventListener("click", () => {
     switchPage("itinerary");
@@ -115,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  /* ---------- 天氣：依 Day 預設 + Emoji ---------- */
+  /* ---------- 天氣（依 Day 預設） ---------- */
   const WEATHER_BY_DAY = [
     { city: "輕井澤", emoji: "☁️", desc: "多雲", temp: 6, hi: 9, lo: 1 },
     { city: "輕井澤", emoji: "🌤", desc: "晴時多雲", temp: 8, hi: 11, lo: 2 },
@@ -143,6 +122,5 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- 初始化 ---------- */
   updateCountdown();
   updateToday();
-  syncHero();
   updateWeatherByDay();
 });
