@@ -25,26 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ---------- 台北時間 ---------- */
-  function twMidnight() {
-    const now = new Date();
-    const tw = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
-    return new Date(tw.getFullYear(), tw.getMonth(), tw.getDate());
-  }
-
-  const START_DATE = "2026-02-21";
-
-  function dayIndex() {
-    return Math.floor((twMidnight() - new Date(START_DATE)) / 86400000);
-  }
 
   /* ---------- 倒數 ---------- */
   function updateCountdown() {
     const pillDay = document.getElementById("pillDay");
     if (!pillDay) return;
 
-    const diff = Math.round((new Date(START_DATE) - twMidnight()) / 86400000);
-    pillDay.textContent = diff >= 0 ? `距離出發 ${diff} 天` : "旅程進行中";
+if (window.getTodayDayIndex) {
+  const dayIndex = window.getTodayDayIndex();
+  document.getElementById('pillDay').textContent = `Day ${dayIndex + 1}`;
+}
   }
 
   /* ---------- TODAY ---------- */
@@ -54,7 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const note = document.getElementById("todayNote");
     if (!main) return;
 
-    const d = dayIndex();
+    const d = window.getTodayDayIndex
+  ? window.getTodayDayIndex()
+  : 0;
+
 
     if (d < 0) {
       main.textContent = "出發前｜準備就緒";
@@ -84,10 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ---------- 行程捲動 ---------- */
   function scrollToToday() {
-    const d = dayIndex();
-    document.querySelectorAll(".day-card").forEach(c => c.classList.remove("today"));
+const d = window.getTodayDayIndex
+  ? window.getTodayDayIndex()
+  : 0;
 
-    const target = document.querySelector(`.day-card[data-day="${d}"]`);
+document.querySelectorAll(".dayPanel").forEach(c => c.classList.remove("today"));
+const target = document.querySelector(`.dayPanel[data-day="${d}"]`);
+
+
     if (!target) return;
 
     target.classList.add("today");
@@ -110,7 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const rangeEl = document.getElementById("weatherRange");
     if (!cityEl) return;
 
-    const d = Math.max(0, Math.min(dayIndex(), WEATHER_BY_DAY.length - 1));
+const baseDay = window.getTodayDayIndex
+  ? window.getTodayDayIndex()
+  : 0;
+
+const d = Math.max(0, Math.min(baseDay, WEATHER_BY_DAY.length - 1));
     const w = WEATHER_BY_DAY[d];
 
     cityEl.textContent = w.city;

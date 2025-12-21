@@ -453,16 +453,19 @@
   const TRIP_START = new Date('2026-02-21T00:00:00');
   const TRIP_END   = new Date('2026-02-25T23:59:59');
 
-  function getTodayDayIndex() {
-    const now = new Date();
+window.getTodayDayIndex = function () {
+  const TRIP_START = new Date('2026-02-21T00:00:00');
+  const TRIP_END   = new Date('2026-02-25T23:59:59');
+  const now = new Date();
 
-    if (now < TRIP_START) return 0; // 尚未出發 → Day 1
-    if (now > TRIP_END) return 4;   // 已結束 → Day 5
+  if (now < TRIP_START) return 0; // Day 1
+  if (now > TRIP_END) return 4;   // Day 5
 
-    const diffMs = now - TRIP_START;
-    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    return diffDays; // 0-based（Day1 = 0）
-  }
+  const diffMs = now - TRIP_START;
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+};
+
+
 
   // 立刻覆蓋預設 Day
   activateDay(getTodayDayIndex());
