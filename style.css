@@ -1,35 +1,183 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ========= Base ========= */
+:root{
+  --bg:#000;
+  --card:#121212;
+  --muted: rgba(255,255,255,.72);
+  --muted2: rgba(255,255,255,.55);
+  --line: rgba(255,255,255,.10);
+  --radius: 16px;
+  --tabH: 72px;
+}
 
-  /* ========= 行李清單完成度＋記憶 ========= */
-  const STORAGE_KEY = "packing-checklist";
+*{ box-sizing:border-box; }
+html,body{
+  height:100%;
+  margin:0;
+}
 
-  const checkboxes = document.querySelectorAll('.checkItem input');
-  const progressEl = document.getElementById("packingProgress");
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang TC","Noto Sans TC", Arial, sans-serif;
+  background: var(--bg);
+  color:#fff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
-  // 讀取儲存狀態
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+/* ========= Layout ========= */
+.app{
+  min-height:100svh; /* iOS 正解 */
+  display:flex;
+  flex-direction:column;
+  background: var(--bg);
+}
 
-  checkboxes.forEach((cb, index) => {
-    const key = `item-${index}`;
-    cb.dataset.key = key;
+/* ========= Hero ========= */
+.hero{
+  position:relative;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
 
-    if (saved[key]) cb.checked = true;
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.15) 0%,
+    rgba(0,0,0,.65) 65%,
+    rgba(0,0,0,.85) 100%
+  );
+}
 
-    cb.addEventListener("change", () => {
-      saved[key] = cb.checked;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-      updateProgress();
-    });
-  });
+.heroContent{
+  position:absolute;
+  left:16px;
+  right:16px;
+  bottom:18px;
+  z-index:1;
+}
 
-  function updateProgress(){
-    const total = checkboxes.length;
-    const checked = [...checkboxes].filter(cb => cb.checked).length;
-    if (progressEl){
-      progressEl.textContent = `已完成 ${checked} / ${total}`;
-    }
+.heroTitle{
+  margin:0;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: .2px;
+  word-break: keep-all;   /* 關鍵 */
+}
+
+.heroSub{
+  margin-top:10px;
+  font-size:16px;
+  color: rgba(255,255,255,.85);
+}
+
+.pillRow{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.pill{
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:14px;
+  background: rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+/* ========= Pages ========= */
+.pages{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(var(--tabH) + env(safe-area-inset-bottom));
+  background: var(--bg);
+}
+
+.page{ display:none; }
+.page.active{ display:block; }
+
+.main, .pageWrap{
+  padding:16px;
+}
+
+.pageTitle{
+  font-size:22px;
+  font-weight:800;
+  margin: 10px 0 14px;
+}
+
+/* ========= Card ========= */
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  padding:16px;
+  margin-bottom:14px;
+}
+
+.cardTitle{
+  font-size:18px;
+  font-weight:800;
+}
+
+.bigText{
+  font-size:24px;
+  font-weight:900;
+}
+
+.subText{
+  font-size:15px;
+  color: var(--muted);
+  margin-top:8px;
+}
+
+/* ========= Tabbar ========= */
+.tabbar{
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height: calc(var(--tabH) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: rgba(10,10,10,.95);
+  display:flex;
+  border-top:1px solid rgba(255,255,255,.1);
+  z-index:999;
+}
+
+.tabbar a{
+  flex:1;
+  height: var(--tabH);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  color: rgba(255,255,255,.55);
+  text-decoration:none;
+  font-size:13px;
+}
+
+.tabbar a.active{
+  color:#fff;
+}
+
+/* ========= Mobile Only 修正 ========= */
+@media (max-width: 420px){
+  .hero{
+    height: 240px;
   }
 
-  updateProgress();
+  .heroTitle{
+    font-size: 24px;   /* 關鍵：避免斷行 */
+  }
 
-});
+  .heroSub{
+    font-size:14px;
+  }
+}
