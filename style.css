@@ -1,277 +1,35 @@
-/* ========= Base ========= */
-:root{
-  --bg:#000;
-  --card:#121212;
-  --card-soft:#161616;
-  --muted: rgba(255,255,255,.75);
-  --muted2: rgba(255,255,255,.55);
-  --line: rgba(255,255,255,.10);
-  --accent: #ffffff;
-  --radius: 18px;
-  --tabH: 72px; /* iOS 好按 */
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+  /* ========= 行李清單完成度＋記憶 ========= */
+  const STORAGE_KEY = "packing-checklist";
 
-body{
-  margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "PingFang TC","Noto Sans TC", Arial, sans-serif;
-  background: var(--bg);
-  color:#fff;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
+  const checkboxes = document.querySelectorAll('.checkItem input');
+  const progressEl = document.getElementById("packingProgress");
 
-/* iOS 點擊優化 */
-a, button, label{
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
+  // 讀取儲存狀態
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
-/* ========= Layout ========= */
-.app{
-  min-height:100dvh;
-  display:flex;
-  flex-direction:column;
-  background: var(--bg);
-}
+  checkboxes.forEach((cb, index) => {
+    const key = `item-${index}`;
+    cb.dataset.key = key;
 
-/* ========= Hero ========= */
-.hero{
-  position:relative;
-  height: 320px;
-  min-height: 260px;
-  background-size: cover;
-  background-position: center;
-  background-repeat:no-repeat;
-}
+    if (saved[key]) cb.checked = true;
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.15) 0%,
-    rgba(0,0,0,.65) 65%,
-    rgba(0,0,0,.85) 100%
-  );
-}
+    cb.addEventListener("change", () => {
+      saved[key] = cb.checked;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      updateProgress();
+    });
+  });
 
-.heroContent{
-  position:absolute;
-  left:16px;
-  right:16px;
-  bottom:18px;
-  z-index:1;
-}
+  function updateProgress(){
+    const total = checkboxes.length;
+    const checked = [...checkboxes].filter(cb => cb.checked).length;
+    if (progressEl){
+      progressEl.textContent = `已完成 ${checked} / ${total}`;
+    }
+  }
 
-.heroTitle{
-  margin:0;
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: .4px;
-}
+  updateProgress();
 
-.heroSub{
-  margin:10px 0 0;
-  font-size: 16px;
-  color: rgba(255,255,255,.88);
-}
-
-.pillRow{
-  margin-top: 14px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding: 9px 13px;
-  border-radius: 999px;
-  font-size: 14px;
-  color:#fff;
-  background: rgba(0,0,0,.55);
-  border: 1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(10px);
-}
-
-/* ========= Pages ========= */
-.pages{
-  flex:1;
-  overflow-y:auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: calc(var(--tabH) + env(safe-area-inset-bottom));
-}
-
-.page{ display:none; }
-.page.active{ display:block; }
-
-.main, .pageWrap{
-  padding: 16px;
-}
-
-.pageTitle{
-  margin: 8px 0 16px;
-  font-size: 22px;
-  font-weight: 800;
-}
-
-/* ========= Card ========= */
-.card{
-  background: linear-gradient(
-    180deg,
-    var(--card-soft),
-    var(--card)
-  );
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 14px;
-}
-
-.cardHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap: 12px;
-}
-
-.cardTitle{
-  margin:0;
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.cardHint{
-  font-size: 13px;
-  color: var(--muted2);
-}
-
-/* TODAY */
-.bigText{
-  margin:0;
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: .3px;
-}
-
-.subText{
-  margin: 10px 0 0;
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-/* ========= 行李清單（重點美化） ========= */
-.checkItem{
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  padding: 12px 10px;
-  margin: 6px 0;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background .2s ease, opacity .2s ease;
-}
-
-.checkItem:hover{
-  background: rgba(255,255,255,.04);
-}
-
-.checkItem input{
-  appearance: none;
-  -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
-  margin-top: 2px;
-  border-radius: 6px;
-  border: 2px solid rgba(255,255,255,.35);
-  background: transparent;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.checkItem input:checked{
-  background: #fff;
-  border-color: #fff;
-}
-
-.checkItem input:checked::after{
-  content:"";
-  position:absolute;
-  left:5px;
-  top:1px;
-  width:6px;
-  height:12px;
-  border: solid #000;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.checkItem span{
-  font-size: 16px;
-  line-height: 1.4;
-  color:#fff;
-}
-
-/* 勾選後狀態 */
-.checkItem input:checked + span{
-  color: rgba(255,255,255,.45);
-  text-decoration: line-through;
-}
-
-/* ========= 行程 Today 標示 ========= */
-.day-card.today{
-  border-color: #fff;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.25);
-}
-
-/* ========= Tabbar ========= */
-.tabbar{
-  position: fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  height: calc(var(--tabH) + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
-  background: rgba(10,10,10,.94);
-  border-top: 1px solid rgba(255,255,255,.12);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index: 999;
-  backdrop-filter: blur(12px);
-}
-
-.tabbar a{
-  flex:1;
-  height: var(--tabH);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap: 6px;
-  text-decoration:none;
-  color: rgba(255,255,255,.55);
-  font-size: 13px;
-  font-weight: 700;
-  padding: 10px 0;
-}
-
-.tabbar a .tabIcon{
-  font-size: 20px;
-}
-
-.tabbar a.active{
-  color:#fff;
-}
-
-.tabbar a:active{
-  transform: scale(.97);
-}
+});
