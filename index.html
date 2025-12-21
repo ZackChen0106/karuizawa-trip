@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>2026 初春 · 輕井澤</title>
 
-  <!-- 手機必要 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- CSS -->
@@ -17,30 +16,24 @@
 <body data-page="home">
   <div class="app">
 
-    <!-- =====================
-         Hero（固定不動）
-         ===================== -->
+    <!-- Hero（固定） -->
     <div class="hero">
       <div class="heroContent">
         <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
         <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
 
         <div class="pillRow">
-          <span class="pill" id="pillDay">距離出發 23 天</span>
+          <span class="pill" id="pillDay">距離出發 62 天</span>
           <span class="pill" id="pillLoc">📍 輕井澤</span>
         </div>
       </div>
     </div>
 
-    <!-- =====================
-         Pages（中間滑動內容）
-         ===================== -->
-    <div class="pages">
-
+    <!-- Pages（中間滑動內容） -->
+    <div class="pages" id="pages">
       <!-- Home -->
       <section class="page active" data-page="home">
         <div class="main">
-
           <!-- Today -->
           <div class="card">
             <div class="cardHeader">
@@ -50,11 +43,11 @@
 
             <div class="bigRow">
               <div>
-                <p class="bigText" id="todayMain">Day 2｜輕井澤</p>
-                <p class="subText" id="todayRoute">星野 → 舊輕井澤</p>
+                <p class="bigText" id="todayMain">出發前｜準備就緒</p>
+                <p class="subText" id="todayRoute">例：星野 → 舊輕井澤</p>
                 <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
               </div>
-              <div class="arrowBtn">›</div>
+              <div class="arrowBtn" aria-hidden="true">›</div>
             </div>
           </div>
 
@@ -62,21 +55,19 @@
           <div class="card">
             <div class="cardHeader">
               <h2 class="cardTitle">天氣預報</h2>
-              <span class="cardHint" id="weatherHint">讀取中…</span>
+              <span class="cardHint" id="weatherHint">已更新</span>
             </div>
 
-            <div class="subText">
-              地點：<strong id="weatherLoc">輕井澤</strong>
-            </div>
+            <div class="subText">地點：<strong id="weatherLoc">輕井澤</strong></div>
 
             <div class="weatherGrid">
               <div class="weatherBox">
                 <div class="wLabel">今天</div>
                 <div class="wMain">
-                  <div class="wIcon" id="wTodayIcon">⛅️</div>
+                  <div class="wIcon" id="wTodayIcon">🌧️</div>
                   <div class="wTemp">
-                    <div class="hi" id="wTodayHi">--°</div>
-                    <div class="lo" id="wTodayLo">低 --°</div>
+                    <div class="hi" id="wTodayHi">13°</div>
+                    <div class="lo" id="wTodayLo">低 4°</div>
                   </div>
                 </div>
               </div>
@@ -84,10 +75,10 @@
               <div class="weatherBox">
                 <div class="wLabel">明天</div>
                 <div class="wMain">
-                  <div class="wIcon" id="wTomIcon">🌦️</div>
+                  <div class="wIcon" id="wTomIcon">☀️</div>
                   <div class="wTemp">
-                    <div class="hi" id="wTomHi">--°</div>
-                    <div class="lo" id="wTomLo">低 --°</div>
+                    <div class="hi" id="wTomHi">3°</div>
+                    <div class="lo" id="wTomLo">低 -5°</div>
                   </div>
                 </div>
               </div>
@@ -101,7 +92,13 @@
       <section class="page" data-page="flight">
         <div class="pageWrap">
           <h2 class="pageTitle">✈️ 機票資訊</h2>
-          <!-- 之後由 JS 動態填入 -->
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放去程/回程卡片、訂位代號、行李規定…）</div>
+          </div>
         </div>
       </section>
 
@@ -109,6 +106,13 @@
       <section class="page" data-page="itinerary">
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放 Day 1～Day N 卡片）</div>
+          </div>
         </div>
       </section>
 
@@ -116,6 +120,13 @@
       <section class="page" data-page="hotel">
         <div class="pageWrap">
           <h2 class="pageTitle">🏡 住宿</h2>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放飯店/民宿、入住退房、分房資訊…）</div>
+          </div>
         </div>
       </section>
 
@@ -123,6 +134,13 @@
       <section class="page" data-page="packing">
         <div class="pageWrap">
           <h2 class="pageTitle">🎒 行李清單</h2>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放清單、打勾、分類…）</div>
+          </div>
         </div>
       </section>
 
@@ -130,40 +148,38 @@
       <section class="page" data-page="emergency">
         <div class="pageWrap">
           <h2 class="pageTitle">☎️ 緊急資訊</h2>
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">內容</h3>
+              <span class="cardHint">之後可填</span>
+            </div>
+            <div class="subText">（這裡之後放緊急電話、保險、護照提醒…）</div>
+          </div>
         </div>
       </section>
-
     </div>
 
-    <!-- =====================
-         Bottom Tab Bar
-         ===================== -->
+    <!-- Bottom Tab Bar -->
     <nav class="tabbar" aria-label="bottom tabs">
-      <a href="#" data-tab="home" class="active">
-        <span class="tabIcon">🏠</span>
-        <span>首頁</span>
+      <a href="#home" data-tab="home" class="active">
+        <span class="tabIcon">🏠</span><span>首頁</span>
       </a>
-      <a href="#" data-tab="flight">
-        <span class="tabIcon">✈️</span>
-        <span>機票</span>
+      <a href="#flight" data-tab="flight">
+        <span class="tabIcon">✈️</span><span>機票</span>
       </a>
-      <a href="#" data-tab="itinerary">
-        <span class="tabIcon">🗺️</span>
-        <span>行程</span>
+      <a href="#itinerary" data-tab="itinerary">
+        <span class="tabIcon">🗺️</span><span>行程</span>
       </a>
-      <a href="#" data-tab="hotel">
-        <span class="tabIcon">🏡</span>
-        <span>住宿</span>
+      <a href="#hotel" data-tab="hotel">
+        <span class="tabIcon">🏡</span><span>住宿</span>
       </a>
-      <a href="#" data-tab="packing">
-        <span class="tabIcon">🎒</span>
-        <span>行李</span>
+      <a href="#packing" data-tab="packing">
+        <span class="tabIcon">🎒</span><span>行李</span>
       </a>
     </nav>
 
   </div>
 
-  <!-- JS -->
   <script src="app.js"></script>
 </body>
 </html>
