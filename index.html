@@ -540,51 +540,98 @@ function renderDay1() {
   html += `<h3 class="cardTitle">${day1Data.title}</h3>`;
 
   // 每一個行程項目
-  day1Data.items.forEach(item => {
-    html += `
-      <div class="itItem">
-        <strong>${item.time}</strong>
-        <div>
-${item.texts.map(t => {
-  // 導航連結
-  if (t.includes("http")) {
-    return `
-      <p class="subText">
-        <a href="${t.replace("導航：", "")}"
-           target="_blank"
-           style="color:#4da3ff;text-decoration:underline;">
-          🧭 導航
-        </a>
-      </p>
-    `;
-  }
+day1Data.items.forEach(item => {
+  html += `
+    <div class="itItem" style="
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:20px;
+    ">
 
-  // 必買推薦（可展開）
-  if (t === "[必買推薦]" && item.buyList) {
-    const id = `buy-${item.time.replace(/[:–]/g, "")}`;
-    return `
-      <p class="subText"
-         style="color:#4da3ff;cursor:pointer;"
-         onclick="
-           const el = document.getElementById('${id}');
-           el.style.display = el.style.display === 'none' ? 'block' : 'none';
-         ">
-        🛍 必買推薦 ▾
-      </p>
-      <div id="${id}" style="display:none;padding-left:12px;">
-        ${item.buyList.map(b => `<p class="subText">• ${b}</p>`).join("")}
+      <!-- 時間（段落錨點） -->
+      <div style="
+        min-width:90px;
+        font-weight:600;
+        color:#fff;
+        position:relative;
+      ">
+        <span style="
+          display:block;
+          padding-left:8px;
+          border-left:3px solid rgba(255,255,255,.3);
+        ">
+          ${item.time}
+        </span>
       </div>
-    `;
-  }
 
-  // 一般文字
-  return `<p class="subText">${t}</p>`;
-}).join("")}
+      <!-- 主要內容 -->
+      <div style="flex:1;">
+        ${item.texts.map(t => {
+          // 導航行為（不佔行）
+          if (t.includes("http")) {
+            return ``;
+          }
 
-        </div>
+          // 必買推薦（不佔主行）
+          if (t === "[必買推薦]" && item.buyList) {
+            return ``;
+          }
+
+          // 主內容 / 補充內容
+          return `<p class="subText" style="margin:0 0 6px 0;">${t}</p>`;
+        }).join("")}
       </div>
-    `;
-  });
+
+      <!-- 右側行為 -->
+      <div style="
+        min-width:36px;
+        text-align:right;
+        padding-top:4px;
+      ">
+        ${item.texts.map(t => {
+          // 導航 icon
+          if (t.includes("http")) {
+            return `
+              <a href="${t.replace("導航：", "")}"
+                 target="_blank"
+                 style="font-size:18px;text-decoration:none;">
+                🧭
+              </a>
+            `;
+          }
+
+          // 必買推薦 icon（展開）
+          if (t === "[必買推薦]" && item.buyList) {
+            const id = `buy-${item.time.replace(/[:–]/g, "")}`;
+            return `
+              <span style="cursor:pointer;font-size:18px;"
+                onclick="
+                  const el = document.getElementById('${id}');
+                  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+                ">
+                🛍
+              </span>
+            `;
+          }
+
+          return ``;
+        }).join("")}
+      </div>
+
+    </div>
+
+    ${
+      item.buyList
+        ? `<div id="buy-${item.time.replace(/[:–]/g, "")}"
+             style="display:none;padding-left:110px;margin-bottom:12px;">
+             ${item.buyList.map(b => `<p class="subText">• ${b}</p>`).join("")}
+           </div>`
+        : ``
+    }
+  `;
+});
+
 
   panel.innerHTML = html;
 }
