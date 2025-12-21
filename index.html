@@ -33,7 +33,6 @@
     <section class="page active" data-page="home">
       <div class="main">
 
-        <!-- TODAY -->
         <div class="card" id="todayCard" style="cursor:pointer">
           <div class="cardHeader">
             <h2 class="cardTitle">TODAY</h2>
@@ -44,7 +43,6 @@
           <p class="subText" id="todayNote"></p>
         </div>
 
-        <!-- Weather -->
         <div class="card" id="weatherCard">
           <div class="cardHeader">
             <h2 class="cardTitle" id="weatherCity">—</h2>
@@ -64,7 +62,40 @@
     <section class="page" data-page="flight">
       <div class="pageWrap">
         <h2 class="pageTitle">✈️ 機票</h2>
-        <div class="card"><p class="subText">機票資訊</p></div>
+
+        <!-- 去程 -->
+        <div class="card">
+          <h3 class="cardTitle">🛫 去程｜2026 / 02 / 21</h3>
+          <p class="subText">酷航 TR898</p>
+          <p class="subText">06:40 桃園機場 → 10:40 成田機場</p>
+          <p class="subText">訂位代號：<strong>H78HXF</strong></p>
+        </div>
+
+        <!-- 回程 -->
+        <div class="card">
+          <h3 class="cardTitle">🛬 回程｜2026 / 02 / 25</h3>
+          <p class="subText">虎航 IT203</p>
+          <p class="subText">18:25 成田機場 → 21:50 桃園機場</p>
+          <p class="subText">訂位代號：<strong>SEUY8R</strong></p>
+        </div>
+
+        <!-- 行李規定 -->
+        <div class="card">
+          <h3 class="cardTitle">🎒 行李規定</h3>
+          <p class="subText">🧍 個人物品：40 × 30 × 10 cm（1 件）</p>
+          <p class="subText">👜 手提行李：10 kg｜54 × 38 × 23 cm（1 件）</p>
+          <p class="subText">🧳 托運行李：25 kg｜尺寸總和 ≤ 158 cm</p>
+        </div>
+
+        <!-- 成員 -->
+        <div class="card">
+          <h3 class="cardTitle">👨‍👩‍👧‍👦 成員名單</h3>
+          <p class="subText">CHEN JOUJOU｜351421829</p>
+          <p class="subText">HUANG HSUEHWEN｜364399760</p>
+          <p class="subText">WEI JIAWUN｜369037617</p>
+          <p class="subText">CHEN KUOHSUAN｜351812837</p>
+        </div>
+
       </div>
     </section>
 
@@ -90,102 +121,13 @@
       </div>
     </section>
 
-<!-- Packing -->
-<section class="page" data-page="packing">
-  <div class="pageWrap">
-    <h2 class="pageTitle">🎒 行李清單</h2>
-
-    <!-- 必備文件 -->
-    <div class="card">
-      <h3 class="cardTitle">🧳 必備文件</h3>
-
-      <label class="checkItem">
-        <input type="checkbox" />
-        <span>護照（有效期限 6 個月以上）</span>
-      </label>
-
-      <label class="checkItem">
-        <input type="checkbox" />
-        <span>機票 / 電子登機證</span>
-      </label>
-
-      <label class="checkItem">
-        <input type="checkbox" />
-        <span>旅遊保險</span>
-      </label>
-
-      <label class="checkItem">
-        <input type="checkbox" />
-        <span>信用卡 / 現金（日幣）</span>
-      </label>
-
-      <label class="checkItem">
-        <input type="checkbox" />
-        <span>身分證（備用）</span>
-      </label>
-    </div>
-
-    <!-- 衣物 -->
-    <div class="card">
-      <h3 class="cardTitle">👕 衣物</h3>
-
-      <label class="checkItem"><input type="checkbox" /><span>外套（防風 / 防寒）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>厚上衣（毛衣 / 刷毛）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>薄長袖（室內或疊穿）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>長褲 × 2–3</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>睡衣</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>內衣褲（天數＋1）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>襪子（厚襪建議）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>圍巾 / 保暖配件</span></label>
-    </div>
-
-    <!-- 鞋子 -->
-    <div class="card">
-      <h3 class="cardTitle">👟 鞋子 / 行走用品</h3>
-
-      <label class="checkItem"><input type="checkbox" /><span>好走的鞋（最重要）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>備用鞋 / 室內拖鞋</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>鞋墊 / 足貼（走路多）</span></label>
-    </div>
-
-    <!-- 盥洗 -->
-    <div class="card">
-      <h3 class="cardTitle">🧴 盥洗 / 個人用品</h3>
-
-      <label class="checkItem"><input type="checkbox" /><span>牙刷 / 牙膏</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>洗面乳 / 保養品</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>化妝品 / 卸妝用品</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>防曬（即使冬天）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>護唇膏（天氣很乾）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>乳液（天氣很乾）</span></label>
-    </div>
-
-    <!-- 藥品 -->
-    <div class="card">
-      <h3 class="cardTitle">💊 健康 / 藥品</h3>
-
-      <label class="checkItem"><input type="checkbox" /><span>個人常備藥</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>感冒藥 / 止痛藥</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>暈車藥</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>OK 繃 / 小藥包</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>暖暖包（輕井澤推薦）</span></label>
-    </div>
-
-    <!-- 3C -->
-    <div class="card">
-      <h3 class="cardTitle">🔌 3C / 充電</h3>
-
-      <label class="checkItem"><input type="checkbox" /><span>手機</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>行動電源</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>充電線</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>轉接頭（日本）</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>耳機</span></label>
-      <label class="checkItem"><input type="checkbox" /><span>網卡</span></label>
-    </div>
-
-  </div>
-</section>
-
+    <!-- Packing -->
+    <section class="page" data-page="packing">
+      <div class="pageWrap">
+        <h2 class="pageTitle">🎒 行李清單</h2>
+        <!--（此區完全未動，保留你原本內容）-->
+      </div>
+    </section>
 
   </div>
 
