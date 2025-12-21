@@ -18,7 +18,7 @@
         <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
         <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
         <div class="pillRow">
-          <span class="pill" id="pillDay">距離出發計算中…</span>
+          <span class="pill" id="pillDay">計算中…</span>
           <span class="pill" id="pillLoc">📍 輕井澤</span>
         </div>
       </div>
@@ -53,7 +53,7 @@
         </div>
       </section>
 
-      <!-- Itinerary（完整行程回來） -->
+      <!-- Itinerary（你的原始資料 그대로） -->
       <section class="page" data-page="itinerary">
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
@@ -97,7 +97,6 @@
             </div>
             <div class="subText">18:25 成田起飛 → 21:50 抵達桃園</div>
           </div>
-
         </div>
       </section>
 
@@ -119,7 +118,7 @@
 
     </div>
 
-    <!-- Tab Bar（完全不動） -->
+    <!-- Tab Bar -->
     <nav class="tabbar">
       <a data-tab="home" class="active">🏠 首頁</a>
       <a data-tab="flight">✈️ 機票</a>
@@ -131,47 +130,68 @@
   </div>
 
   <script>
-    /* ===== 台灣時區：距離出發天數 ===== */
+    /* ===== 距離出發（台灣時區，穩定） ===== */
     const pillDay = document.getElementById('pillDay');
-    const depart = new Date('2026-02-21T00:00:00+08:00');
+    const startDate = '2026-02-21';
 
     function updateCountdown() {
-      const nowTW = new Date(
-        new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei' })
+      const todayTW = new Date(
+        new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' })
       );
-      const diff = Math.ceil((depart - nowTW) / 86400000);
+      const departTW = new Date(startDate);
+      const diff = Math.round((departTW - todayTW) / 86400000);
       pillDay.textContent =
         diff >= 0 ? `距離出發 ${diff} 天` : '旅程進行中';
     }
     updateCountdown();
 
-    /* ===== Hero：只跟著實際 active page ===== */
+    /* ===== TODAY（同一套邏輯） ===== */
+    const todayMain = document.getElementById('todayMain');
+    const todayNote = document.getElementById('todayNote');
+
+    function updateToday() {
+      const todayTW = new Date(
+        new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' })
+      );
+      const departTW = new Date(startDate);
+      const diff = Math.round((todayTW - departTW) / 86400000);
+
+      if (diff < 0) {
+        todayMain.textContent = '出發前｜準備就緒';
+        todayNote.textContent = '確認證件與行李';
+      } else {
+        todayMain.textContent = `旅程中｜Day ${diff + 1}`;
+        todayNote.textContent = '依行程前進';
+      }
+    }
+    updateToday();
+
+    /* ===== Hero（只信 body[data-page]） ===== */
     const hero = document.getElementById('hero');
     const heroTitle = document.getElementById('heroTitle');
     const heroSub = document.getElementById('heroSub');
     const pillLoc = document.getElementById('pillLoc');
 
     function syncHero() {
-      const active = document.querySelector('.page.active');
-      if (!active) return;
-
-      if (active.dataset.page === 'itinerary') {
-        hero.style.backgroundImage =
-          "url('/karuizawa-trip/assets/hero-tokyo.jpg')";
+      const page = document.body.dataset.page;
+      if (page === 'itinerary') {
+        hero.style.backgroundImage = "url('./assets/hero-tokyo.jpg')";
         heroTitle.textContent = '2026 初春 · 東京';
         heroSub.textContent = '城市節奏，慢慢探索';
         pillLoc.textContent = '📍 東京';
       } else {
-        hero.style.backgroundImage =
-          "url('/karuizawa-trip/assets/hero-karuizawa.jpg')";
+        hero.style.backgroundImage = "url('./assets/hero-karuizawa.jpg')";
         heroTitle.textContent = '2026 初春 · 輕井澤';
         heroSub.textContent = '慢慢走，把時間留給彼此';
         pillLoc.textContent = '📍 輕井澤';
       }
     }
 
-    /* 每 300ms 同步一次（保證跟到 app.js 切頁） */
-    setInterval(syncHero, 300);
+    /* app.js 切頁後一定會改 body[data-page] */
+    const observer = new MutationObserver(syncHero);
+    observer.observe(document.body, { attributes: true });
+
+    syncHero();
   </script>
 
   <script src="app.js"></script>
