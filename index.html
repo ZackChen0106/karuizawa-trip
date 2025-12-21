@@ -114,26 +114,11 @@
     <!-- 行程內容容器 -->
     <div class="card">
 
-      <!-- Day 1 -->
-      <div class="dayPanel" data-day="0">
-        <h3 class="cardTitle">Day 1｜輕井澤</h3>
+<!-- Day 1（改為 JS render） -->
+<div class="dayPanel" data-day="0" id="day1Panel">
+  <!-- JS 會把內容塞進來 -->
+</div>
 
-        <div class="itItem">
-          <strong>06:40</strong>
-          <div>
-            <p class="subText">桃園機場起飛（TR898）</p>
-            <p class="subText">10:40 抵達成田，轉往輕井澤</p>
-          </div>
-        </div>
-
-        <div class="itItem">
-          <strong>下午</strong>
-          <div>
-            <p class="subText">抵達輕井澤、Check-in</p>
-            <p class="subText">輕鬆散步、附近用餐</p>
-          </div>
-        </div>
-      </div>
 
       <!-- Day 2 -->
       <div class="dayPanel" data-day="1" style="display:none;">
@@ -491,6 +476,122 @@ if (itineraryTab) {
     }, 120);
   });
 }
+
+/* ========= Day 1 資料 ========= */
+const day1Data = {
+  title: "Day 1｜台灣 → 日本 → 輕井澤",
+  items: [
+    {
+      time: "06:40–10:40",
+      texts: [
+        "桃園機場 → 日本成田",
+        "酷航 TR898"
+      ]
+    },
+    {
+      time: "11:30–12:30",
+      texts: [
+        "午餐",
+        "成田機場或周邊用餐"
+      ]
+    },
+    {
+      time: "12:30–16:00",
+      texts: [
+        "前往輕井澤渴望之家飯店",
+        "導航：https://maps.app.goo.gl/QeRiC9ZzpXiTtrTA9"
+      ]
+    },
+    {
+  time: "17:00–19:00",
+  texts: [
+    "輕井澤王子購物廣場",
+    "[必買推薦]"
+  ],
+  buyList: [
+    "Nike / Adidas（日本款、尺寸齊）",
+    "Beams / United Arrows",
+    "Francfranc",
+    "Afternoon Tea Living",
+    "Royce’ 巧克力",
+    "白色戀人"
+  ]
+},
+
+    {
+      time: "19:00–21:00",
+      texts: [
+        "晚餐",
+        "購物廣場內或飯店周邊，依體力決定"
+      ]
+    }
+  ]
+};
+
+
+/* ========= Day 1 render ========= */
+function renderDay1() {
+  const panel = document.getElementById("day1Panel");
+  if (!panel) return;
+
+  let html = "";
+
+  // 標題
+  html += `<h3 class="cardTitle">${day1Data.title}</h3>`;
+
+  // 每一個行程項目
+  day1Data.items.forEach(item => {
+    html += `
+      <div class="itItem">
+        <strong>${item.time}</strong>
+        <div>
+${item.texts.map(t => {
+  // 導航連結
+  if (t.includes("http")) {
+    return `
+      <p class="subText">
+        <a href="${t.replace("導航：", "")}"
+           target="_blank"
+           style="color:#4da3ff;text-decoration:underline;">
+          🧭 導航
+        </a>
+      </p>
+    `;
+  }
+
+  // 必買推薦（可展開）
+  if (t === "[必買推薦]" && item.buyList) {
+    const id = `buy-${item.time.replace(/[:–]/g, "")}`;
+    return `
+      <p class="subText"
+         style="color:#4da3ff;cursor:pointer;"
+         onclick="
+           const el = document.getElementById('${id}');
+           el.style.display = el.style.display === 'none' ? 'block' : 'none';
+         ">
+        🛍 必買推薦 ▾
+      </p>
+      <div id="${id}" style="display:none;padding-left:12px;">
+        ${item.buyList.map(b => `<p class="subText">• ${b}</p>`).join("")}
+      </div>
+    `;
+  }
+
+  // 一般文字
+  return `<p class="subText">${t}</p>`;
+}).join("")}
+
+        </div>
+      </div>
+    `;
+  });
+
+  panel.innerHTML = html;
+}
+
+// 頁面載入後立刻執行
+renderDay1();
+
 
 
 </script>
