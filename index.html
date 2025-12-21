@@ -102,39 +102,128 @@
       </div>
     </section>
 
+
  <!-- Hotel（已優化） -->
-    <section class="page" data-page="hotel">
-      <div class="pageWrap">
-        <h2 class="pageTitle">🏡 住宿</h2>
+<section class="page" data-page="hotel">
+  <div class="pageWrap">
+    <h2 class="pageTitle">🏡 住宿</h2>
 
-        <!-- 輕井澤 -->
-        <div class="card">
-          <h3 class="cardTitle">🌲 輕井澤渴望之家飯店</h3>
-          <p class="subText">入住：02 / 21　｜　退房：02 / 23</p>
-          <p class="subText">地址：Nagano, Kitasaku District, Karuizawa, 泉の里2299-5</p>
-          <p class="subText">
-            導航：
-            <a href="https://maps.app.goo.gl/jKoU5XM4k2mNN3MA8" target="_blank">Google Maps</a>
-          </p>
-          <p class="subText">電話：+81 267-42-7355</p>
-          <p class="subText">備註：兩間雙人房</p>
+    <!-- 輕井澤 -->
+    <div class="card" style="padding:0;overflow:hidden;background:#000;">
+      <!-- 圖片主視覺 -->
+      <div style="
+        position:relative;
+        height:240px;
+        background-image:url('./karuhotel.jpg');
+        background-size:cover;
+        background-position:center;
+      ">
+        <!-- 漸層遮罩 -->
+        <div style="
+          position:absolute;
+          inset:0;
+          background:linear-gradient(
+            to top,
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0)
+          );
+        "></div>
+
+        <!-- 疊在圖片上的文字 -->
+        <div style="
+          position:absolute;
+          bottom:16px;
+          left:16px;
+          right:16px;
+          color:#fff;
+        ">
+          <h3 style="margin:0 0 4px 0;font-size:20px;">
+            🌲 輕井澤渴望之家飯店
+          </h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="pill">02/21 – 02/23</span>
+            <span class="pill">Karuizawa · Nagano</span>
+          </div>
         </div>
-
-        <!-- 東京 -->
-        <div class="card">
-          <h3 class="cardTitle">🏙️ Hotel Apreton（東京上野）</h3>
-          <p class="subText">入住：02 / 23　｜　退房：02 / 25</p>
-          <p class="subText">地址：3 Chome-17-11 Higashiueno, Taito City, Tokyo</p>
-          <p class="subText">
-            導航：
-            <a href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8" target="_blank">Google Maps</a>
-          </p>
-          <p class="subText">電話：+81 3-6284-2703</p>
-          <p class="subText">備註：兩間雙人房</p>
-        </div>
-
       </div>
-    </section>
+
+      <!-- 行動資訊 -->
+      <div style="padding:16px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="pill" href="https://maps.app.goo.gl/jKoU5XM4k2mNN3MA8" target="_blank">
+            🧭 導航
+          </a>
+          <span class="pill">🛏 兩間雙人房</span>
+        </div>
+
+        <p class="subText" style="margin-top:8px;">
+          ☎️ +81 267-42-7355
+        </p>
+      </div>
+    </div>
+
+    <!-- 東京 -->
+    <div class="card" style="padding:0;overflow:hidden;background:#000;">
+      <!-- 圖片主視覺 -->
+      <div style="
+        position:relative;
+        height:240px;
+        background-image:url('./apretonhotel.jpg');
+        background-size:cover;
+        background-position:center;
+      ">
+        <!-- 漸層遮罩 -->
+        <div style="
+          position:absolute;
+          inset:0;
+          background:linear-gradient(
+            to top,
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0)
+          );
+        "></div>
+
+        <!-- 疊在圖片上的文字 -->
+        <div style="
+          position:absolute;
+          bottom:16px;
+          left:16px;
+          right:16px;
+          color:#fff;
+        ">
+          <h3 style="margin:0 0 4px 0;font-size:20px;">
+            🏙️ Hotel Apreton（上野）
+          </h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="pill">02/23 – 02/25</span>
+            <span class="pill">Tokyo · Ueno</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 行動資訊 -->
+      <div style="padding:16px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="pill" href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8" target="_blank">
+            🧭 導航
+          </a>
+          <span class="pill">🛏 兩間雙人房</span>
+        </div>
+
+        <p class="subText" style="margin-top:8px;">
+          ☎️ +81 3-6284-2703
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
 
     <!-- Packing（完整行李清單） -->
     <section class="page" data-page="packing">
