@@ -1,110 +1,97 @@
-/* ===== 基本設定 ===== */
+/* ===== Reset ===== */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  background-color: #f6f6f4;
-  color: #333;
-  line-height: 1.6;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", sans-serif;
+  background: linear-gradient(180deg, #b8c2ae 0%, #f6f6f4 40%);
+  color: #1f1f1f;
 }
 
-/* ===== 標題區 ===== */
+/* ===== Header ===== */
 header {
-  text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 header h1 {
-  font-size: 28px;
-  margin: 8px 0;
-  font-weight: 700;
+  font-size: 34px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1px;
 }
 
 header p {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-}
-
-/* ===== 區塊卡片 ===== */
-section {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-section h2 {
-  font-size: 18px;
-  margin-top: 0;
-  margin-bottom: 8px;
+  font-size: 17px;
+  margin-top: 8px;
   color: #3d4445;
 }
 
-section p {
-  margin: 4px 0;
-  font-size: 16px;
+/* ===== 主卡（Today） ===== */
+section:first-of-type {
+  background: #1f2a24;
+  color: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
-/* ===== 今日重點強調 ===== */
-section h2::before {
-  content: "📍 ";
+section:first-of-type p {
+  font-size: 20px;
+  margin: 0;
 }
 
-/* ===== 導覽按鈕 ===== */
+/* ===== 一般資訊卡 ===== */
+section {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+section h2 {
+  font-size: 20px;
+  margin: 0 0 8px 0;
+}
+
+/* ===== 分頁入口（重點） ===== */
 nav {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
 }
 
 nav a {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 16px;
-  background-color: #a9b7a1;
-  color: #ffffff;
+  padding: 22px 20px;
+  background: #ffffff;
+  border-radius: 18px;
   text-decoration: none;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  transition: transform 0.1s ease, background-color 0.1s ease;
+  color: #1f1f1f;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-nav a:hover {
-  background-color: #95a28f;
-  transform: scale(0.98);
+nav a::after {
+  content: "→";
+  font-size: 22px;
+  opacity: 0.4;
 }
 
-/* ===== 返回首頁連結 ===== */
-a[href="index.html"] {
-  display: inline-block;
-  margin-top: 24px;
-  color: #6b7a63;
-  text-decoration: none;
-  font-size: 15px;
+nav a:active {
+  transform: scale(0.97);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
-/* ===== 機票 / 資訊頁 ===== */
-h1 {
-  font-size: 24px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 18px;
-  margin-top: 16px;
-}
-
-/* ===== 行動裝置最佳化 ===== */
+/* ===== 桌面限制 ===== */
 @media (min-width: 600px) {
   body {
     max-width: 420px;
