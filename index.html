@@ -36,8 +36,8 @@
             </div>
             <div class="bigRow">
               <div>
-                <p class="bigText">出發前｜準備就緒</p>
-                <p class="subText">確認證件與行李</p>
+                <p class="bigText" id="todayMain">出發前｜準備就緒</p>
+                <p class="subText" id="todayNote">確認證件與行李</p>
               </div>
               <div class="arrowBtn">›</div>
             </div>
@@ -53,11 +53,51 @@
         </div>
       </section>
 
-      <!-- Itinerary -->
+      <!-- Itinerary（完整行程回來） -->
       <section class="page" data-page="itinerary">
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
-          <div class="card"><div class="subText">Day 1～Day 5 行程</div></div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 1｜02/21</h3>
+              <span class="cardHint">桃園 → 輕井澤</span>
+            </div>
+            <div class="subText">06:40 桃園起飛 → 10:40 成田 → 下午前往輕井澤</div>
+          </div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 2｜02/22</h3>
+              <span class="cardHint">輕井澤</span>
+            </div>
+            <div class="subText">雲場池、舊輕井澤、Outlet</div>
+          </div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 3｜02/23</h3>
+              <span class="cardHint">輕井澤 → 東京</span>
+            </div>
+            <div class="subText">上午 Check-out → 下午抵達東京</div>
+          </div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 4｜02/24</h3>
+              <span class="cardHint">東京市區</span>
+            </div>
+            <div class="subText">澀谷、表參道、居酒屋</div>
+          </div>
+
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 5｜02/25</h3>
+              <span class="cardHint">東京 → 桃園</span>
+            </div>
+            <div class="subText">18:25 成田起飛 → 21:50 抵達桃園</div>
+          </div>
+
         </div>
       </section>
 
@@ -79,7 +119,7 @@
 
     </div>
 
-    <!-- Tab Bar（完全對齊 app.js） -->
+    <!-- Tab Bar（完全不動） -->
     <nav class="tabbar">
       <a data-tab="home" class="active">🏠 首頁</a>
       <a data-tab="flight">✈️ 機票</a>
@@ -91,32 +131,31 @@
   </div>
 
   <script>
-    /* ===== 距離出發天數（浮動） ===== */
+    /* ===== 台灣時區：距離出發天數 ===== */
     const pillDay = document.getElementById('pillDay');
-    const departDate = new Date('2026-02-21T00:00:00');
+    const depart = new Date('2026-02-21T00:00:00+08:00');
 
     function updateCountdown() {
-      const today = new Date();
-      const diff = Math.ceil((departDate - today) / 86400000);
-      pillDay.textContent = diff >= 0
-        ? `距離出發 ${diff} 天`
-        : '旅程進行中';
+      const nowTW = new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei' })
+      );
+      const diff = Math.ceil((depart - nowTW) / 86400000);
+      pillDay.textContent =
+        diff >= 0 ? `距離出發 ${diff} 天` : '旅程進行中';
     }
     updateCountdown();
 
-    /* ===== Hero 切換（只在行程頁） ===== */
+    /* ===== Hero：只跟著實際 active page ===== */
     const hero = document.getElementById('hero');
     const heroTitle = document.getElementById('heroTitle');
     const heroSub = document.getElementById('heroSub');
     const pillLoc = document.getElementById('pillLoc');
 
-    document.addEventListener('click', e => {
-      const tab = e.target.closest('[data-tab]');
-      if (!tab) return;
+    function syncHero() {
+      const active = document.querySelector('.page.active');
+      if (!active) return;
 
-      const page = tab.dataset.tab;
-
-      if (page === 'itinerary') {
+      if (active.dataset.page === 'itinerary') {
         hero.style.backgroundImage =
           "url('/karuizawa-trip/assets/hero-tokyo.jpg')";
         heroTitle.textContent = '2026 初春 · 東京';
@@ -129,7 +168,10 @@
         heroSub.textContent = '慢慢走，把時間留給彼此';
         pillLoc.textContent = '📍 輕井澤';
       }
-    });
+    }
+
+    /* 每 300ms 同步一次（保證跟到 app.js 切頁） */
+    setInterval(syncHero, 300);
   </script>
 
   <script src="app.js"></script>
