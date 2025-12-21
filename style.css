@@ -181,3 +181,43 @@ body{
     font-size:14px;
   }
 }
+
+/* ===== Itinerary Day Tabs（章節型） ===== */
+.page[data-page="itinerary"] .dayTabs{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  padding: 4px 0 12px;
+  margin-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page[data-page="itinerary"] .dayTabs::-webkit-scrollbar{
+  display:none;
+}
+
+/* 把 pill 變成「日期章節」 */
+.page[data-page="itinerary"] .dayTabs .pill{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.7);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all .2s ease;
+}
+
+/* hover / 點擊感 */
+.page[data-page="itinerary"] .dayTabs .pill:hover{
+  color:#fff;
+  border-color: rgba(255,255,255,.45);
+}
+
+/* 當前 Day（由 JS 加 active） */
+.page[data-page="itinerary"] .dayTabs .pill.active{
+  background: rgba(255,255,255,.12);
+  color:#fff;
+  border-color: rgba(255,255,255,.6);
+}
+
