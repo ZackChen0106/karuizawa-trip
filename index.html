@@ -5,25 +5,21 @@
   <title>2026 初春 · 輕井澤</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
 </head>
 
 <body data-page="home">
   <div class="app">
 
-    <!-- Hero（固定，不做切換） -->
+    <!-- Hero -->
     <div class="hero">
       <div class="heroContent">
         <h1 class="heroTitle">2026 初春 · 輕井澤</h1>
         <p class="heroSub">慢慢走，把時間留給彼此</p>
 
         <div class="pillRow">
-          <span class="pill">距離出發 62 天</span>
+          <span class="pill" id="pillDay">距離出發 62 天</span>
           <span class="pill">📍 輕井澤</span>
         </div>
       </div>
@@ -36,17 +32,18 @@
       <section class="page active" data-page="home">
         <div class="main">
 
+          <!-- TODAY -->
           <div class="card">
             <div class="cardHeader">
               <h2 class="cardTitle">TODAY</h2>
-              <span class="cardHint">點一下看詳情</span>
+              <span class="cardHint">自動更新</span>
             </div>
 
             <div class="bigRow">
               <div>
-                <p class="bigText">出發前｜準備就緒</p>
-                <p class="subText">例：星野 → 舊輕井澤</p>
-                <p class="subText">備註：走路多，記得穿好鞋</p>
+                <p class="bigText" id="todayMain">出發前｜準備就緒</p>
+                <p class="subText" id="todayRoute">—</p>
+                <p class="subText" id="todayNote">—</p>
               </div>
               <div class="arrowBtn">›</div>
             </div>
@@ -59,9 +56,7 @@
       <section class="page" data-page="flight">
         <div class="pageWrap">
           <h2 class="pageTitle">✈️ 機票資訊</h2>
-          <div class="card">
-            <div class="subText">（之後補上班機、訂位代號）</div>
-          </div>
+          <div class="card"><div class="subText">（之後補上）</div></div>
         </div>
       </section>
 
@@ -70,81 +65,49 @@
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
 
-          <!-- DAY 1 -->
+          <!-- Day 1 -->
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 1｜02/21（六）</h3>
+              <h3 class="cardTitle">DAY 1｜02/21</h3>
               <span class="cardHint">桃園 → 輕井澤</span>
             </div>
-
-            <div class="flow">
-              <div class="flowItem"><span class="dot"></span><div><strong>06:40</strong> 桃園機場起飛</div></div>
-              <div class="flowItem"><span class="dot"></span><div><strong>10:40</strong> 抵達成田機場</div></div>
-              <div class="flowItem"><span class="dot"></span><div><strong>12:30</strong> 前往輕井澤</div></div>
-              <div class="flowItem"><span class="dot"></span><div>下午｜舊輕井澤散策</div></div>
-              <div class="flowItem"><span class="dot"></span><div>晚上｜飯店 Check-in</div></div>
-            </div>
+            <div class="subText">飛行＋移動日</div>
           </div>
 
-          <!-- DAY 2 -->
+          <!-- Day 2 -->
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 2｜02/22（日）</h3>
+              <h3 class="cardTitle">DAY 2｜02/22</h3>
               <span class="cardHint">輕井澤</span>
             </div>
-
-            <div class="flow">
-              <div class="flowItem"><span class="dot"></span><div>上午｜雲場池散步</div></div>
-              <div class="flowItem"><span class="dot"></span><div>中午｜小鎮用餐</div></div>
-              <div class="flowItem"><span class="dot"></span><div>下午｜Outlet 逛街</div></div>
-              <div class="flowItem"><span class="dot"></span><div>晚上｜飯店休息</div></div>
-            </div>
+            <div class="subText">自然散策日</div>
           </div>
 
-          <!-- DAY 3 -->
+          <!-- Day 3 -->
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 3｜02/23（一）</h3>
+              <h3 class="cardTitle">DAY 3｜02/23</h3>
               <span class="cardHint">輕井澤 → 東京</span>
             </div>
-
-            <div class="flow">
-              <div class="flowItem"><span class="dot"></span><div>上午｜Check-out</div></div>
-              <div class="flowItem"><span class="dot"></span><div>中午｜前往東京</div></div>
-              <div class="flowItem"><span class="dot"></span><div>下午｜東京市區散步</div></div>
-              <div class="flowItem"><span class="dot"></span><div>晚上｜入住飯店</div></div>
-            </div>
+            <div class="subText">城市切換日</div>
           </div>
 
-          <!-- DAY 4 -->
+          <!-- Day 4 -->
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 4｜02/24（二）</h3>
+              <h3 class="cardTitle">DAY 4｜02/24</h3>
               <span class="cardHint">東京市區</span>
             </div>
-
-            <div class="flow">
-              <div class="flowItem"><span class="dot"></span><div>上午｜飯店附近散步、咖啡店</div></div>
-              <div class="flowItem"><span class="dot"></span><div>中午｜拉麵或定食</div></div>
-              <div class="flowItem"><span class="dot"></span><div>下午｜澀谷／表參道 逛街</div></div>
-              <div class="flowItem"><span class="dot"></span><div>晚上｜居酒屋或燒肉</div></div>
-            </div>
+            <div class="subText">逛街放鬆日</div>
           </div>
 
-          <!-- DAY 5 -->
+          <!-- Day 5 -->
           <div class="card">
             <div class="cardHeader">
-              <h3 class="cardTitle">DAY 5｜02/25（三）</h3>
-              <span class="cardHint">東京 → 成田 → 桃園</span>
+              <h3 class="cardTitle">DAY 5｜02/25</h3>
+              <span class="cardHint">東京 → 桃園</span>
             </div>
-
-            <div class="flow">
-              <div class="flowItem"><span class="dot"></span><div>上午｜整理行李、Check-out</div></div>
-              <div class="flowItem"><span class="dot"></span><div>中午｜最後採買</div></div>
-              <div class="flowItem"><span class="dot"></span><div>下午｜前往成田機場</div></div>
-              <div class="flowItem"><span class="dot"></span><div><strong>18:25</strong> 成田起飛（虎航 IT203）</div></div>
-              <div class="flowItem"><span class="dot"></span><div><strong>21:50</strong> 抵達桃園機場</div></div>
-            </div>
+            <div class="subText">返程日</div>
           </div>
 
         </div>
@@ -154,44 +117,69 @@
       <section class="page" data-page="hotel">
         <div class="pageWrap">
           <h2 class="pageTitle">🏡 住宿</h2>
-          <div class="card">
-            <div class="subText">（之後補上飯店資訊）</div>
-          </div>
+          <div class="card"><div class="subText">（之後補）</div></div>
         </div>
       </section>
 
       <!-- Packing -->
       <section class="page" data-page="packing">
         <div class="pageWrap">
-          <h2 class="pageTitle">🎒 行李清單</h2>
-          <div class="card">
-            <div class="subText">（之後補上清單）</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Emergency -->
-      <section class="page" data-page="emergency">
-        <div class="pageWrap">
-          <h2 class="pageTitle">☎️ 緊急資訊</h2>
-          <div class="card">
-            <div class="subText">（緊急聯絡、保險、護照）</div>
-          </div>
+          <h2 class="pageTitle">🎒 行李</h2>
+          <div class="card"><div class="subText">（之後補）</div></div>
         </div>
       </section>
 
     </div>
 
-    <!-- Bottom Tab Bar（完全維持原結構） -->
+    <!-- Tab Bar -->
     <nav class="tabbar">
-      <a data-tab="home" class="active"><span class="tabIcon">🏠</span><span>首頁</span></a>
-      <a data-tab="flight"><span class="tabIcon">✈️</span><span>機票</span></a>
-      <a data-tab="itinerary"><span class="tabIcon">🗺️</span><span>行程</span></a>
-      <a data-tab="hotel"><span class="tabIcon">🏡</span><span>住宿</span></a>
-      <a data-tab="packing"><span class="tabIcon">🎒</span><span>行李</span></a>
+      <a data-tab="home" class="active">🏠 首頁</a>
+      <a data-tab="flight">✈️ 機票</a>
+      <a data-tab="itinerary">🗺️ 行程</a>
+      <a data-tab="hotel">🏡 住宿</a>
+      <a data-tab="packing">🎒 行李</a>
     </nav>
 
   </div>
+
+  <!-- TODAY 自動判斷 -->
+  <script>
+    const todayMain = document.getElementById('todayMain');
+    const todayRoute = document.getElementById('todayRoute');
+    const todayNote = document.getElementById('todayNote');
+
+    const tripStart = new Date('2026-02-21T00:00:00');
+
+    const todayConfig = [
+      { title: 'Day 1｜出發日', route: '桃園 → 輕井澤', note: '長時間移動，記得補眠' },
+      { title: 'Day 2｜輕井澤', route: '輕井澤市區', note: '走路多，穿好走的鞋' },
+      { title: 'Day 3｜移動日', route: '輕井澤 → 東京', note: '中午後進城市節奏' },
+      { title: 'Day 4｜東京', route: '東京市區', note: '逛街放鬆日' },
+      { title: 'Day 5｜返程', route: '東京 → 桃園', note: '預留機場時間' }
+    ];
+
+    function updateToday() {
+      const now = new Date();
+      const diffDays = Math.floor((now - tripStart) / (1000 * 60 * 60 * 24));
+
+      if (diffDays < 0) {
+        todayMain.textContent = '出發前｜準備就緒';
+        todayRoute.textContent = '—';
+        todayNote.textContent = '確認證件與行李';
+      } else if (diffDays >= 0 && diffDays < todayConfig.length) {
+        const d = todayConfig[diffDays];
+        todayMain.textContent = d.title;
+        todayRoute.textContent = d.route;
+        todayNote.textContent = d.note;
+      } else {
+        todayMain.textContent = '旅程結束｜回憶整理中';
+        todayRoute.textContent = '—';
+        todayNote.textContent = '照片慢慢整理';
+      }
+    }
+
+    updateToday();
+  </script>
 
   <script src="app.js"></script>
 </body>
