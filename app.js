@@ -115,13 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  /* ---------- 天氣：依 Day 預設 ---------- */
+  /* ---------- 天氣：依 Day 預設 + Emoji ---------- */
   const WEATHER_BY_DAY = [
-    { city: "輕井澤", desc: "多雲", temp: 6, hi: 9, lo: 1 },
-    { city: "輕井澤", desc: "晴時多雲", temp: 8, hi: 11, lo: 2 },
-    { city: "東京", desc: "陰天", temp: 12, hi: 15, lo: 8 },
-    { city: "東京", desc: "晴朗", temp: 14, hi: 17, lo: 9 },
-    { city: "東京", desc: "多雲", temp: 13, hi: 16, lo: 8 }
+    { city: "輕井澤", emoji: "☁️", desc: "多雲", temp: 6, hi: 9, lo: 1 },
+    { city: "輕井澤", emoji: "🌤", desc: "晴時多雲", temp: 8, hi: 11, lo: 2 },
+    { city: "東京",   emoji: "☁️", desc: "陰天", temp: 12, hi: 15, lo: 8 },
+    { city: "東京",   emoji: "☀️", desc: "晴朗", temp: 14, hi: 17, lo: 9 },
+    { city: "東京",   emoji: "☁️", desc: "多雲", temp: 13, hi: 16, lo: 8 }
   ];
 
   function updateWeatherByDay() {
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const w = WEATHER_BY_DAY[d];
 
     cityEl.textContent = w.city;
-    descEl.textContent = w.desc;
+    descEl.textContent = `${w.emoji} ${w.desc}`;
     tempEl.textContent = `${w.temp}°`;
     rangeEl.textContent = `最高 ${w.hi}° / 最低 ${w.lo}°`;
   }
