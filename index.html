@@ -91,16 +91,128 @@
     </section>
 
     <!-- Itinerary -->
-    <section class="page" data-page="itinerary">
-      <div class="pageWrap">
-        <h2 class="pageTitle">🗺️ 行程</h2>
-        <div class="card day-card" data-day="0">Day 1｜輕井澤</div>
-        <div class="card day-card" data-day="1">Day 2｜輕井澤</div>
-        <div class="card day-card" data-day="2">Day 3｜輕井澤 → 東京</div>
-        <div class="card day-card" data-day="3">Day 4｜東京</div>
-        <div class="card day-card" data-day="4">Day 5｜返程</div>
+<section class="page" data-page="itinerary">
+  <div class="pageWrap">
+    <h2 class="pageTitle">🗺️ 行程</h2>
+
+    <!-- NOW / TODAY 狀態卡 -->
+    <div class="card" id="itineraryNow">
+      <div class="cardHeader">
+        <h2 class="cardTitle">NOW</h2>
+        <span class="cardHint">今天的行程焦點</span>
       </div>
-    </section>
+      <p class="bigText" id="itNowMain">—</p>
+      <p class="subText" id="itNowSub">—</p>
+    </div>
+
+    <!-- Day Tabs（橫向切換） -->
+    <div class="dayTabs" style="
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding-bottom:8px;
+      margin-bottom:8px;
+      -webkit-overflow-scrolling:touch;
+    ">
+      <button class="pill" data-day="0">Day 1｜輕井澤</button>
+      <button class="pill" data-day="1">Day 2｜輕井澤</button>
+      <button class="pill" data-day="2">Day 3｜輕井澤 → 東京</button>
+      <button class="pill" data-day="3">Day 4｜東京</button>
+      <button class="pill" data-day="4">Day 5｜返程</button>
+    </div>
+
+    <!-- 行程內容容器 -->
+    <div class="card">
+
+      <!-- Day 1 -->
+      <div class="dayPanel" data-day="0">
+        <h3 class="cardTitle">Day 1｜輕井澤</h3>
+
+        <div class="itItem">
+          <strong>06:40</strong>
+          <div>
+            <p class="subText">桃園機場起飛（TR898）</p>
+            <p class="subText">10:40 抵達成田，轉往輕井澤</p>
+          </div>
+        </div>
+
+        <div class="itItem">
+          <strong>下午</strong>
+          <div>
+            <p class="subText">抵達輕井澤、Check-in</p>
+            <p class="subText">輕鬆散步、附近用餐</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="dayPanel" data-day="1" style="display:none;">
+        <h3 class="cardTitle">Day 2｜輕井澤</h3>
+
+        <div class="itItem">
+          <strong>上午</strong>
+          <div>
+            <p class="subText">雲場池、舊輕井澤商店街</p>
+          </div>
+        </div>
+
+        <div class="itItem">
+          <strong>下午</strong>
+          <div>
+            <p class="subText">自由活動 / 咖啡 / 休息</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="dayPanel" data-day="2" style="display:none;">
+        <h3 class="cardTitle">Day 3｜輕井澤 → 東京</h3>
+
+        <div class="itItem">
+          <strong>上午</strong>
+          <div>
+            <p class="subText">退房、移動至東京</p>
+          </div>
+        </div>
+
+        <div class="itItem">
+          <strong>下午</strong>
+          <div>
+            <p class="subText">東京市區 Check-in</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="dayPanel" data-day="3" style="display:none;">
+        <h3 class="cardTitle">Day 4｜東京</h3>
+
+        <div class="itItem">
+          <strong>全天</strong>
+          <div>
+            <p class="subText">東京市區行程（上野 / 淺草 / 其他）</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="dayPanel" data-day="4" style="display:none;">
+        <h3 class="cardTitle">Day 5｜返程</h3>
+
+        <div class="itItem">
+          <strong>18:25</strong>
+          <div>
+            <p class="subText">成田機場起飛（IT203）</p>
+            <p class="subText">21:50 抵達桃園</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 
 
  <!-- Hotel（已優化） -->
@@ -311,5 +423,45 @@
 </div>
 
 <script src="app.js?v=hero-fixed"></script>
+
+<script>
+/**
+ * Day Tabs 切換邏輯（Itinerary 專用）
+ * - 點擊 Day Tab → 顯示對應 dayPanel
+ * - 不影響其他 page / tabbar / app.js
+ */
+(function () {
+  const itineraryPage = document.querySelector('.page[data-page="itinerary"]');
+  if (!itineraryPage) return;
+
+  const tabs = itineraryPage.querySelectorAll('.dayTabs .pill');
+  const panels = itineraryPage.querySelectorAll('.dayPanel');
+
+  function activateDay(dayIndex) {
+    // Tabs 狀態
+    tabs.forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.day === String(dayIndex));
+    });
+
+    // Panels 顯示
+    panels.forEach(panel => {
+      panel.style.display =
+        panel.dataset.day === String(dayIndex) ? 'block' : 'none';
+    });
+  }
+
+  // 綁定點擊事件
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      activateDay(tab.dataset.day);
+    });
+  });
+
+  // 預設顯示 Day 0（之後會被「自動跳日」覆蓋）
+  activateDay(0);
+})();
+</script>
+
+
 </body>
 </html>
