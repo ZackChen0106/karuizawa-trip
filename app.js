@@ -1,7 +1,3 @@
-/* ======================================================
-   核心控制器（穩定、不踩 iOS 地雷版）
-====================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ---------- Tab 切換 ---------- */
@@ -17,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.dataset.page = target;
     syncHero();
+    updateWeatherByDay();
 
     if (target === "itinerary") {
       setTimeout(scrollToToday, 200);
@@ -57,10 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const main = document.getElementById("todayMain");
     const route = document.getElementById("todayRoute");
     const note = document.getElementById("todayNote");
-    if (!main || !route || !note) return;
+    if (!main) return;
 
     const d = dayIndex();
-
     if (d < 0) {
       main.textContent = "出發前｜準備就緒";
       route.textContent = "確認機票、住宿與行李";
@@ -71,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const map = [
       ["Day 1｜前往輕井澤", "成田 → 輕井澤", "早點休息"],
       ["Day 2｜輕井澤慢遊", "舊輕井澤・Outlet", "走路多"],
-      ["Day 3｜輕井澤 → 東京", "上午輕井澤｜下午東京", "移動日"],
+      ["Day 3｜前往東京", "上午輕井澤｜下午東京", "移動日"],
       ["Day 4｜東京市區", "澀谷・表參道", "自由行程"],
       ["Day 5｜返程", "東京 → 桃園", "別忘伴手禮"]
     ];
@@ -88,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("heroTitle");
     const sub = document.getElementById("heroSub");
     const loc = document.getElementById("pillLoc");
-    if (!hero || !title || !sub || !loc) return;
 
     if (document.body.dataset.page === "itinerary") {
       hero.style.backgroundImage = "url('./assets/hero-tokyo.jpg')";
@@ -104,13 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------- TODAY → 行程 ---------- */
-  const todayCard = document.getElementById("todayCard");
-  if (todayCard) {
-    todayCard.style.cursor = "pointer";
-    todayCard.addEventListener("click", () => {
-      switchPage("itinerary");
-    });
-  }
+  document.getElementById("todayCard")?.addEventListener("click", () => {
+    switchPage("itinerary");
+  });
 
   /* ---------- 行程捲動 ---------- */
   function scrollToToday() {
@@ -124,17 +115,34 @@ document.addEventListener("DOMContentLoaded", () => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  /* ---------- 天氣（極簡、安全） ---------- */
-  const weatherCard = document.getElementById("weatherCard");
-  if (weatherCard) {
-    weatherCard.style.cursor = "pointer";
-    weatherCard.addEventListener("click", () => {
-      window.location.href = "weather://";
-    });
+  /* ---------- 天氣：依 Day 預設 ---------- */
+  const WEATHER_BY_DAY = [
+    { city: "輕井澤", desc: "多雲", temp: 6, hi: 9, lo: 1 },
+    { city: "輕井澤", desc: "晴時多雲", temp: 8, hi: 11, lo: 2 },
+    { city: "東京", desc: "陰天", temp: 12, hi: 15, lo: 8 },
+    { city: "東京", desc: "晴朗", temp: 14, hi: 17, lo: 9 },
+    { city: "東京", desc: "多雲", temp: 13, hi: 16, lo: 8 }
+  ];
+
+  function updateWeatherByDay() {
+    const cityEl = document.getElementById("weatherCity");
+    const descEl = document.getElementById("weatherDesc");
+    const tempEl = document.getElementById("weatherTemp");
+    const rangeEl = document.getElementById("weatherRange");
+    if (!cityEl) return;
+
+    const d = Math.max(0, Math.min(dayIndex(), WEATHER_BY_DAY.length - 1));
+    const w = WEATHER_BY_DAY[d];
+
+    cityEl.textContent = w.city;
+    descEl.textContent = w.desc;
+    tempEl.textContent = `${w.temp}°`;
+    rangeEl.textContent = `最高 ${w.hi}° / 最低 ${w.lo}°`;
   }
 
   /* ---------- 初始化 ---------- */
   updateCountdown();
   updateToday();
   syncHero();
+  updateWeatherByDay();
 });
