@@ -1,8 +1,15 @@
 {
   "name": "2026 初春 · 輕井澤",
   "short_name": "輕井澤",
-  "start_url": "index.html",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#a9b7a1"
+  "background_color": "#f6f6f4",
+  "theme_color": "#a9b7a1",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
