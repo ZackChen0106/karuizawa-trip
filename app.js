@@ -26,35 +26,61 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* ---------- 倒數 ---------- */
-  function updateCountdown() {
-    const pillDay = document.getElementById("pillDay");
-    if (!pillDay) return;
+/* ---------- 倒數 / 旅程狀態 ---------- */
+function updateCountdown() {
+  const pillDay = document.getElementById("pillDay");
+  if (!pillDay) return;
+  if (!window.getTodayDayIndex) return;
 
-if (window.getTodayDayIndex) {
-  const dayIndex = window.getTodayDayIndex();
-  document.getElementById('pillDay').textContent = `Day ${dayIndex + 1}`;
-}
+  const now = new Date();
+  const TRIP_START = new Date("2026-02-21T00:00:00");
+  const TRIP_END   = new Date("2026-02-25T23:59:59");
+
+  // 出發前 → 顯示倒數
+  if (now < TRIP_START) {
+    const diff = Math.ceil(
+      (TRIP_START - now) / (1000 * 60 * 60 * 24)
+    );
+    pillDay.textContent = `距離出發 ${diff} 天`;
+    return;
   }
 
-  /* ---------- TODAY ---------- */
-  function updateToday() {
-    const main = document.getElementById("todayMain");
-    const route = document.getElementById("todayRoute");
-    const note = document.getElementById("todayNote");
-    if (!main) return;
+  // 旅程中 → 顯示 Day X
+  if (now <= TRIP_END) {
+    const dayIndex = window.getTodayDayIndex();
+    pillDay.textContent = `Day ${dayIndex + 1}`;
+    return;
+  }
 
-    const d = window.getTodayDayIndex
-  ? window.getTodayDayIndex()
-  : 0;
+  // 旅程結束
+  pillDay.textContent = "旅程結束";
+}
 
+/* ---------- TODAY ---------- */
+function updateToday() {
+  const main = document.getElementById("todayMain");
+  const route = document.getElementById("todayRoute");
+  const note = document.getElementById("todayNote");
+  if (!main || !window.getTodayDayIndex) return;
 
-    if (d < 0) {
-      main.textContent = "出發前｜準備就緒";
-      route.textContent = "確認機票、住宿與行李";
-      note.textContent = "放慢腳步，期待旅程";
-      return;
-    }
+  const now = new Date();
+  const TRIP_START = new Date("2026-02-21T00:00:00");
+  const TRIP_END   = new Date("2026-02-25T23:59:59");
+
+  /* ===== 出發前 ===== */
+  if (now < TRIP_START) {
+    const diff = Math.ceil(
+      (TRIP_START - now) / (1000 * 60 * 60 * 24)
+    );
+
+    main.textContent = "旅程準備中";
+    note.textContent = "確認護照、住宿與行李清單";
+    return;
+  }
+
+  /* ===== 旅程中 ===== */
+  if (now <= TRIP_END) {
+    const d = window.getTodayDayIndex();
 
     const map = [
       ["Day 1｜前往輕井澤", "成田 → 輕井澤", "早點休息"],
@@ -64,11 +90,19 @@ if (window.getTodayDayIndex) {
       ["Day 5｜返程", "東京 → 桃園", "別忘伴手禮"]
     ];
 
-    const today = map[d] || ["旅程結束", "回憶整理中", "期待下次旅行"];
+    const today = map[d] || ["旅程中", "", ""];
     main.textContent = today[0];
     route.textContent = today[1];
     note.textContent = today[2];
+    return;
   }
+
+  /* ===== 旅程結束 ===== */
+  main.textContent = "旅程結束";
+  route.textContent = "回憶整理中";
+  note.textContent = "期待下一次旅行";
+}
+
 
   /* ---------- TODAY → 行程 ---------- */
   document.getElementById("todayCard")?.addEventListener("click", () => {
