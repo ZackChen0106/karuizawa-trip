@@ -119,6 +119,47 @@ document.addEventListener("DOMContentLoaded", () => {
     rangeEl.textContent = `最高 ${w.hi}° / 最低 ${w.lo}°`;
   }
 
+  /* ======================================================
+     🔹 行李清單：完成度 + 記住狀態（新增）
+     （完全獨立，不影響其他功能）
+  ===================================================== */
+
+  const PACKING_KEY = "packing-checklist-v1";
+  const packingCheckboxes = document.querySelectorAll(
+    '[data-page="packing"] .checkItem input'
+  );
+  const progressEl = document.getElementById("packingProgress");
+
+  // 讀取已儲存狀態
+  const savedPacking = JSON.parse(
+    localStorage.getItem(PACKING_KEY) || "{}"
+  );
+
+  packingCheckboxes.forEach((cb, index) => {
+    const key = `item-${index}`;
+    cb.dataset.key = key;
+
+    if (savedPacking[key]) {
+      cb.checked = true;
+    }
+
+    cb.addEventListener("change", () => {
+      savedPacking[key] = cb.checked;
+      localStorage.setItem(PACKING_KEY, JSON.stringify(savedPacking));
+      updatePackingProgress();
+    });
+  });
+
+  function updatePackingProgress() {
+    if (!progressEl) return;
+
+    const total = packingCheckboxes.length;
+    const checked = [...packingCheckboxes].filter(cb => cb.checked).length;
+    progressEl.textContent = `已完成 ${checked} / ${total}`;
+  }
+
+  updatePackingProgress();
+
   /* ---------- 初始化 ---------- */
   updateCountdown();
   updateToday();
