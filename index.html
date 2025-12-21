@@ -155,7 +155,7 @@
       </div>
 
       <!-- Day 3 -->
-      <div class="dayPanel" data-day="2" style="display:none;">
+<div class="dayPanel is-move-day" data-day="2" style="display:none;">
         <h3 class="cardTitle">Day 3｜輕井澤 → 東京</h3>
 
         <div class="itItem">
@@ -450,6 +450,27 @@
   // 預設顯示 Day 0（之後會被「自動跳日」覆蓋）
   activateDay(0);
 })();
+
+// 進入行程頁時，自動捲到目前 Day Tab
+const itineraryTab = document.querySelector('[data-tab="itinerary"]');
+if (itineraryTab) {
+  itineraryTab.addEventListener('click', () => {
+    setTimeout(() => {
+      const activeDay = document.querySelector(
+        '.page[data-page="itinerary"] .dayTabs .pill.active'
+      );
+      if (activeDay) {
+        activeDay.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest'
+        });
+      }
+    }, 120);
+  });
+}
+
+
 </script>
 
 

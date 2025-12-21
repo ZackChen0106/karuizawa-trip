@@ -221,3 +221,25 @@ body{
   border-color: rgba(255,255,255,.6);
 }
 
+/* ===== 移動日（轉場日）視覺 ===== */
+.page[data-page="itinerary"] .dayPanel.is-move-day{
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02)
+  );
+  border-radius: 14px;
+  padding: 16px;
+}
+
+/* 移動日標題稍微弱化，讓「節奏慢下來」 */
+.page[data-page="itinerary"] .dayPanel.is-move-day .cardTitle{
+  opacity: .85;
+}
+
+/* 行程項目之間空氣感大一點 */
+.page[data-page="itinerary"] .dayPanel.is-move-day .itItem{
+  border-top-color: rgba(255,255,255,.08);
+}
+
+
