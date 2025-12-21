@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>2026 初春 · 輕井澤</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <link rel="stylesheet" href="style.css?v=restore-full" />
+
+  <link rel="stylesheet" href="style.css?v=stable-weather" />
   <link rel="manifest" href="manifest.json" />
 </head>
 
@@ -41,13 +43,15 @@
           <p class="subText" id="todayNote"></p>
         </div>
 
-        <!-- Weather -->
-        <div class="card">
+        <!-- Weather（極簡、安全） -->
+        <div class="card" id="weatherCard">
           <div class="cardHeader">
-            <h2 class="cardTitle">天氣預報</h2>
-            <span class="cardHint" id="weatherHint">更新中</span>
+            <h2 class="cardTitle">天氣</h2>
+            <span class="cardHint" id="weatherHint">目前定位地點</span>
           </div>
-          <div class="subText" id="weatherInfo">—</div>
+          <div class="subText" id="weatherInfo">
+            點擊以開啟 Apple 天氣
+          </div>
         </div>
 
       </div>
@@ -104,6 +108,6 @@
 
 </div>
 
-<script src="app.js?v=restore-full"></script>
+<script src="app.js?v=stable-weather"></script>
 </body>
 </html>
