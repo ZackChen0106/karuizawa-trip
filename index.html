@@ -16,77 +16,52 @@
 <body data-page="home">
   <div class="app">
 
-    <!-- Hero -->
-    <div class="hero" id="hero">
+    <!-- Hero（固定，不做切換） -->
+    <div class="hero">
       <div class="heroContent">
-        <h1 class="heroTitle" id="heroTitle">2026 初春 · 輕井澤</h1>
-        <p class="heroSub" id="heroSub">慢慢走，把時間留給彼此</p>
+        <h1 class="heroTitle">2026 初春 · 輕井澤</h1>
+        <p class="heroSub">慢慢走，把時間留給彼此</p>
 
         <div class="pillRow">
-          <span class="pill" id="pillDay">距離出發 62 天</span>
-          <span class="pill" id="pillLoc">📍 輕井澤</span>
+          <span class="pill">距離出發 62 天</span>
+          <span class="pill">📍 輕井澤</span>
         </div>
       </div>
     </div>
 
     <!-- Pages -->
-    <div class="pages" id="pages">
+    <div class="pages">
 
       <!-- Home -->
       <section class="page active" data-page="home">
         <div class="main">
 
-          <!-- Today -->
           <div class="card">
             <div class="cardHeader">
-              <h2 class="cardTitle" id="todayTitle">TODAY</h2>
+              <h2 class="cardTitle">TODAY</h2>
               <span class="cardHint">點一下看詳情</span>
             </div>
 
             <div class="bigRow">
               <div>
-                <p class="bigText" id="todayMain">出發前｜準備就緒</p>
-                <p class="subText" id="todayRoute">例：星野 → 舊輕井澤</p>
-                <p class="subText" id="todayNote">備註：走路多，記得穿好鞋</p>
+                <p class="bigText">出發前｜準備就緒</p>
+                <p class="subText">例：星野 → 舊輕井澤</p>
+                <p class="subText">備註：走路多，記得穿好鞋</p>
               </div>
               <div class="arrowBtn">›</div>
             </div>
           </div>
 
-          <!-- Weather -->
+        </div>
+      </section>
+
+      <!-- Flight -->
+      <section class="page" data-page="flight">
+        <div class="pageWrap">
+          <h2 class="pageTitle">✈️ 機票資訊</h2>
           <div class="card">
-            <div class="cardHeader">
-              <h2 class="cardTitle">天氣預報</h2>
-              <span class="cardHint">已更新</span>
-            </div>
-
-            <div class="subText">地點：<strong id="weatherLoc">輕井澤</strong></div>
-
-            <div class="weatherGrid">
-              <div class="weatherBox">
-                <div class="wLabel">今天</div>
-                <div class="wMain">
-                  <div class="wIcon">🌧️</div>
-                  <div class="wTemp">
-                    <div class="hi">13°</div>
-                    <div class="lo">低 4°</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="weatherBox">
-                <div class="wLabel">明天</div>
-                <div class="wMain">
-                  <div class="wIcon">☀️</div>
-                  <div class="wTemp">
-                    <div class="hi">3°</div>
-                    <div class="lo">低 -5°</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="subText">（之後補上班機、訂位代號）</div>
           </div>
-
         </div>
       </section>
 
@@ -95,7 +70,7 @@
         <div class="pageWrap">
           <h2 class="pageTitle">🗺️ 行程</h2>
 
-          <!-- Day Flow -->
+          <!-- DAY 1 -->
           <div class="card">
             <div class="cardHeader">
               <h3 class="cardTitle">DAY 1｜02/21（六）</h3>
@@ -103,43 +78,15 @@
             </div>
 
             <div class="flow">
-              <div class="flowItem">
-                <span class="dot"></span>
-                <div>
-                  <strong>06:40</strong> 桃園機場起飛
-                </div>
-              </div>
-
-              <div class="flowItem">
-                <span class="dot"></span>
-                <div>
-                  <strong>10:40</strong> 抵達成田機場
-                </div>
-              </div>
-
-              <div class="flowItem">
-                <span class="dot"></span>
-                <div>
-                  <strong>12:30</strong> 前往輕井澤
-                </div>
-              </div>
-
-              <div class="flowItem">
-                <span class="dot"></span>
-                <div>
-                  下午｜舊輕井澤散策
-                </div>
-              </div>
-
-              <div class="flowItem">
-                <span class="dot"></span>
-                <div>
-                  晚上｜飯店 Check-in
-                </div>
-              </div>
+              <div class="flowItem"><span class="dot"></span><div><strong>06:40</strong> 桃園機場起飛</div></div>
+              <div class="flowItem"><span class="dot"></span><div><strong>10:40</strong> 抵達成田機場</div></div>
+              <div class="flowItem"><span class="dot"></span><div><strong>12:30</strong> 前往輕井澤</div></div>
+              <div class="flowItem"><span class="dot"></span><div>下午｜舊輕井澤散策</div></div>
+              <div class="flowItem"><span class="dot"></span><div>晚上｜飯店 Check-in</div></div>
             </div>
           </div>
 
+          <!-- DAY 2 -->
           <div class="card">
             <div class="cardHeader">
               <h3 class="cardTitle">DAY 2｜02/22（日）</h3>
@@ -147,13 +94,15 @@
             </div>
 
             <div class="flow">
-              <div class="flowItem"><span class="dot"></span><div>上午｜雲場池</div></div>
+              <div class="flowItem"><span class="dot"></span><div>上午｜雲場池散步</div></div>
+              <div class="flowItem"><span class="dot"></span><div>中午｜小鎮用餐</div></div>
               <div class="flowItem"><span class="dot"></span><div>下午｜Outlet 逛街</div></div>
               <div class="flowItem"><span class="dot"></span><div>晚上｜飯店休息</div></div>
             </div>
           </div>
 
-          <div class="card" data-city="tokyo">
+          <!-- DAY 3 -->
+          <div class="card">
             <div class="cardHeader">
               <h3 class="cardTitle">DAY 3｜02/23（一）</h3>
               <span class="cardHint">輕井澤 → 東京</span>
@@ -162,54 +111,87 @@
             <div class="flow">
               <div class="flowItem"><span class="dot"></span><div>上午｜Check-out</div></div>
               <div class="flowItem"><span class="dot"></span><div>中午｜前往東京</div></div>
-              <div class="flowItem"><span class="dot"></span><div>下午｜東京市區</div></div>
+              <div class="flowItem"><span class="dot"></span><div>下午｜東京市區散步</div></div>
+              <div class="flowItem"><span class="dot"></span><div>晚上｜入住飯店</div></div>
+            </div>
+          </div>
+
+          <!-- DAY 4 -->
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 4｜02/24（二）</h3>
+              <span class="cardHint">東京市區</span>
+            </div>
+
+            <div class="flow">
+              <div class="flowItem"><span class="dot"></span><div>上午｜飯店附近散步、咖啡店</div></div>
+              <div class="flowItem"><span class="dot"></span><div>中午｜拉麵或定食</div></div>
+              <div class="flowItem"><span class="dot"></span><div>下午｜澀谷／表參道 逛街</div></div>
+              <div class="flowItem"><span class="dot"></span><div>晚上｜居酒屋或燒肉</div></div>
+            </div>
+          </div>
+
+          <!-- DAY 5 -->
+          <div class="card">
+            <div class="cardHeader">
+              <h3 class="cardTitle">DAY 5｜02/25（三）</h3>
+              <span class="cardHint">東京 → 成田 → 桃園</span>
+            </div>
+
+            <div class="flow">
+              <div class="flowItem"><span class="dot"></span><div>上午｜整理行李、Check-out</div></div>
+              <div class="flowItem"><span class="dot"></span><div>中午｜最後採買</div></div>
+              <div class="flowItem"><span class="dot"></span><div>下午｜前往成田機場</div></div>
+              <div class="flowItem"><span class="dot"></span><div><strong>18:25</strong> 成田起飛（虎航 IT203）</div></div>
+              <div class="flowItem"><span class="dot"></span><div><strong>21:50</strong> 抵達桃園機場</div></div>
             </div>
           </div>
 
         </div>
       </section>
 
+      <!-- Hotel -->
+      <section class="page" data-page="hotel">
+        <div class="pageWrap">
+          <h2 class="pageTitle">🏡 住宿</h2>
+          <div class="card">
+            <div class="subText">（之後補上飯店資訊）</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Packing -->
+      <section class="page" data-page="packing">
+        <div class="pageWrap">
+          <h2 class="pageTitle">🎒 行李清單</h2>
+          <div class="card">
+            <div class="subText">（之後補上清單）</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergency -->
+      <section class="page" data-page="emergency">
+        <div class="pageWrap">
+          <h2 class="pageTitle">☎️ 緊急資訊</h2>
+          <div class="card">
+            <div class="subText">（緊急聯絡、保險、護照）</div>
+          </div>
+        </div>
+      </section>
+
     </div>
 
-    <!-- Tab Bar -->
+    <!-- Bottom Tab Bar（完全維持原結構） -->
     <nav class="tabbar">
-      <a href="#home" data-tab="home" class="active">🏠 首頁</a>
-      <a href="#flight" data-tab="flight">✈️ 機票</a>
-      <a href="#itinerary" data-tab="itinerary">🗺️ 行程</a>
-      <a href="#hotel" data-tab="hotel">🏡 住宿</a>
-      <a href="#packing" data-tab="packing">🎒 行李</a>
+      <a data-tab="home" class="active"><span class="tabIcon">🏠</span><span>首頁</span></a>
+      <a data-tab="flight"><span class="tabIcon">✈️</span><span>機票</span></a>
+      <a data-tab="itinerary"><span class="tabIcon">🗺️</span><span>行程</span></a>
+      <a data-tab="hotel"><span class="tabIcon">🏡</span><span>住宿</span></a>
+      <a data-tab="packing"><span class="tabIcon">🎒</span><span>行李</span></a>
     </nav>
 
   </div>
-
-  <!-- Hero 切換邏輯 -->
-  <script>
-    const heroTitle = document.getElementById('heroTitle');
-    const heroSub = document.getElementById('heroSub');
-    const pillLoc = document.getElementById('pillLoc');
-
-    function setHero(city) {
-      if (city === 'tokyo') {
-        heroTitle.textContent = '2026 初春 · 東京';
-        heroSub.textContent = '城市節奏，慢慢探索';
-        pillLoc.textContent = '📍 東京';
-      } else {
-        heroTitle.textContent = '2026 初春 · 輕井澤';
-        heroSub.textContent = '慢慢走，把時間留給彼此';
-        pillLoc.textContent = '📍 輕井澤';
-      }
-    }
-
-    // 當切到行程頁時檢查是否進入東京段
-    window.addEventListener('hashchange', () => {
-      if (location.hash === '#itinerary') {
-        const tokyoDay = document.querySelector('[data-city="tokyo"]');
-        if (tokyoDay) setHero('tokyo');
-      } else {
-        setHero('karuizawa');
-      }
-    });
-  </script>
 
   <script src="app.js"></script>
 </body>
