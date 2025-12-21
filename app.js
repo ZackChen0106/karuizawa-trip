@@ -4,35 +4,44 @@
    - Hero 切換
    - 倒數天數
    - TODAY 對應每日行程
-   - 點 TODAY 跳行程
+   - 點 TODAY 直接切行程（不模擬 click）
    - 天氣（示意）
 ====================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------- Tab 切換 ---------- */
+  /* ======================================================
+     Tab / Page 切換核心（唯一真實來源）
+  ===================================================== */
   const tabs = document.querySelectorAll(".tabbar a");
   const pages = document.querySelectorAll(".page");
+
+  function switchPage(target) {
+    tabs.forEach(t => t.classList.remove("active"));
+    pages.forEach(p => p.classList.remove("active"));
+
+    document
+      .querySelector(`.tabbar a[data-tab="${target}"]`)
+      ?.classList.add("active");
+
+    document
+      .querySelector(`.page[data-page="${target}"]`)
+      ?.classList.add("active");
+
+    document.body.dataset.page = target;
+    syncHero();
+  }
 
   tabs.forEach(tab => {
     tab.addEventListener("click", e => {
       e.preventDefault();
-      const target = tab.dataset.tab;
-
-      tabs.forEach(t => t.classList.remove("active"));
-      pages.forEach(p => p.classList.remove("active"));
-
-      tab.classList.add("active");
-      document
-        .querySelector(`.page[data-page="${target}"]`)
-        ?.classList.add("active");
-
-      document.body.dataset.page = target;
-      syncHero();
+      switchPage(tab.dataset.tab);
     });
   });
 
-  /* ---------- 台北時區工具 ---------- */
+  /* ======================================================
+     台北時區工具
+  ===================================================== */
   function twMidnight() {
     const now = new Date();
     const tw = new Date(
@@ -43,7 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const START_DATE = "2026-02-21";
 
-  /* ---------- 倒數天數 ---------- */
+  /* ======================================================
+     倒數天數
+  ===================================================== */
   function updateCountdown() {
     const pillDay = document.getElementById("pillDay");
     if (!pillDay) return;
@@ -56,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
       diff >= 0 ? `距離出發 ${diff} 天` : "旅程進行中";
   }
 
-  /* ---------- TODAY（對應每日行程） ---------- */
+  /* ======================================================
+     TODAY（對應每日行程）
+  ===================================================== */
   function updateToday() {
     const main = document.getElementById("todayMain");
     const route = document.getElementById("todayRoute");
@@ -67,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
       (twMidnight() - new Date(START_DATE)) / 86400000
     );
 
-    // 出發前
     if (d < 0) {
       main.textContent = "出發前｜準備就緒";
       route.textContent = "確認機票、住宿與行李";
@@ -114,7 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
     note.textContent = today.note;
   }
 
-  /* ---------- Hero ---------- */
+  /* ======================================================
+     Hero
+  ===================================================== */
   function syncHero() {
     const hero = document.getElementById("hero");
     const title = document.getElementById("heroTitle");
@@ -135,19 +149,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ---------- TODAY 點擊 → 跳行程 ---------- */
+  /* ======================================================
+     TODAY 點擊 → 直接切行程（核心修正）
+  ===================================================== */
   const todayCard = document.getElementById("todayCard");
   if (todayCard) {
     todayCard.style.cursor = "pointer";
     todayCard.addEventListener("click", () => {
-      const tab = document.querySelector(
-        '.tabbar a[data-tab="itinerary"]'
-      );
-      tab?.click();
+      switchPage("itinerary");
     });
   }
 
-  /* ---------- 天氣（示意） ---------- */
+  /* ======================================================
+     天氣（示意）
+  ===================================================== */
   function updateWeather() {
     const hint = document.getElementById("weatherHint");
     const info = document.getElementById("weatherInfo");
@@ -157,9 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
     info.textContent = "☀️ 3° / -5°（示意）";
   }
 
-  /* ---------- 初始化 ---------- */
+  /* ======================================================
+     初始化
+  ===================================================== */
   updateCountdown();
   updateToday();
-  syncHero();
+  switchPage("home");
   updateWeather();
 });
