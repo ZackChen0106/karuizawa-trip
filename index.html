@@ -151,11 +151,12 @@
         <h2 class="pageTitle">🚆 交通</h2>
 
         <!-- 子分頁 Tabs -->
-        <div class="dayTabs">
-          <button class="pill active" data-transport="flight">✈️ 機票</button>
-          <button class="pill" data-transport="skyliner">🚆 Skyliner</button>
-          <button class="pill" data-transport="shinkansen">🚄 北陸新幹線</button>
-        </div>
+     <div class="transportTabs">
+  <button class="transportTab active" data-transport="flight">✈️ 機票</button>
+  <button class="transportTab" data-transport="skyliner">🚆 Skyliner</button>
+  <button class="transportTab" data-transport="shinkansen">🚄 北陸新幹線</button>
+</div>
+
 
         <!-- 機票（原 flight 內容搬進來） -->
         <div class="transportPanel" data-transport="flight">
@@ -537,8 +538,10 @@ function renderDay(dayIndex) {
   const panel = document.querySelector(`.dayPanel[data-day="${dayIndex}"]`);
   if (!panel) return;
 
-  const dayData = itineraryData[dayIndex];
-  if (!dayData) return;
+const safeIndex = Math.max(0, dayIndex);
+const dayData = itineraryData[safeIndex];
+if (!dayData) return;
+
 
   let html = `<h3 class="cardTitle">${dayData.title}</h3>`;
 
@@ -634,24 +637,14 @@ function renderDay(dayIndex) {
     renderDay(Number(dayIndex));
   }
 
-  window.getTodayDayIndex = function () {
-    const TRIP_START = new Date('2026-02-21T00:00:00');
-    const TRIP_END   = new Date('2026-02-25T23:59:59');
-    const now = new Date();
-
-    if (now < TRIP_START) return 0; // Day 1
-    if (now > TRIP_END) return 4;   // Day 5
-
-    const diffMs = now - TRIP_START;
-    return Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  };
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => activateDay(tab.dataset.day));
   });
 
   // 初始顯示
-  activateDay(window.getTodayDayIndex());
+const todayIndex = Math.max(0, window.getTodayDayIndex());
+activateDay(todayIndex);
 })();
 
 /* 進入行程頁時，自動捲到目前 Day Tab */

@@ -1,4 +1,20 @@
+// ===== Trip Day Index（全站共用）=====
+window.getTodayDayIndex = function () {
+  const TRIP_START = new Date("2026-02-21T00:00:00");
+  const TRIP_END   = new Date("2026-02-25T23:59:59");
+  const now = new Date();
+
+  if (now < TRIP_START) return -1; // 出發前
+  if (now > TRIP_END) return 4;    // 旅程結束（Day 5）
+
+  const diffMs = now - TRIP_START;
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+};
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+
 
   /* ---------- Tab 切換 ---------- */
   const tabs = document.querySelectorAll(".tabbar a");
