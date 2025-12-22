@@ -190,13 +190,74 @@
           </div>
         </div>
 
-        <!-- Skyliner -->
-        <div class="transportPanel" data-transport="skyliner" style="display:none;">
-          <div class="card">
-            <h3 class="cardTitle">🚆 Skyliner</h3>
-            <p class="subText">（內容稍後補）</p>
-          </div>
-        </div>
+       <!-- Skyliner -->
+<div class="transportPanel" data-transport="skyliner" style="display:none;">
+
+  <!-- ⚠️ 假日提醒（最上面） -->
+  <div class="card" style="
+    background: linear-gradient(
+      135deg,
+      rgba(255,180,60,.18),
+      rgba(255,180,60,.08)
+    );
+    border-left:4px solid #ffb43c;
+  ">
+    <p style="
+      margin:0;
+      font-size:15px;
+      font-weight:700;
+      color:#ffd27d;
+    ">
+      ⚠️ 02/21–02/23 為日本國定假日
+    </p>
+    <p class="subText" style="margin-top:6px;">
+      交通與機場人潮較多，請預留排隊與轉乘時間
+    </p>
+  </div>
+
+  <!-- 🚆 官方資訊卡 -->
+  <div class="card">
+    <h3 class="cardTitle">🚆 京成 Skyliner 官方資訊</h3>
+
+    <a
+      href="https://www.keisei.co.jp/keisei/tetudou/skyliner/tc/traffic/skyliner.php"
+      target="_blank"
+      style="
+        display:block;
+        border-radius:14px;
+        overflow:hidden;
+        text-decoration:none;
+        position:relative;
+      "
+    >
+      <img
+        src="https://www.keisei.co.jp/keisei/tetudou/skyliner/tc/images/skyliner_main.jpg"
+        alt="Skyliner 官方網站"
+        style="width:100%;display:block;"
+      />
+
+      <div style="
+        position:absolute;
+        inset:0;
+        background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15));
+        display:flex;
+        align-items:flex-end;
+        padding:14px;
+        color:#fff;
+        font-size:15px;
+        font-weight:700;
+      ">
+        🔗 查看 Skyliner 官方交通資訊
+      </div>
+    </a>
+
+    <p class="subText" style="margin-top:10px;">
+      點擊後將於新分頁開啟京成電鐵官方網站
+    </p>
+  </div>
+
+</div>
+
 
         <!-- 北陸新幹線 -->
         <div class="transportPanel" data-transport="shinkansen" style="display:none;">
@@ -346,7 +407,10 @@
               </div>
 
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                <a class="pill" href="https://maps.app.goo.gl/jKoU5XM4k2mNN3MA8" target="_blank">🧭 導航</a>
+                <a class="pill pill-nav" href="https://maps.app.goo.gl/..." target="_blank">
+  🧭 導航
+</a>
+
                 <span class="pill">🛏 兩間雙人房</span>
                 <span class="pill">☎️ +81 267-42-7355</span>
               </div>
@@ -391,7 +455,12 @@
               </div>
 
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                <a class="pill" href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8" target="_blank">🧭 導航</a>
+                <a class="pill pill-nav"
+   href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8"
+   target="_blank">
+  🧭 導航
+</a>
+
                 <span class="pill">🛏 兩間雙人房</span>
                 <span class="pill">☎️ +81 3-6284-2703</span>
               </div>
