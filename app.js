@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(`.page[data-page="${target}"]`)?.classList.add("active");
 
     document.body.dataset.page = target;
+document.querySelector(".pages").scrollTop = 0;
+
 
     if (target === "itinerary") {
       setTimeout(scrollToToday, 200);
