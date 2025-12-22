@@ -242,4 +242,45 @@ body{
   border-top-color: rgba(255,255,255,.08);
 }
 
+/* ======================================================
+   Transport Page Tabs（機票 / Skyliner / 北陸新幹線）
+   只影響交通頁的分頁 button
+====================================================== */
+
+.page[data-page="transport"] .transportTabs{
+  display:flex;
+  background: rgba(255,255,255,.05);
+  border-radius: 12px;
+  padding:2px;
+  margin: 6px 0 16px;
+}
+
+.page[data-page="transport"] .transportTab{
+  flex:1;
+  border:0;
+  background: transparent;
+  color: rgba(255,255,255,.55);
+  padding:7px 0;          /* 高度變矮 */
+  font-size:13px;         /* 字變小 */
+  font-weight:500;        /* 不要太粗 */
+  letter-spacing:.3px;
+  border-radius:10px;
+  cursor:pointer;
+  appearance:none;        /* 🔑 移除原生 button 樣式 */
+  -webkit-appearance:none;
+  transition:
+    background .18s ease,
+    color .18s ease;
+}
+
+.page[data-page="transport"] .transportTab.active{
+  background: rgba(255,255,255,.20);
+  color:#fff;
+  font-weight:600;
+}
+
+.page[data-page="transport"] .transportTab:active{
+  background: rgba(255,255,255,.28);
+}
+
 
