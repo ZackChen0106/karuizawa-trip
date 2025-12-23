@@ -306,4 +306,30 @@ body{
     0 3px 10px rgba(77,163,255,.25);
 }
 
+/* ===== 行程項目卡片 ===== */
+.itItem{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02)
+  );
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* ===== 行程卡片基底 ===== */
+.itItem{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02)
+  );
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+
 

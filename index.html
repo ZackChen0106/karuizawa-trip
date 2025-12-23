@@ -17,7 +17,7 @@
       <h1 class="heroTitle">2026 初春 · 輕井澤 · 東京</h1>
       <p class="heroSub">旅遊的精髓在於懷著開放的心態欣賞一切</p>
       <div class="pillRow">
-<span class="pill" id="pillDay"></span>
+        <span class="pill" id="pillDay"></span>
         <span class="pill">🇯🇵 日本</span>
       </div>
     </div>
@@ -151,12 +151,11 @@
         <h2 class="pageTitle">🚆 交通</h2>
 
         <!-- 子分頁 Tabs -->
-     <div class="transportTabs">
-  <button class="transportTab active" data-transport="flight">✈️ 機票</button>
-  <button class="transportTab" data-transport="skyliner">🚆 Skyliner</button>
-  <button class="transportTab" data-transport="shinkansen">🚄 北陸新幹線</button>
-</div>
-
+        <div class="transportTabs">
+          <button class="transportTab active" data-transport="flight">✈️ 機票</button>
+          <button class="transportTab" data-transport="skyliner">🚆 Skyliner</button>
+          <button class="transportTab" data-transport="shinkansen">🚄 北陸新幹線</button>
+        </div>
 
         <!-- 機票（原 flight 內容搬進來） -->
         <div class="transportPanel" data-transport="flight">
@@ -190,133 +189,125 @@
           </div>
         </div>
 
-       <!-- Skyliner -->
-<div class="transportPanel" data-transport="skyliner" style="display:none;">
+        <!-- Skyliner -->
+        <div class="transportPanel" data-transport="skyliner" style="display:none;">
 
-  <!-- ⚠️ 假日提醒（最上面） -->
-  <div class="card" style="
-    background: linear-gradient(
-      135deg,
-      rgba(255,180,60,.18),
-      rgba(255,180,60,.08)
-    );
-    border-left:4px solid #ffb43c;
-  ">
-    <p style="
-      margin:0;
-      font-size:15px;
-      font-weight:700;
-      color:#ffd27d;
-    ">
-      ⚠️ 02/21–02/23 為日本國定假日
-    </p>
-    <p class="subText" style="margin-top:6px;">
-      交通與機場人潮較多，請預留排隊與轉乘時間
-    </p>
-  </div>
+          <!-- ⚠️ 假日提醒（最上面） -->
+          <div class="card" style="
+            background: linear-gradient(
+              135deg,
+              rgba(255,180,60,.18),
+              rgba(255,180,60,.08)
+            );
+            border-left:4px solid #ffb43c;
+          ">
+            <p style="
+              margin:0;
+              font-size:15px;
+              font-weight:700;
+              color:#ffd27d;
+            ">
+              ⚠️ 02/21–02/23 為日本國定假日
+            </p>
+            <p class="subText" style="margin-top:6px;">
+              交通與機場人潮較多，請預留排隊與轉乘時間
+            </p>
+          </div>
 
-  <!-- 🚆 官方資訊卡 -->
-  <div class="card">
-    <h3 class="cardTitle">🚆 京成 Skyliner 官方資訊</h3>
+          <!-- 🚆 官方資訊卡 -->
+          <div class="card">
+            <h3 class="cardTitle">🚆 京成 Skyliner 官方資訊</h3>
 
-    <a
-      href="https://www.keisei.co.jp/keisei/tetudou/skyliner/tc/traffic/skyliner.php"
-      target="_blank"
-      style="
-        display:block;
-        border-radius:14px;
-        overflow:hidden;
-        text-decoration:none;
-        position:relative;
-      "
-    >
-      <img
-  src="skyliner.jpg"
-  alt="Skyliner 官方交通資訊"
-  style="width:100%;display:block;"
-/>
+            <a
+              href="https://www.keisei.co.jp/keisei/tetudou/skyliner/tc/traffic/skyliner.php"
+              target="_blank"
+              style="
+                display:block;
+                border-radius:14px;
+                overflow:hidden;
+                text-decoration:none;
+                position:relative;
+              "
+            >
+              <img
+                src="skyliner.jpg"
+                alt="Skyliner 官方交通資訊"
+                style="width:100%;display:block;"
+              />
 
+              <div style="
+                position:absolute;
+                inset:0;
+                background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15));
+                display:flex;
+                align-items:flex-end;
+                padding:14px;
+                color:#fff;
+                font-size:15px;
+                font-weight:700;
+              ">
+                🔗 查看 Skyliner 官方交通資訊
+              </div>
+            </a>
 
-      <div style="
-        position:absolute;
-        inset:0;
-        background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.15));
-        display:flex;
-        align-items:flex-end;
-        padding:14px;
-        color:#fff;
-        font-size:15px;
-        font-weight:700;
-      ">
-        🔗 查看 Skyliner 官方交通資訊
-      </div>
-    </a>
+            <p class="subText" style="margin-top:10px;">
+              點擊後將於新分頁開啟京成電鐵官方網站
+            </p>
+          </div>
 
-    <p class="subText" style="margin-top:10px;">
-      點擊後將於新分頁開啟京成電鐵官方網站
-    </p>
-  </div>
-
-</div>
-
+        </div>
 
         <!-- 北陸新幹線 -->
         <div class="transportPanel" data-transport="shinkansen" style="display:none;">
-          <div class="card">
-            <h3 class="cardTitle">🚄 北陸新幹線</h3>
-<!-- 北陸新幹線 -->
-<div class="transportPanel" data-transport="shinkansen" style="display:none;">
 
-  <!-- ⚠️ 提醒卡 -->
-  <div class="card" style="
-    background:linear-gradient(135deg,#3b2f1c,#1e1a14);
-    border-left:4px solid #ffcc66;
-  ">
-    <div style="display:flex;gap:10px;align-items:flex-start;">
-      <div style="font-size:22px;">⚠️</div>
-      <div>
-        <div style="font-weight:700;margin-bottom:4px;">
-          02/21–02/23 為日本國定假日
-        </div>
-        <div class="subText">
-          北陸新幹線為熱門路線，建議提早查詢班次並預留轉乘時間
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🚄 官方查詢入口 -->
-  <div class="card">
-    <h3 class="cardTitle">🚄 北陸新幹線 班次查詢（Navitime）</h3>
-
-    <a
-      href="https://japantravel.navitime.com/zh-tw/area/jp/depArrTimeList/00004067/00002048/00000177?direction=down&date=2026-02-21&hour=13&trainType=&type="
-      target="_blank"
-      style="
-        display:block;
-        padding:18px;
-        border-radius:14px;
-        background:linear-gradient(135deg,#1f2a38,#0f1622);
-        text-decoration:none;
-        color:#fff;
-        border:1px solid rgba(255,255,255,.15);
-      "
-    >
-      <div style="font-size:16px;font-weight:700;margin-bottom:6px;">
-        🔍 查詢 輕井澤 → 東京 班次
-      </div>
-      <div class="subText">
-        開啟 Navitime 官方列車時刻與轉乘資訊
-      </div>
-    </a>
-
-    <p class="subText" style="margin-top:10px;">
-      點擊後將於新分頁開啟 Navitime 官方網站
-    </p>
-  </div>
-
-</div>
+          <!-- ⚠️ 提醒卡 -->
+          <div class="card" style="
+            background:linear-gradient(135deg,#3b2f1c,#1e1a14);
+            border-left:4px solid #ffcc66;
+          ">
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <div style="font-size:22px;">⚠️</div>
+              <div>
+                <div style="font-weight:700;margin-bottom:4px;">
+                  02/21–02/23 為日本國定假日
+                </div>
+                <div class="subText">
+                  北陸新幹線為熱門路線，建議提早查詢班次並預留轉乘時間
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- 🚄 官方查詢入口 -->
+          <div class="card">
+            <h3 class="cardTitle">🚄 北陸新幹線 班次查詢（Navitime）</h3>
+
+            <a
+              href="https://japantravel.navitime.com/zh-tw/area/jp/depArrTimeList/00004067/00002048/00000177?direction=down&date=2026-02-21&hour=13&trainType=&type="
+              target="_blank"
+              style="
+                display:block;
+                padding:18px;
+                border-radius:14px;
+                background:linear-gradient(135deg,#1f2a38,#0f1622);
+                text-decoration:none;
+                color:#fff;
+                border:1px solid rgba(255,255,255,.15);
+              "
+            >
+              <div style="font-size:16px;font-weight:700;margin-bottom:6px;">
+                🔍 查詢 輕井澤 → 東京 班次
+              </div>
+              <div class="subText">
+                開啟 Navitime 官方列車時刻與轉乘資訊
+              </div>
+            </a>
+
+            <p class="subText" style="margin-top:10px;">
+              點擊後將於新分頁開啟 Navitime 官方網站
+            </p>
+          </div>
+
         </div>
 
       </div>
@@ -345,73 +336,11 @@
 
         <!-- 行程內容容器 -->
         <div class="card">
-
-          <!-- Day 1（JS render） -->
-          <div class="dayPanel" data-day="0" id="day1Panel"></div>
-
-          <!-- Day 2 -->
-          <div class="dayPanel" data-day="1" style="display:none;">
-            <h3 class="cardTitle">Day 2｜輕井澤</h3>
-
-            <div class="itItem">
-              <strong>上午</strong>
-              <div>
-                <p class="subText">雲場池、舊輕井澤商店街</p>
-              </div>
-            </div>
-
-            <div class="itItem">
-              <strong>下午</strong>
-              <div>
-                <p class="subText">自由活動 / 咖啡 / 休息</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Day 3 -->
-          <div class="dayPanel is-move-day" data-day="2" style="display:none;">
-            <h3 class="cardTitle">Day 3｜輕井澤 → 東京</h3>
-
-            <div class="itItem">
-              <strong>上午</strong>
-              <div>
-                <p class="subText">退房、移動至東京</p>
-              </div>
-            </div>
-
-            <div class="itItem">
-              <strong>下午</strong>
-              <div>
-                <p class="subText">東京市區 Check-in</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Day 4 -->
-          <div class="dayPanel" data-day="3" style="display:none;">
-            <h3 class="cardTitle">Day 4｜東京</h3>
-
-            <div class="itItem">
-              <strong>全天</strong>
-              <div>
-                <p class="subText">東京市區行程（上野 / 淺草 / 其他）</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Day 5 -->
-          <div class="dayPanel" data-day="4" style="display:none;">
-            <h3 class="cardTitle">Day 5｜返程</h3>
-
-            <div class="itItem">
-              <strong>18:25</strong>
-              <div>
-                <p class="subText">成田機場起飛（IT203）</p>
-                <p class="subText">21:50 抵達桃園</p>
-              </div>
-            </div>
-          </div>
-
+          <div class="dayPanel" data-day="0"></div>
+          <div class="dayPanel" data-day="1" style="display:none;"></div>
+          <div class="dayPanel" data-day="2" style="display:none;"></div>
+          <div class="dayPanel" data-day="3" style="display:none;"></div>
+          <div class="dayPanel" data-day="4" style="display:none;"></div>
         </div>
 
       </div>
@@ -460,8 +389,8 @@
 
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
                 <a class="pill pill-nav" href="https://maps.app.goo.gl/..." target="_blank">
-  🧭 導航
-</a>
+                  🧭 導航
+                </a>
 
                 <span class="pill">🛏 兩間雙人房</span>
                 <span class="pill">☎️ +81 267-42-7355</span>
@@ -508,10 +437,10 @@
 
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
                 <a class="pill pill-nav"
-   href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8"
-   target="_blank">
-  🧭 導航
-</a>
+                   href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8"
+                   target="_blank">
+                  🧭 導航
+                </a>
 
                 <span class="pill">🛏 兩間雙人房</span>
                 <span class="pill">☎️ +81 3-6284-2703</span>
@@ -607,130 +536,307 @@
 /* ========= Day 1-5 資料 ========= */
 const itineraryData = [
   {
-    title: "Day 1｜台灣 → 日本 → 輕井澤",
+    title: "Day 1｜抵達日｜台灣 → 日本 → 輕井澤",
     items: [
-      { time: "06:40–10:40", texts: ["桃園機場 → 日本成田", "酷航 TR898"] },
-      { time: "11:30–12:30", texts: ["午餐", "成田機場或周邊用餐"] },
       {
-        time: "12:30–16:00",
-        texts: ["前往輕井澤渴望之家飯店", "導航：https://maps.app.goo.gl/QeRiC9ZzpXiTtrTA9"]
+        time: "06:40–10:40",
+        title: "桃園機場 → 日本成田",
+        details: { main: ["酷航 TR898"] }
       },
       {
-        time: "17:00–19:00",
-        texts: ["輕井澤王子購物廣場", "導航：https://maps.app.goo.gl/xvZr8RebR9oXLoMM7", "[必買推薦]"],
-        buyList: ["BEAMS / UNITED ARROWS", "COACH / MICHAEL KORS", "Le Creuset", "Nike / Adidas"]
+        time: "11:30–12:30",
+        title: "午餐",
+        details: { main: ["機場找東西吃"] }
       },
-      { time: "19:00–21:00", texts: ["晚餐", "購物廣場內或飯店周邊，依體力決定"] }
+      {
+        time: "12:30",
+        title: "出發輕井澤",
+        details: { main: ["Skyliner + 北陸新幹線"] }
+      },
+      {
+        time: "16:00–19:00",
+        title: "輕井澤王子購物廣場",
+        details: {
+          main: ["逛街＋採買＋晚餐", "附近也可以逛逛看風景"]
+        }
+      },
+      {
+        time: "19:00",
+        title: "飯店 Check in",
+        details: {
+          main: ["自由時間，可預約泡湯"],
+          note: [
+            "輕井澤站 → 飯店",
+            "距離：約 2.4 km",
+            "步行：約 30 分",
+            "計程車：8–10 分｜¥900–1,200"
+          ]
+        }
+      }
     ]
   },
   {
-    title: "Day 2｜輕井澤",
+    title: "Day 2｜漫步輕井澤",
     items: [
-      { time: "上午", texts: ["雲場池", "舊輕井澤銀座通"] },
-      { time: "中午", texts: ["午餐", "舊輕井澤周邊餐廳"] },
-      { time: "下午", texts: ["自由活動 / 咖啡廳", "回飯店休息"] }
+      {
+        time: "09:00–10:00",
+        title: "雲場池",
+        details: {
+          main: [
+            "飯店 → 雲場池",
+            "距離：約 2.0 km",
+            "步行：約 25 分",
+            "計程車：6–8 分｜¥900–1,200"
+          ],
+          note: [
+            "冬天湖面結冰、光線最好",
+            "繞湖 20–30 分鐘剛好",
+            "鞋底防滑",
+            "不走木棧邊緣結冰處"
+          ]
+        }
+      },
+      {
+        time: "10:15–13:00",
+        title: "舊輕井澤銀座通",
+        details: {
+          main: [
+            "雲場池 → 舊輕井澤銀座通",
+            "距離：約 1.6 km",
+            "步行：約 20 分（可行）",
+            "計程車：5–7 分｜¥800–1,000"
+          ],
+          note: ["冬天不鑽小巷", "午餐在此解決"]
+        }
+      },
+      {
+        time: "13:15–16:00",
+        title: "星野（榆樹街＋高原教會）",
+        details: {
+          main: [
+            "舊輕井澤銀座通 → 星野",
+            "距離：約 6.5 km",
+            "公車：約 25–35 分（班距長）",
+            "計程車：15 分｜¥2,500–3,000（最推薦）"
+          ]
+        }
+      },
+      {
+        time: "13:30–14:30",
+        title: "榆樹街小鎮",
+        details: { main: ["溪流＋木屋雪景", "坐咖啡 20–30 分最舒服"] }
+      },
+      {
+        time: "14:30–15:00",
+        title: "輕井澤高原教會",
+        details: { main: ["榆樹街步行過去（平緩）", "外觀拍照即可，15–20 分"] }
+      },
+      {
+        time: "15:00–15:30",
+        title: "溪畔短散步（視體力）",
+        details: { main: ["只走平坦段", "不進深林"] }
+      },
+      {
+        time: "15:30",
+        title: "自由時間",
+        details: {
+          main: [
+            "星野 → 飯店（計程車 15 分｜¥2,500–3,000）",
+            "可以選擇回飯店或是去逛 Outlet"
+          ]
+        }
+      }
     ]
   },
   {
-    title: "Day 3｜輕井澤 → 東京",
+    title: "Day 3｜出發東京",
     items: [
-      { time: "上午", texts: ["飯店退房", "前往東京市區"] },
-      { time: "下午", texts: ["東京飯店 Check-in", "附近散步 / 用餐"] }
+      {
+        time: "08:30–10:30",
+        title: "早餐＋整理",
+        details: { main: ["飯店或附近咖啡"] }
+      },
+      {
+        time: "10:30",
+        title: "飯店 → 輕井澤站",
+        details: {}
+      }
     ]
   },
   {
     title: "Day 4｜東京",
     items: [
-      { time: "上午", texts: ["上野", "阿美橫町"] },
-      { time: "下午", texts: ["淺草", "雷門、仲見世通"] }
+      { time: "上午", title: "上野・阿美橫町", details: {} },
+      { time: "下午", title: "淺草（雷門・仲見世通）", details: {} }
     ]
   },
   {
     title: "Day 5｜返程",
     items: [
-      { time: "上午", texts: ["整理行李", "最後購物"] },
-      { time: "18:25", texts: ["成田機場起飛（IT203）", "21:50 抵達桃園"] }
+      { time: "上午", title: "整理行李・最後購物", details: {} },
+      { time: "18:25", title: "成田機場起飛（IT203）", details: { main: ["21:50 抵達桃園"] } }
     ]
   }
 ];
 
-/* ========= Day render ========= */
+/* ========= 小工具 ========= */
+function escapeHTML(str) {
+  return String(str ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+/* ========= Day render（含「時間軸線 + 節點」） ========= */
 function renderDay(dayIndex) {
   const panel = document.querySelector(`.dayPanel[data-day="${dayIndex}"]`);
   if (!panel) return;
 
-const safeIndex = Math.max(0, dayIndex);
-const dayData = itineraryData[safeIndex];
-if (!dayData) return;
+  const dayData = itineraryData[dayIndex];
+  if (!dayData) return;
 
+  let html = `<h3 class="cardTitle">${escapeHTML(dayData.title)}</h3>`;
 
-  let html = `<h3 class="cardTitle">${dayData.title}</h3>`;
+  dayData.items.forEach((item, i) => {
+    const id = `acc-${dayIndex}-${i}`;
+    const isLast = i === dayData.items.length - 1;
 
-  dayData.items.forEach(item => {
+    const mainHTML = item.details?.main
+      ? item.details.main.map(t => `<p class="subText">${escapeHTML(t)}</p>`).join("")
+      : "";
+
+    const linkHTML = item.details?.link
+      ? `<a href="${escapeHTML(item.details.link)}" target="_blank" class="pill pill-nav" style="margin-top:6px;display:inline-block;">🧭 導航</a>`
+      : "";
+
+    const noteHTML = item.details?.note
+      ? item.details.note.map(n => `<p class="subText">⚠️ ${escapeHTML(n)}</p>`).join("")
+      : "";
+
+    const buyListHTML = item.details?.buyList
+      ? `
+        <div style="margin-top:8px;">
+          <div class="subText">🛍 必買推薦</div>
+          ${item.details.buyList.map(b => `<p class="subText">• ${escapeHTML(b)}</p>`).join("")}
+        </div>
+      `
+      : "";
+
+    // ====== 這段就是你要的「時間軸線 + 節點」：插在每個 itItem 裡（不用你另外找什麼 <div class="itItem"...> 現成的）======
     html += `
-      <div class="itItem" style="margin-bottom:20px;">
+      <div class="itItem" style="
+        position:relative;
+        padding-left:36px;
+        margin-bottom:22px;
+      ">
+
+        <!-- Timeline line（垂直線） -->
         <div style="
-          font-weight:600;
-          margin-bottom:6px;
-          padding-left:8px;
-          border-left:3px solid rgba(255,255,255,.3);
+          position:absolute;
+          left:16px;
+          top:10px;
+          width:2px;
+          height:${isLast ? "calc(100% - 22px)" : "100%"};
+          background:rgba(255,255,255,.12);
+          border-radius:2px;
+        "></div>
+
+        <!-- Timeline node（節點） -->
+        <div style="
+          position:absolute;
+          left:11px;
+          top:16px;
+          width:12px;
+          height:12px;
+          border-radius:50%;
+          background:rgba(255,255,255,.85);
+          box-shadow:
+            0 0 0 3px rgba(255,255,255,.10),
+            0 8px 18px rgba(0,0,0,.35);
+        "></div>
+
+        <!-- Accordion Header -->
+        <div
+          style="
+            display:flex;
+            gap:14px;
+            cursor:pointer;
+            padding:14px 16px;
+            border-radius:14px;
+            background:
+              linear-gradient(
+                180deg,
+                rgba(255,255,255,.08),
+                rgba(255,255,255,.02)
+              );
+            box-shadow:
+              inset 0 0 0 1px rgba(255,255,255,.08),
+              0 8px 24px rgba(0,0,0,.35);
+          "
+          onclick="
+            const el = document.getElementById('${id}');
+            const arrow = this.querySelector('.arrow');
+            const open = el.style.display === 'block';
+            el.style.display = open ? 'none' : 'block';
+            arrow.textContent = open ? '▾' : '▴';
+          "
+        >
+
+          <!-- 左側時間 -->
+          <div style="
+            min-width:78px;
+            font-size:13px;
+            font-weight:700;
+            color:rgba(255,255,255,.55);
+            letter-spacing:.3px;
+            line-height:1.4;
+          ">
+            ${escapeHTML(item.time)}
+          </div>
+
+          <!-- 右側主標題 -->
+          <div style="flex:1;">
+            <div style="
+              font-size:18px;
+              font-weight:900;
+              line-height:1.3;
+              margin-bottom:4px;
+            ">
+              ${escapeHTML(item.title)}
+            </div>
+            <div style="
+              font-size:12px;
+              color:rgba(255,255,255,.45);
+            ">
+              點擊展開詳細資訊
+            </div>
+          </div>
+
+          <!-- 箭頭 -->
+          <div class="arrow" style="
+            font-size:16px;
+            opacity:.6;
+            padding-top:2px;
+          ">▾</div>
+
+        </div>
+
+        <!-- Accordion Body -->
+        <div id="${id}" style="
+          display:none;
+          margin-top:10px;
+          padding:12px;
+          border-radius:12px;
+          background: rgba(255,255,255,.04);
         ">
-          ${item.time}
+          ${mainHTML}
+          ${linkHTML}
+          ${noteHTML}
+          ${buyListHTML}
         </div>
 
-        <div style="padding-left:12px;">
-          ${(() => {
-            const actions = [];
-            let contentHtml = "";
-
-            item.texts.forEach(t => {
-              if (t.includes("http")) {
-                actions.push(`
-                  <a href="${t.replace("導航：", "")}"
-                     target="_blank"
-                     style="text-decoration:none;color:#4da3ff;">
-                    🧭 導航
-                  </a>
-                `);
-                return;
-              }
-
-              if (t === "[必買推薦]" && item.buyList) {
-                const id = `buy-${dayIndex}-${item.time.replace(/[:–]/g, "")}`;
-                actions.push(`
-                  <span style="cursor:pointer;color:#ffcc66;"
-                    onclick="
-                      const el = document.getElementById('${id}');
-                      el.style.display = el.style.display === 'none' ? 'block' : 'none';
-                    ">
-                    🛍 必買推薦 ▾
-                  </span>
-                `);
-                return;
-              }
-
-              contentHtml += `<p class="subText" style="margin:0 0 4px 0;">${t}</p>`;
-            });
-
-            return `
-              ${contentHtml}
-              ${actions.length ? `
-                <div style="display:flex;gap:16px;margin-top:6px;font-size:13px;">
-                  ${actions.join("")}
-                </div>
-              ` : ""}
-            `;
-          })()}
-        </div>
-
-        ${
-          item.buyList
-            ? `<div id="buy-${dayIndex}-${item.time.replace(/[:–]/g, "")}"
-                 style="display:none;margin-left:20px;">
-                 ${item.buyList.map(b => `<p class="subText">• ${b}</p>`).join("")}
-               </div>`
-            : ``
-        }
       </div>
     `;
   });
@@ -751,21 +857,23 @@ if (!dayData) return;
       tab.classList.toggle('active', tab.dataset.day === String(dayIndex));
     });
 
-    panels.forEach(panel => {
-      panel.style.display = panel.dataset.day === String(dayIndex) ? 'block' : 'none';
+    panels.forEach(p => {
+      p.style.display = p.dataset.day === String(dayIndex) ? 'block' : 'none';
     });
 
     renderDay(Number(dayIndex));
   }
 
-
   tabs.forEach(tab => {
     tab.addEventListener('click', () => activateDay(tab.dataset.day));
   });
 
-  // 初始顯示
-const todayIndex = Math.max(0, window.getTodayDayIndex());
-activateDay(todayIndex);
+  // 初始顯示：如果外部有 getTodayDayIndex 就用，沒有就顯示 Day 1（index 0）
+  const todayIndex = (typeof window.getTodayDayIndex === "function")
+    ? Math.max(0, Number(window.getTodayDayIndex()) || 0)
+    : 0;
+
+  activateDay(todayIndex);
 })();
 
 /* 進入行程頁時，自動捲到目前 Day Tab */
@@ -786,7 +894,7 @@ if (itineraryTab) {
   const page = document.querySelector('.page[data-page="transport"]');
   if (!page) return;
 
-  const tabs = page.querySelectorAll('[data-transport]');
+  const tabs = page.querySelectorAll('.transportTabs .transportTab');
   const panels = page.querySelectorAll('.transportPanel');
 
   tabs.forEach(tab => {
