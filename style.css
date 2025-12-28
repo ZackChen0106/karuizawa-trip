@@ -102,9 +102,15 @@ body{
 .page{ display:none; }
 .page.active{ display:block; }
 
-.main, .pageWrap{
+.main{
   padding:16px;
 }
+
+.pageWrap{
+  padding:16px;
+  padding-top:0;   /* ✅ 關鍵修正 */
+}
+
 
 .pageTitle{
   font-size:22px;
