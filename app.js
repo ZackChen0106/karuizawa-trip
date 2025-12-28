@@ -105,27 +105,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabs  = document.querySelectorAll(".tabbar a");
   const pages = document.querySelectorAll(".page");
 
-  function switchPage(target) {
-    tabs.forEach(t => t.classList.remove("active"));
-    pages.forEach(p => p.classList.remove("active"));
+function switchPage(target) {
+  tabs.forEach(t => t.classList.remove("active"));
+  pages.forEach(p => p.classList.remove("active"));
 
-    document.querySelector(`.tabbar a[data-tab="${target}"]`)?.classList.add("active");
-    document.querySelector(`.page[data-page="${target}"]`)?.classList.add("active");
+  document.querySelector(`.tabbar a[data-tab="${target}"]`)?.classList.add("active");
+  document.querySelector(`.page[data-page="${target}"]`)?.classList.add("active");
 
-    document.body.dataset.page = target;
+  document.body.dataset.page = target;
 
-    // ⭐ 強制回到頂部（iOS / PWA 保險）
+  // ✅ 第 1 個 frame：等 page.active 真正生效
+  requestAnimationFrame(() => {
+    // ✅ 第 2 個 frame：再捲動，iOS 才吃得到
     requestAnimationFrame(() => {
-      document.querySelector(".pages")?.scrollTo(0, 0);
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
+      const scroller = document.querySelector(".pages");
+      if (scroller) scroller.scrollTop = 0;
     });
+  });
 
-    if (target === "itinerary") {
-      setTimeout(scrollToToday, 200);
-    }
+  if (target === "itinerary") {
+    setTimeout(scrollToToday, 200);
   }
+}
+
 
   tabs.forEach(tab => {
     tab.addEventListener("click", e => {
