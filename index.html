@@ -260,17 +260,23 @@
         <!-- 北陸新幹線 -->
         <div class="transportPanel" data-transport="shinkansen" style="display:none;">
 
-          <!-- ⚠️ 提醒卡 -->
+          <!-- ⚠️ 假日提醒（最上面） -->
           <div class="card" style="
-            background:linear-gradient(135deg,#3b2f1c,#1e1a14);
-            border-left:4px solid #ffcc66;
+            background: linear-gradient(
+              135deg,
+              rgba(255,180,60,.18),
+              rgba(255,180,60,.08)
+            );
+            border-left:4px solid #ffb43c;
           ">
-            <div style="display:flex;gap:10px;align-items:flex-start;">
-              <div style="font-size:22px;">⚠️</div>
-              <div>
-                <div style="font-weight:700;margin-bottom:4px;">
-                  02/21–02/23 為日本國定假日
-                </div>
+            <p style="
+              margin:0;
+              font-size:15px;
+              font-weight:700;
+              color:#ffd27d;
+            ">
+              ⚠️ 02/21–02/23 為日本國定假日
+            </p>
                 <div class="subText">
                   北陸新幹線為熱門路線，建議提早查詢班次並預留轉乘時間
                 </div>
@@ -388,9 +394,53 @@
               </div>
 
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                <a class="pill pill-nav" href="https://maps.app.goo.gl/..." target="_blank">
-                  🧭 導航
-                </a>
+                <a
+  href="https://maps.app.goo.gl/8SCXKQDV9gUFkSFi8"
+  target="_blank"
+  style="
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+    border-radius:14px;
+
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.2px;
+
+    color:rgba(255,255,255,.88);
+    text-decoration:none;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,.08)
+      );
+
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,.22),
+      0 6px 18px rgba(0,0,0,.45);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  "
+>
+  <span style="
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:rgba(255,255,255,.85);
+    color:#000;
+    font-size:12px;
+  ">🧭</span>
+  導航
+</a>
+
 
                 <span class="pill">🛏 兩間雙人房</span>
                 <span class="pill">☎️ +81 267-42-7355</span>
@@ -436,11 +486,53 @@
               </div>
 
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                <a class="pill pill-nav"
-                   href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8"
-                   target="_blank">
-                  🧭 導航
-                </a>
+                <a
+  href="https://maps.app.goo.gl/7sCP1PBgiBzV9PGv8"
+  target="_blank"
+  style="
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 14px;
+    border-radius:14px;
+
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.2px;
+
+    color:rgba(255,255,255,.88);
+    text-decoration:none;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,.08)
+      );
+
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,.22),
+      0 6px 18px rgba(0,0,0,.45);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  "
+>
+  <span style="
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:rgba(255,255,255,.85);
+    color:#000;
+    font-size:12px;
+  ">🧭</span>
+  導航
+</a>
+
 
                 <span class="pill">🛏 兩間雙人房</span>
                 <span class="pill">☎️ +81 3-6284-2703</span>
@@ -539,10 +631,14 @@ const itineraryData = [
     title: "Day 1｜抵達日｜台灣 → 日本 → 輕井澤",
     items: [
       {
-        time: "06:40–10:40",
-        title: "桃園機場 → 日本成田",
-        details: { main: ["酷航 TR898"] }
-      },
+  time: "06:40–10:40",
+  title: "桃園機場 → 日本成田",
+  details: {
+    main: ["酷航 TR898"],
+    link: "https://maps.app.goo.gl/T2Qx43rxwwfWEgtN7"
+  }
+}
+,
       {
         time: "11:30–12:30",
         title: "午餐",
@@ -551,13 +647,17 @@ const itineraryData = [
       {
         time: "12:30",
         title: "出發輕井澤",
-        details: { main: ["Skyliner + 北陸新幹線"] }
+        details: { main: ["Skyliner + 北陸新幹線"], 
+    link: "https://maps.app.goo.gl/euG1GcZNxmckiXNL7"
+}
       },
       {
         time: "16:00–19:00",
         title: "輕井澤王子購物廣場",
         details: {
-          main: ["逛街＋採買＋晚餐", "附近也可以逛逛看風景"]
+          main: ["逛街＋採買＋晚餐", "附近也可以逛逛看風景"],
+    link: "https://maps.app.goo.gl/VsZf4em7YG5adMa79"
+
         }
       },
       {
@@ -570,7 +670,8 @@ const itineraryData = [
             "距離：約 2.4 km",
             "步行：約 30 分",
             "計程車：8–10 分｜¥900–1,200"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/4JUt4ahLQBtf8qXr5"
         }
       }
     ]
@@ -593,7 +694,8 @@ const itineraryData = [
             "繞湖 20–30 分鐘剛好",
             "鞋底防滑",
             "不走木棧邊緣結冰處"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/kXrmNgQsbvcpYoMK7"
         }
       },
       {
@@ -606,30 +708,25 @@ const itineraryData = [
             "步行：約 20 分（可行）",
             "計程車：5–7 分｜¥800–1,000"
           ],
-          note: ["冬天不鑽小巷", "午餐在此解決"]
+          note: ["冬天不鑽小巷", "午餐在此解決"],
+    link: "https://maps.app.goo.gl/oi31PpNCnAPo6Sd58"
+
         }
       },
-      {
-        time: "13:15–16:00",
-        title: "星野（榆樹街＋高原教會）",
-        details: {
-          main: [
-            "舊輕井澤銀座通 → 星野",
-            "距離：約 6.5 km",
-            "公車：約 25–35 分（班距長）",
-            "計程車：15 分｜¥2,500–3,000（最推薦）"
-          ]
-        }
-      },
+
       {
         time: "13:30–14:30",
         title: "榆樹街小鎮",
-        details: { main: ["溪流＋木屋雪景", "坐咖啡 20–30 分最舒服"] }
+        details: { main: ["溪流＋木屋雪景", "坐咖啡 20–30 分最舒服"],
+    link: "https://maps.app.goo.gl/EXX7MKC4h4XYrGfY6"
+ }
       },
       {
         time: "14:30–15:00",
         title: "輕井澤高原教會",
-        details: { main: ["榆樹街步行過去（平緩）", "外觀拍照即可，15–20 分"] }
+        details: { main: ["榆樹街步行過去（平緩）", "外觀拍照即可，15–20 分"],
+    link: "https://maps.app.goo.gl/c81L3G6CAYQgEyhD6"
+ }
       },
       {
         time: "15:00–15:30",
@@ -662,7 +759,9 @@ const itineraryData = [
           ],
           note: [
             "假日新幹線人多，提前到月台等候"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/ve7uLNtXKGMiQ9218"
+
         }
       },
       {
@@ -672,7 +771,9 @@ const itineraryData = [
           main: [
             "飯店：Hotel Apreton（上野）",
             "先寄放行李，減輕負擔"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/NVrbF5fn2x9e2dXJ8"
+
         }
       },
       {
@@ -685,7 +786,9 @@ const itineraryData = [
           ],
           note: [
             "中午人潮最多，注意隨身物品"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/iQsRJz6c1q48s5g56"
+
         }
       },
       {
@@ -699,7 +802,9 @@ const itineraryData = [
           note: [
             "上野 → 濱松町（山手線）",
             "提早到碼頭報到"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/hrFe92TcarnexFpt7"
+
         }
       },
       {
@@ -712,7 +817,9 @@ const itineraryData = [
           ],
           note: [
             "濱松町 → 秋葉原（山手線）"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/xAkfRMD6849U4vDo7"
+
         }
       }
     ]
@@ -731,7 +838,9 @@ const itineraryData = [
           ],
           note: [
             "園區大，依體力調整動線"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/shriVPEP6ist2nnj9"
+
         }
       },
       {
@@ -752,9 +861,9 @@ const itineraryData = [
             "參拜＋短時間散步",
             "感受都市中的森林神社"
           ],
-          note: [
-            "行程偏精華版，不久留"
-          ]
+
+    link: "https://maps.app.goo.gl/ohgd93euJrMVfoKW9"
+
         }
       },
       {
@@ -768,7 +877,9 @@ const itineraryData = [
           note: [
             "需事先預約門票",
             "風大注意保暖"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/w1jEKS8CpZHzDmoG7"
+
         }
       }
     ]
@@ -787,7 +898,9 @@ const itineraryData = [
           ],
           note: [
             "上午人潮較多"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/6meKuLM8Xh4KnVhD9"
+
         }
       },
       {
@@ -797,7 +910,9 @@ const itineraryData = [
           main: [
             "淺草或上野用餐",
             "回飯店取行李"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/aEWtcTginUiaFUNH6"
+
         }
       },
       {
@@ -810,7 +925,9 @@ const itineraryData = [
           ],
           note: [
             "建議提早抵達機場"
-          ]
+          ],
+    link: "https://maps.app.goo.gl/88tQvhp6yXMHZqUB6"
+
         }
       },
       {
@@ -856,8 +973,56 @@ function renderDay(dayIndex) {
       : "";
 
     const linkHTML = item.details?.link
-      ? `<a href="${escapeHTML(item.details.link)}" target="_blank" class="pill pill-nav" style="margin-top:6px;display:inline-block;">🧭 導航</a>`
-      : "";
+  ? `
+    <a
+      href="${item.details.link}"
+      target="_blank"
+      style="
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        margin-top:12px;
+        padding:8px 14px;
+        border-radius:14px;
+
+        font-size:14px;
+        font-weight:600;
+        letter-spacing:.2px;
+
+        color:rgba(255,255,255,.88);
+        text-decoration:none;
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.08)
+          );
+
+        box-shadow:
+          inset 0 0 0 1px rgba(255,255,255,.22),
+          0 6px 18px rgba(0,0,0,.45);
+
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      "
+    >
+      <span style="
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        width:18px;
+        height:18px;
+        border-radius:50%;
+        background:rgba(255,255,255,.85);
+        color:#000;
+        font-size:12px;
+      ">🧭</span>
+      導航
+    </a>
+  `
+  : ""
+
 
     const noteHTML = item.details?.note
       ? item.details.note.map(n => `<p class="subText">⚠️ ${escapeHTML(n)}</p>`).join("")
