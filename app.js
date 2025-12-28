@@ -91,10 +91,15 @@ function updateToday() {
 function scrollToToday() {
   const d = window.getTodayDayIndex() >= 0 ? window.getTodayDayIndex() : 0;
   const target = document.querySelector(`.dayPanel[data-day="${d}"]`);
-  if (!target) return;
+  const scroller = document.querySelector(".pages");
+  if (!target || !scroller) return;
 
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  const top = target.getBoundingClientRect().top
+            - scroller.getBoundingClientRect().top;
+
+  scroller.scrollTop = top;
 }
+
 
 /* =====================================================
    DOM Ready
@@ -114,19 +119,20 @@ function switchPage(target) {
 
   document.body.dataset.page = target;
 
-  // ✅ 第 1 個 frame：等 page.active 真正生效
-  requestAnimationFrame(() => {
-    // ✅ 第 2 個 frame：再捲動，iOS 才吃得到
-    requestAnimationFrame(() => {
-      const scroller = document.querySelector(".pages");
-      if (scroller) scroller.scrollTop = 0;
-    });
-  });
+  const scroller = document.querySelector(".pages");
+  if (scroller) {
+    scroller.scrollTop = 0;
+  }
 
+  // ⚠️ 只在行程頁才允許再往下捲
   if (target === "itinerary") {
-    setTimeout(scrollToToday, 200);
+    setTimeout(() => {
+      scroller.scrollTop = 0;
+      scrollToToday();
+    }, 0);
   }
 }
+
 
 
   tabs.forEach(tab => {
